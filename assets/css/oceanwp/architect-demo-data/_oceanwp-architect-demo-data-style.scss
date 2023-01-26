@@ -1,0 +1,47 @@
+//OCEANWP DEMO DATA ARCHITECT--------OCEANWP DEMO DATA ARCHITECT--------OCEANWP DEMO DATA ARCHITECT----OCEANWP DEMO DATA ARCHITECT----
+
+// this is architect demo style -- for demo data
+
+// if took from customizer  -- custom css -custom js!!!!!!!!!!!!! IMPORTANT
+// this need for using architect demo data  -- ONLY!!!!!!!!!
+
+/* Big title - Text margin left */
+.elementor-element.big-margin > .elementor-element-populated { margin-left: 80px; }
+
+/* Full width buttons on the last section */
+.elementor-element.full-btn .elementor-button { display: block; }
+
+/* Blog entries */
+.blog-entry.large-entry { max-width: 833px; margin: 0 auto 30px auto; text-align: center; }
+.blog-entry.large-entry .blog-entry-summary { max-width: 640px; margin: 0 auto 20px auto; }
+.blog-entry.large-entry .blog-entry-readmore a { font-weight: 400; padding: 10px 26px; border-radius: 30px; }
+ul.page-numbers { padding: 30px 0 0; }
+.page-numbers a, .page-numbers span:not(.elementor-screen-only), .page-links span { border-radius: 50%; }
+
+/* Widgets titles */
+.widget-title { position: relative; padding: 0 0 10px; border: 0; }
+.widget-title:after { content: ''; position: absolute; bottom: 0; left: 0; display: inline-block; background-color: #6e8fef; height: 2px; width: 28px; }
+
+/* Footer bottom */
+#footer-bottom { padding: 0; }
+#footer-bottom-inner { padding: 22px 0 20px; border-top: 1px solid #eaeaea; }
+#footer-bottom #footer-bottom-menu, #footer-bottom #copyright { float: none; width: 100%; padding: 0 !important; text-align: center; }
+#footer-bottom #footer-bottom-menu a { padding: 0 15px; }
+#footer-bottom #footer-bottom-menu li:after { display: none; }
+#footer-bottom #copyright { margin-top: 20px; }
+
+/* Responsive */
+@media (max-width: 959px) {
+  .elementor-element.title-row > .elementor-element-populated { padding: 20px; }
+  .elementor-element.big-title .elementor-heading-title { font-size: 24px; }
+  .elementor-element.big-margin > .elementor-element-populated { margin-left: 40px; }
+}
+@media (max-width: 767px) {
+  .elementor-element.big-margin > .elementor-element-populated { margin-top: 20px; margin-left: 0; }
+}
+
+/* Center meta items on Blog page and archive pages */
+.blog-entry.post ul.meta {
+  justify-content: center;
+}
+// END demo data style ARCHITECT ============================================================================

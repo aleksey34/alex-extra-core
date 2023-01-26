@@ -1,0 +1,18 @@
+{
+    "name": "alex/alex-extra-core",
+    "autoload": {
+        "psr-4": {
+            "AlexExtraCore\\App\\": "src/App/",
+            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aleksey34",
+            "email": "olga.vlad@inbox.ru"
+        }
+    ],
+    "require": {
+        "htmlburger/carbon-fields": "^3.3"
+    }
+}
