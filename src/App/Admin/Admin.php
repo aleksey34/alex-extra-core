@@ -2,6 +2,7 @@
 namespace AlexExtraCore\App\Admin;
 
 
+use AlexExtraCore\App\Admin\Inc\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\Inc\AllowSvg;
 use AlexExtraCore\App\Admin\Inc\StartLoginPage;
 use AlexExtraCore\App\Admin\Inc\AdminFooter;
@@ -42,6 +43,12 @@ class Admin {
 		AllowSvg::instance();
 
 		StartLoginPage::instance();
+
+		/**
+		 * Page for plugin in admin panel
+		 */
+		AdminPluginPage::instance();
+
 
 	}
 

@@ -24,13 +24,16 @@ if(!defined('ABSPATH')) exit;
 
 define('AlexExtraCorePluginDIR' , plugin_dir_path(__FILE__) );
 define("AlexExtraCorePluginURI" , plugin_dir_url( __FILE__ ));
+define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-template/' );
+
 
 /**
  * do not need init class!!
  * there are no classes there
  * helpers and others
  */
-require_once AlexExtraCorePluginDIR .'/src/functions/functions-core.php';
+require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
+
 
 
 /**
@@ -40,7 +43,7 @@ require_once AlexExtraCorePluginDIR .'/src/functions/functions-core.php';
 /**
  * composer autoload
  */
-require_once AlexExtraCorePluginDIR .'/vendor/autoload.php';
+require_once AlexExtraCorePluginDIR .'vendor/autoload.php';
 
 
 

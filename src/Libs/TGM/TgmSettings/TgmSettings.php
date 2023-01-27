@@ -49,7 +49,7 @@ class TgmSettings {
 
 	private function includeTGM() {
 
-		require_once AlexExtraCorePluginDIR. '/src/Libs/TGM/TGM-Plugin-Activation-2.6.1/class-tgm-plugin-activation.php';
+		require_once AlexExtraCorePluginDIR. 'src/Libs/TGM/TGM-Plugin-Activation-2.6.1/class-tgm-plugin-activation.php';
 
 	}
 	private function init() {

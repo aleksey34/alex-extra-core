@@ -11,7 +11,6 @@ class StartLoginPage {
 
 	public function __construct() {
 
-
 		/**
 		 * init
 		 */
@@ -27,7 +26,6 @@ class StartLoginPage {
 		 */
 		$this->addLogoToStartPageWp();
 
-
 	}
 
 	private function addLogoToStartPageWp(){
@@ -39,17 +37,9 @@ class StartLoginPage {
 
 	public function showLogo(){
 
-		echo '
-<style type="text/css">
-    #login h1 a {
-     background: url('. AlexExtraCorePluginURI .'assets/img/logo.jpg) center center / cover  no-repeat  !important;
-      height: 160px;
-      width: auto;
-      }
-</style>';
+		require_once AlexExtraCorePluginTemplateDir . 'admin/start-login-page.php';
 
 	}
-
 
 
 

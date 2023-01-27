@@ -50,7 +50,7 @@ class App {
 
 		/**
 		 * customize admin -- page and others
-		 *
+		 *plugin admin page and others
 		 */
 		Admin::instance();
 
@@ -75,6 +75,7 @@ class App {
 
 		/**
 		 * Set dev mode
+		 * banner dev mode
 		 */
 //		DevMode::instance();
 

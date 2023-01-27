@@ -44,6 +44,7 @@ class DevMode {
 
 
 				// for prod mode -- comment this line------------------------------------------
+				require_once AlexExtraCorePluginTemplateDir  . 'common/dev-mode-banner.php';
         wp_die("Сайт в режиме разработки");
 				//============================================================================
 

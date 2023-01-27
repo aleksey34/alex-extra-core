@@ -30,7 +30,7 @@ class CarbonFieldsInit{
 
 
 	public function crb_load() {
-		require_once( AlexExtraCorePluginDIR . '/vendor/autoload.php' );
+		require_once( AlexExtraCorePluginDIR . 'vendor/autoload.php' );
 		\Carbon_Fields\Carbon_Fields::boot();
 
 	}
