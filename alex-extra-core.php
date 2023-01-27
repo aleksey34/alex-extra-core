@@ -12,19 +12,11 @@
  * @package          plugin core of alextheme
  */
 // - if file of translate in plugin - Domain Path: /languages
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
 namespace AlexExtraCore\App ;
 
 
 
-
-
+use AlexExtraCore\TGM\TgmSettings\TgmSettings;
 use Carbon_Fields\CarbonFieldsInit;
 
 if(!defined('ABSPATH')) exit;
@@ -57,6 +49,11 @@ require_once AlexExtraCorePluginDIR .'/vendor/autoload.php';
  */
 //CarbonFieldsInit::instance();
 
+
+/**
+ * TGM plugin activation
+ */
+TgmSettings::instance();
 
 
 function AlexExtraCoreInit(){

@@ -3,7 +3,8 @@
     "autoload": {
         "psr-4": {
             "AlexExtraCore\\App\\": "src/App/",
-            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/"
+            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/",
+            "AlexExtraCore\\TGM\\TgmSettings\\": "src/Libs/TGM/TgmSettings/"
         }
     },
     "authors": [
