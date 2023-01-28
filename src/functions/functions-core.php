@@ -3,6 +3,7 @@
  * Подключение всех файлов functions сдесь
  *
  */
+require_once AlexExtraCorePluginDIR .'src/functions/inc/helpers.php';
 
 if(WP_DEBUG){
 
@@ -10,15 +11,11 @@ if(WP_DEBUG){
 	 * work WP_DEBUG ONLY
 	 * For dev mode
 	 */
-	require_once AlexExtraCorePluginDIR .'src/functions/inc/dev-helpers.php';
+//	require_once alex_extra_core_dir('src/functions/inc/dev-helpers.php') ;
+    alex_extra_core_require_once_dir('src/functions/inc/dev-helpers.php');
 
 }
 
-if(is_admin()){
-	/**
-	 * do for admin  ONLY
-	 */
-	require_once AlexExtraCorePluginDIR .'src/functions/inc/admin/prohibition-modify-file.php';
-}
+
 
 

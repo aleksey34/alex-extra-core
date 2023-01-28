@@ -31,8 +31,20 @@ define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-
  * do not need init class!!
  * there are no classes there
  * helpers and others
+ *
+ * add helpers here!!
  */
 require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
+
+//================== helpers included==============================================
+
+
+/**
+ * folder - includes --
+ * contain file for included like in Theme ar Child Theme included and structure
+ *
+ */
+	alex_extra_core_require_once_dir( 'src/includes/includes-core.php' );
 
 
 
@@ -43,8 +55,8 @@ require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
 /**
  * composer autoload
  */
-require_once AlexExtraCorePluginDIR .'vendor/autoload.php';
-
+	//require_once alex_extra_core_dir('vendor/autoload.php') ;
+	alex_extra_core_require_once_dir('vendor/autoload.php');
 
 
 /**
@@ -56,7 +68,7 @@ require_once AlexExtraCorePluginDIR .'vendor/autoload.php';
 /**
  * TGM plugin activation
  */
-TgmSettings::instance();
+	TgmSettings::instance();
 
 
 function AlexExtraCoreInit(){
