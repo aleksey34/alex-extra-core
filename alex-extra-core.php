@@ -33,10 +33,12 @@ define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-
  * helpers and others
  *
  * add helpers here!!
+ * REQUIRE in TOP
  */
 require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
 
 //================== helpers included==============================================
+
 
 
 /**

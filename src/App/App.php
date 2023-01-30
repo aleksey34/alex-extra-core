@@ -7,16 +7,17 @@ use AlexExtraCore\App\CookiesAgreement\CookiesAgreement;
 use AlexExtraCore\App\CustomPostType\CustomPostType;
 use AlexExtraCore\App\CustomTaxonomy\CustomTaxonomy;
 use AlexExtraCore\App\DevMode\DevMode;
+use AlexExtraCore\App\Elementor\Category\Category;
 use AlexExtraCore\App\Elementor\Elementor;
-use AlexExtraCore\App\FavoritePost\FavoritePost;
 use AlexExtraCore\App\Gutenberg\Gutenberg;
+use AlexExtraCore\App\ScriptStyle\ScriptStyle;
 use AlexExtraCore\App\Oceanwp\Oceanwp;
 use AlexExtraCore\App\PageTemplate\PageTemplate;
 use AlexExtraCore\App\PostPage\PostPage;
 use AlexExtraCore\App\RestApi\RestApi;
-use AlexExtraCore\App\ScriptStyle\ScriptStyle;
 use AlexExtraCore\App\Shortcode\Shortcode;
 
+use AlexExtraCore\App\FavoritePost\FavoritePost;
 
 class App {
 
@@ -39,7 +40,7 @@ class App {
 
 
 
-	private function init(){
+	public function init(){
 
 		/**
 		 * activate and deactivate func
@@ -54,8 +55,17 @@ class App {
 		 */
 		Admin::instance();
 
+
+		/**
+		 * Script and common styles
+		 */
 		ScriptStyle::instance();
 
+
+
+		/**
+		 *
+		 */
 		CookiesAgreement::instance();
 
 		/**
@@ -106,19 +116,19 @@ class App {
 		 */
 		Gutenberg::instance();
 
+
 		/**
-		 * elementor block
-		 * and others
+		 * Custom Elementor widgets
+		 * set custom category
 		 */
-		Elementor::instance();
-
-
-
-
-
-
+		Category::instance();
+		add_action( 'plugins_loaded', function (){
+			// Run the plugin
+			Elementor::instance();
+		} );
 
 	}
+
 
 
 	public static function instance(){
