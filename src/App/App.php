@@ -11,7 +11,6 @@ use AlexExtraCore\App\Elementor\Category\Category;
 use AlexExtraCore\App\Elementor\Elementor;
 use AlexExtraCore\App\Gutenberg\Gutenberg;
 use AlexExtraCore\App\ScriptStyle\ScriptStyle;
-use AlexExtraCore\App\Oceanwp\Oceanwp;
 use AlexExtraCore\App\PageTemplate\PageTemplate;
 use AlexExtraCore\App\PostPage\PostPage;
 use AlexExtraCore\App\RestApi\RestApi;
@@ -98,18 +97,14 @@ class App {
 		/**
 		 * custom shortcode
 		 */
-//		Shortcode::instance();
+		Shortcode::instance();
 
 		/**
 		 * creating Post and Page
 		 */
 //		PostPage::instance();
 
-		/**
-		 * working with oceanwp
-		 *
-		 */
-//		Oceanwp::instance();
+
 
 		/**
 		 * Gutenberg
@@ -122,10 +117,7 @@ class App {
 		 * set custom category
 		 */
 		Category::instance();
-		add_action( 'plugins_loaded', function (){
-			// Run the plugin
-			Elementor::instance();
-		} );
+		Elementor::instance();
 
 	}
 

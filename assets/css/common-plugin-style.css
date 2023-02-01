@@ -21,6 +21,42 @@
 @media (max-width: 767px) {
   .alex-elementor-posts .oceanwp-recent-posts {
     grid-template-columns: 1fr; } }
+.ferrara-header-logo {
+  min-width: 180px;
+  width: 180px;
+  max-width: 180px;
+  height: 85px; }
+  .ferrara-header-logo > a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+    .ferrara-header-logo > a > span {
+      display: block;
+      color: #000000;
+      font-weight: 200; }
+    .ferrara-header-logo > a > span:first-of-type {
+      font-size: 25px;
+      line-height: 45px;
+      font-weight: bold; }
+    .ferrara-header-logo > a > span:nth-of-type(2) {
+      font-size: 50px;
+      line-height: 15px; }
+    .ferrara-header-logo > a > span:last-of-type {
+      color: #fbfdfc;
+      font-size: 40px;
+      line-height: 30px;
+      padding-left: 55px;
+      font-style: italic; }
+
+.ferrara-header-logo.front-page-logo span:last-of-type {
+  color: #000000; }
+
+#site-navigation-wrap #site-navigation .dropdown-menu > li > a:hover {
+  color: #555; }
+
+#site-navigation-wrap #site-navigation .dropdown-menu > .current-menu-item > a {
+  color: #333; }
+
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {
   margin-left: 80px; }

@@ -92,9 +92,15 @@ final class Elementor {
 	 */
 	public function __construct() {
 
-		if ( $this->is_compatible() ) {
+		add_action( 'plugins_loaded', function (){
+
+			if ( $this->is_compatible() ) {
+
 			add_action( 'elementor/init', [ $this, 'init' ] );
-		}
+
+			}
+
+		} );
 
 	}
 
