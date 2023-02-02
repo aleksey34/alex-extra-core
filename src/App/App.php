@@ -86,7 +86,7 @@ class App {
 		 * Set dev mode
 		 * banner dev mode
 		 */
-//		DevMode::instance();
+		DevMode::instance();
 
 		/**
 		 * favorite post or any post type

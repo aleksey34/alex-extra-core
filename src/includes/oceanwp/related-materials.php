@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-
 add_action('ocean_after_content_inner', function (){
 
 
@@ -248,5 +247,3 @@ add_action('ocean_after_content_inner', function (){
 
 
 	}, 1);
-
-

@@ -16,7 +16,7 @@ class DevMode {
 
 	public function __construct (){
 
-		$this->setDevMode();
+	        $this->setDevMode();
 
 	}
 
@@ -25,11 +25,11 @@ class DevMode {
 
 // turn on  in  develop // need delete in production
 		add_action('after_setup_theme' , function () {
+//alex_var_dump(get_alex_extra_core_options()['devmode']);
+			if(get_alex_extra_core_options()['devmode'] == '1') {
 
-
-			// dev mode - ON - OFF
-			if(!is_user_logged_in() && "/wp-login.php" !==  $_SERVER['REQUEST_URI'] ) {
-
+				// dev mode - ON - OFF
+				if ( ! is_user_logged_in() && "/wp-login.php" !== $_SERVER['REQUEST_URI'] ) {
 
 //    if(!is_user_logged_in() && "/wp-login/" !==  $_SERVER['REQUEST_URI'] ){
 //        wp_safe_redirect( "http://daikin-official.loc/wp-admin" );
@@ -43,10 +43,12 @@ class DevMode {
 //echo $_SERVER['REQUEST_URI'];
 
 
-				// for prod mode -- comment this line------------------------------------------
-				require_once AlexExtraCorePluginTemplateDir  . 'common/dev-mode-banner.php';
-        wp_die("Сайт в режиме разработки");
-				//============================================================================
+					// for prod mode -- comment this line------------------------------------------
+					require_once AlexExtraCorePluginTemplateDir . 'common/dev-mode-banner.php';
+					wp_die( "Сайт в режиме разработки" );
+					//============================================================================
+
+				}
 
 			}
 

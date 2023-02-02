@@ -13,14 +13,14 @@
  */
 //with example $args
 function alex_extra_core_get_forms_settings(){
-
+// field nonce  name  form if  + _action or _name
 	return [
-		'plugin_admin_page_form_id'
+		'alex_admin_page_form_id'
 		=>	[
 			'is_admin' => true,
 			'echo' => true ,
-			'before' => '<div class="form" id="myForm">
-                            <form onsubmit="return false;" method="post" action="'.admin_url().'">
+			'before' => '<div class="form" id="alex_admin_page_form_id_wrap"">
+                            <form id="alex_admin_page_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
@@ -92,21 +92,21 @@ function alex_extra_core_get_forms_settings(){
 //				'type'              => 'text',
 //				'label'             => 'Место мероприятия',
 //			],
-				'prohibition_edit_file' => [
+				'devmode' => [
 					'type'              => 'checkbox',
 					'label'             => 'Режим разработки',
 					'description'       => 'Выключить доступ к сайту. Сайт будет недоступен для незалогинненых пользователей.',
 					// 'placeholder'       => '',
 					'required'          => false,
-					'default'           => 1
+//					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
 				],
-				'devmode' => [
+				'prohibition_edit_file' => [
 					'type'              => 'checkbox',
 					'label'             => 'Доступ к редактрованию кода из админ панели',
 					'description'       => 'Включить или выключить эту возможность',
 					// 'placeholder'       => '',
 					'required'          => false,
-					'default'           => 1
+//					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
 				]
 			]
 		]

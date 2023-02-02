@@ -22,9 +22,9 @@ function alex_get_form($settings , $form_id){
 	$fields = $args['fields'];
 	$is_admin = $args['is_admin'];
 ob_start();
-		echo $args['before'] ? $args['before'] : '<form>';
+		echo $args['before'] ? $args['before'] : '<form id=".$form_id.">';
 
-	   wp_nonce_field('plugin_page_nonce' , 'plugin_page_nonce' , '' , true );
+	   wp_nonce_field($form_id . '_action' ,  $form_id . '_name' , true , true );
 
 	foreach ($fields  as $key => $field){
 
@@ -60,7 +60,7 @@ $html = ob_get_clean();
  *
  * @return string
  */
-function alexGetFormFields($key , $args , $value = null , $is_admin = false){
+function alexGetFormFields($key , $args , $value = null , $is_admin = true){
 	// func for create form
 	$defaults = array(
 		'type'              => 'text',
@@ -147,6 +147,9 @@ function alexGetFormFields($key , $args , $value = null , $is_admin = false){
 			break;
 		case 'checkbox':
 			$checked =  isset($_POST[esc_attr($key)]  ) && !empty($_POST[esc_attr($key)] ) ? 'checked' : '';
+			if( '1' == get_alex_extra_core_options()[$key] ){
+			    $checked  = 'checked';
+            }
 			if($is_admin){
 				$field = '<tr>
 			                    <th scope="row">'. esc_attr($args["label"]) .'</th>
@@ -160,7 +163,7 @@ function alexGetFormFields($key , $args , $value = null , $is_admin = false){
 				                                   $checked . '
 			                                       type="'.esc_attr( $args["type"] ).'"
 		                                       id="' . esc_attr( $args["id"] ) . '"
-		                                       value="' . $args['default'] . '"/>
+		                                       value="1"/>
 		                                '. esc_attr($args["description"]) .'
 			                            </label>
 			                        </fieldset>

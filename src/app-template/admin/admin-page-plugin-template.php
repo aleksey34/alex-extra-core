@@ -14,5 +14,5 @@
 	<p>
 		На этой странице находятся настроки плагина Alex-Extra-Core и они будут изментся по мере необходимости.
 	</p>
-	<?php  alex_get_form( alex_extra_core_get_forms_settings() ,'plugin_admin_page_form_id');  ?>
+	<?php  alex_get_form( alex_extra_core_get_forms_settings() ,'alex_admin_page_form_id');  ?>
 </div>
