@@ -5,6 +5,8 @@ $logo_height: 85px;
   width: $logo_width;
   max-width: $logo_width;
   height: $logo_height;
+  margin-left: auto;
+  margin-right: auto;
   &> a{
     display: block;
     width: 100%;

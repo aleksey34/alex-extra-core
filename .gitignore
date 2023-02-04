@@ -41,3 +41,8 @@ node_modules/
 composer.phar
 .DS_Store
 *.log
+
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map

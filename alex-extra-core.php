@@ -55,9 +55,8 @@ require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
  *
  */
 /**
- * composer autoload
+ * composer autoload classes
  */
-	//require_once alex_extra_core_dir('vendor/autoload.php') ;
 	alex_extra_core_require_once_dir('vendor/autoload.php');
 
 

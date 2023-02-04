@@ -6,6 +6,17 @@ class CustomLogo{
 	private static $instance;
 
 	public function __construct(){
+		$this->getLogo();
+
+	}
+
+
+	public function getLogo(){
+		add_shortcode('ferrara-custom-logo', function (){
+
+			return  alex_custom_logo();
+
+		});
 
 	}
 

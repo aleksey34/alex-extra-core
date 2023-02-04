@@ -24,9 +24,9 @@ class DevMode {
 
 
 // turn on  in  develop // need delete in production
-		add_action('after_setup_theme' , function () {
-//alex_var_dump(get_alex_extra_core_options()['devmode']);
-			if(get_alex_extra_core_options()['devmode'] == '1') {
+		add_action('init' , function () {
+
+			if( defined('AlexExtraCoreOptions')  &&  AlexExtraCoreOptions['devmode'] == '1') {
 
 				// dev mode - ON - OFF
 				if ( ! is_user_logged_in() && "/wp-login.php" !== $_SERVER['REQUEST_URI'] ) {

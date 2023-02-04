@@ -3,7 +3,6 @@
     "autoload": {
         "psr-4": {
             "AlexExtraCore\\App\\": "src/App/",
-            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/",
             "AlexExtraCore\\TGM\\TgmSettings\\": "src/Libs/TGM/TgmSettings/"
         }
     },
@@ -14,6 +13,6 @@
         }
     ],
     "require": {
-        "htmlburger/carbon-fields": "^3.3"
+        "sunra/php-simple-html-dom-parser": "1.5.2"
     }
 }

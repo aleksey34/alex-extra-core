@@ -1,3 +1,4 @@
+<?php  if(!is_user_logged_in()) : ?>
 <div class="alex-cookies-notice-agreement  hidden">
 	Мы используем куки для наилучшего представления нашего сайта. Если Вы продолжите использовать сайт, мы будем считать что Вас это устраивает.
 	<button class="alex-cookie-notice-btn">Согласен</button>
@@ -91,3 +92,4 @@
         });
     })();
 </script>
+<?php endif;

@@ -19,3 +19,6 @@ if(WP_DEBUG){
 
 
 alex_extra_core_require_once_dir('src/functions/inc/create-form.php');
+
+
+alex_extra_core_require_once_dir('src/functions/inc/custom-logo.php');

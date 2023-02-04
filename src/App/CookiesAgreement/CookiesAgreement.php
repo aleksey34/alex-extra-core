@@ -9,9 +9,12 @@ class CookiesAgreement {
 
 		/**
 		 *
-		 * init
+		 * init cookies agreement
 		 */
-		$this->init();
+
+		 $this->init();
+
+
 
 	}
 
@@ -28,7 +31,7 @@ class CookiesAgreement {
 
 	public  function addNotice(){
 
-		require_once AlexExtraCorePluginTemplateDir  . 'front/cookies-agreement.php';
+        require_once AlexExtraCorePluginTemplateDir  . 'front/cookies-agreement.php';
 
     }
 

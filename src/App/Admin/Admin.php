@@ -4,6 +4,7 @@ namespace AlexExtraCore\App\Admin;
 
 use AlexExtraCore\App\Admin\Inc\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\Inc\AllowSvg;
+use AlexExtraCore\App\Admin\Inc\Parser\Parser;
 use AlexExtraCore\App\Admin\Inc\StartLoginPage;
 use AlexExtraCore\App\Admin\Inc\AdminFooter;
 use AlexExtraCore\App\Admin\Inc\IconAdminMenuRemove;
@@ -48,6 +49,13 @@ class Admin {
 		 * Page for plugin in admin panel
 		 */
 		AdminPluginPage::instance();
+
+		/**
+		 * init parser
+		 */
+		if(is_admin()){
+			Parser::instance();
+		}
 
 
 	}

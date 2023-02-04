@@ -8,7 +8,8 @@
  * Do not allow change theme file from admin page
  * hide from menu
  */
-if('1'  !==  get_alex_extra_core_options()['prohibition_edit_file']){
-	define('DISALLOW_FILE_EDIT', true);
-}
-
+ add_action('admin_init' , function (){
+   if( defined('AlexExtraCoreOptions')  &&  '1'  !==  AlexExtraCoreOptions['prohibition_edit_file']){
+     define('DISALLOW_FILE_EDIT', true);
+   }
+ } );

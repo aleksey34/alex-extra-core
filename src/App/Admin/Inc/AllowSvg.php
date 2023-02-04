@@ -53,15 +53,20 @@ class AllowSvg {
 
 	private function allowSvgDownload(){
 
+// Проверить!!!
 
 
-
-			/**
-			 * # Добавляет SVG в список разрешенных для загрузки файлов.
-			 */
-			//	add_filter( 'upload_mimes', 'svg_upload_allow' );
-		    add_filter( 'upload_mimes', function ( $mimes ) {
-			$mimes['svg'] = 'image/svg+xml';
+		/**
+		 * # Добавляет SVG в список разрешенных для загрузки файлов.
+		 * check current_user_can -- here!! into callback of hook!
+		 */
+		//	add_filter( 'upload_mimes', 'svg_upload_allow' );
+	    add_filter( 'upload_mimes', function ( $mimes ) {
+		    if(current_user_can('manage_options') ){
+			    $mimes['svg'] = 'image/svg+xml';
+			    // end check
+		    }
+	        // check
 
 			return $mimes;
 		} );

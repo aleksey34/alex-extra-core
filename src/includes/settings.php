@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * define options name
+ */
+define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
+
+/**
+ * target url for parsing
+ */
+//define("AlexExtraCoreParsingTargetUrl" , 'https://ferrara-design.ru/all_catalog');
+
+
+/**
  * Function for create form in admin and front
  *
  * @param $args
@@ -107,10 +118,61 @@ function alex_extra_core_get_forms_settings(){
 					// 'placeholder'       => '',
 					'required'          => false,
 //					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
-				]
+				] ,
+				'parser_section_enable' => [
+					'type'              => 'checkbox',
+					'label'             => 'Доступ к секции парсера',
+					'description'       => 'Включить или выключить видимость секциии парсера',
+					// 'placeholder'       => '',
+					'required'          => false,
+//					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
+				] ,
+
 			]
-		]
+		],
+		'alex_parser_form_id'
+		=>	[
+			'is_admin' => true,
+			'echo' => true ,
+			'before' => '<div class="form" id="alex_parser_form_id_wrap"">
+                            <form id="alex_parser_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                                <table class="form-table" role="presentation">
+                                    <tbody>',
+			'after' =>              '</tbody>
+                                 </table>
+                                 <p class="submit">
+                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Сохранить настроки">
+                                </p>
+                              </form>
+						  </div>',
+			'fields' =>[
+					'parser_url' => [
+						'type'              => 'text',
+						'label'             => 'Url странцы для парсинга',
+						// 'placeholder'       => '',
+						'required'          => true,
+					],
+			]
+		],
+		'alex_start_parser_form_id'
+		=>	[
+			'is_admin' => true,
+			'echo' => true ,
+			'before' => '<div class="form" id="alex_start_parser_form_id_wrap"">
+                            <form id="alex_start_parser_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                                <table class="form-table" role="presentation">
+                                    <tbody>',
+			'after' =>              '</tbody>
+                                 </table>
+                                 <p class="submit">
+                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Начать парсинг">
+                                </p>
+                              </form>
+						  </div>',
+			'fields' =>[]
+			]
 	];
+
 }
 
 

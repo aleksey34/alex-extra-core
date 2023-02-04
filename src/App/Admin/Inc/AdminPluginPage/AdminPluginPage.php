@@ -2,6 +2,8 @@
 namespace AlexExtraCore\App\Admin\Inc\AdminPluginPage;
 
 
+use AlexExtraCore\App\Helper\Helper;
+
 class AdminPluginPage{
 
 	private static $instance;
@@ -13,10 +15,22 @@ class AdminPluginPage{
 	}
 
 	public function init(){
+		/**
+		 * set page in admin menu
+		 */
 		add_action( 'admin_menu', array( $this, 'add' ), 25 );
 
-        add_action('admin_init' , [$this , 'handler']  );
-//        add_action('admin_head' , [$this , 'handler']  );
+		/**
+		 * set form handler
+		 */
+        add_action('after_setup_theme' , [$this , 'handler'] , 5  );
+
+
+		/**
+		 * create constant theme option -alex extra core
+		 */
+        $this ->initAlexExtraCoreOptionConstant();
+
 	}
 
 	public function add(){
@@ -43,58 +57,71 @@ class AdminPluginPage{
 
 
 
-
 	public function handler(){
-		// check security
-		if( !alex_check_real_value($_POST)
-			|| !alex_check_real_value($_POST['alex_admin_page_form_id_name']) ){
-			return ;
+
+		if(is_admin()){
+
+			// check security
+				if( !Helper::issetCheckFormSecurity('alex_admin_page_form_id') ){
+					return;
+				}
+			// end check security
+
+			if( isset($_POST['_wp_http_referer'] )  ){
+			$back_url = site_url() . $_POST['_wp_http_referer'];
+			}else{
+				$back_url = admin_url();
+			}
+
+			// get data from db -- theme options
+
+			$plugin_settings = get_alex_extra_core_options();
+
+			if(!$plugin_settings){
+				Helper::updateAlexExtraCoreOptions( [] );
+			}
+
+
+			if( isset($_POST['prohibition_edit_file'])  && $_POST['prohibition_edit_file'] == '1'  ){
+				$plugin_settings['prohibition_edit_file'] = '1';
+			}else{
+				$plugin_settings['prohibition_edit_file'] = false;
+			}
+
+			if( isset($_POST['devmode']) && $_POST['devmode'] == '1' ){
+				$plugin_settings['devmode'] = '1';
+			}else{
+				$plugin_settings['devmode'] = false;
+			}
+
+			if( isset($_POST['parser_section_enable']) && $_POST['parser_section_enable'] == '1' ){
+				$plugin_settings['parser_section_enable'] = '1';
+			}else{
+				$plugin_settings['parser_section_enable'] = false;
+			}
+
+			if(Helper::updateAlexExtraCoreOptions($plugin_settings)){
+				Helper::addAdminNotice('success');
+			}
+	// =================================
+
 		}
 
-		if(!wp_verify_nonce(  $_POST['alex_admin_page_form_id_name'] , 'alex_admin_page_form_id_action')){
-			return;
-		}
-		// end check security
-
-
-		if(alex_check_real_value($_POST['_wp_http_referer']) ){
-		$back_url = site_url() . $_POST['_wp_http_referer'];
-		}else{
-			$back_url = admin_url();
-		}
-
-		// get data from db -- theme options
-
-		$plugin_settings = get_alex_extra_core_options();
-
-		if(!$plugin_settings){
-			update_alex_extra_core_options([]);
-		}
-
-
-		if( isset($_POST['prohibition_edit_file'])  && $_POST['prohibition_edit_file'] == '1'  ){
-			$plugin_settings['prohibition_edit_file'] = '1';
-		}else{
-			$plugin_settings['prohibition_edit_file'] = false;
-		}
-
-		if( isset($_POST['devmode']) && $_POST['devmode'] == '1' ){
-			$plugin_settings['devmode'] = '1';
-		}else{
-			$plugin_settings['devmode'] = false;
-		}
-
-		if(!update_alex_extra_core_options($plugin_settings)){
-			// error DB ?
-			wp_redirect($back_url , '302' );
-
-		}
-//		else{
-//			$plugin_settings = get_alex_extra_core_options();
-//		}
-//		alex_var_dump($plugin_settings);
-// =================================
 	}
+
+	public function initAlexExtraCoreOptionConstant(){
+
+		add_action('after_setup_theme' , function (){
+
+			$options = get_alex_extra_core_options();
+			if($options){
+				define('AlexExtraCoreOptions' , $options);
+			}
+
+		}, 7);
+
+	}
+
 
 
 

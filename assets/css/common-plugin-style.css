@@ -25,7 +25,9 @@
   min-width: 180px;
   width: 180px;
   max-width: 180px;
-  height: 85px; }
+  height: 85px;
+  margin-left: auto;
+  margin-right: auto; }
   .ferrara-header-logo > a {
     display: block;
     width: 100%;
@@ -56,6 +58,20 @@
 
 #site-navigation-wrap #site-navigation .dropdown-menu > .current-menu-item > a {
   color: #333; }
+
+.home.page #wrap #site-header {
+  transition: background-color 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.333); }
+  .home.page #wrap #site-header:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out; }
+
+.page #wrap #site-header, .archive #wrap #site-header, .single #wrap #site-header {
+  transition: background-color 0.3s ease-in-out;
+  background-color: #78bec1; }
+  .page #wrap #site-header:hover, .archive #wrap #site-header:hover, .single #wrap #site-header:hover {
+    background-color: #89c6c9;
+    transition: background-color 0.3s ease-in-out; }
 
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {

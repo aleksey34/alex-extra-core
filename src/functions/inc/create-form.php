@@ -22,13 +22,21 @@ function alex_get_form($settings , $form_id){
 	$fields = $args['fields'];
 	$is_admin = $args['is_admin'];
 ob_start();
-		echo $args['before'] ? $args['before'] : '<form id=".$form_id.">';
+		echo $args['before'] ? $args['before'] : '<form id="'.$form_id.'">';
 
 	   wp_nonce_field($form_id . '_action' ,  $form_id . '_name' , true , true );
 
 	foreach ($fields  as $key => $field){
 
-		        alexGetFormFields($key , $field ,  null , $is_admin );
+	    if(isset($_POST[$key]) && !empty($_POST[$key])   ){
+		    $value  = $_POST[$key] ;
+        }elseif( defined("AlexExtraCoreOptions")  && !empty(AlexExtraCoreOptions ) && AlexExtraCoreOptions[$key]  !== false ){
+		    $value  = AlexExtraCoreOptions[$key] ;
+        }else{
+	        $value = '';
+        }
+                // $_POST[$key]
+		        alexGetFormFields($key , $field , $value, $is_admin );
 
 	}
 
@@ -147,7 +155,7 @@ function alexGetFormFields($key , $args , $value = null , $is_admin = true){
 			break;
 		case 'checkbox':
 			$checked =  isset($_POST[esc_attr($key)]  ) && !empty($_POST[esc_attr($key)] ) ? 'checked' : '';
-			if( '1' == get_alex_extra_core_options()[$key] ){
+			if(defined('AlexExtraCoreOptions') && '1' == AlexExtraCoreOptions[$key] ){
 			    $checked  = 'checked';
             }
 			if($is_admin){
@@ -189,9 +197,21 @@ function alexGetFormFields($key , $args , $value = null , $is_admin = true){
 		case 'url':
 		case 'file':
 		case 'tel':
-			$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) .
-			          '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' .
-			          implode( ' ', $custom_attributes ) . ' />';
+		    if($is_admin){
+
+		        $field .= '<tr>
+                                <th scope="row"><label for="' . esc_attr( $args['id'] ) . '">'. esc_attr($args['label']).'</label></th>
+                                <td>
+                                    <input placeholder="' . esc_attr( $args['placeholder'] ) . '" name="'. esc_attr( $key ) .'" type="' . esc_attr( $args['type'] ) . '" id="' . esc_attr( $args['id'] ) . '" value="'.   esc_attr( $value )  .'" class="regular-text">
+                                    </td>
+                            </tr>';
+
+            }else{
+			    $field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) .
+			              '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' .
+			              implode( ' ', $custom_attributes ) . ' />';
+            }
+
 
 			break;
 		case 'datepicker':

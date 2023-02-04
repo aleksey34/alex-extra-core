@@ -130,6 +130,8 @@ class TgmSettings {
 //		),
 
 
+
+
 //		array(
 //			'name'      => 'Contact Form 7',
 //			'slug'      => 'contact-form-7',
@@ -187,31 +189,31 @@ class TgmSettings {
 				'slug'      => 'elementor',
 				'required'  => true,
 			),
-			array(
-				'name'      => 'Contact Form 7',
-				'slug'      => 'contact-form-7',
-				'required'  => true,
-			),
-			array(
-				'name'      => 'WooCommerce',
-				'slug'      => 'woocommerce',
-				'required'  => true,
-			),
+//			array(
+//				'name'      => 'Contact Form 7',
+//				'slug'      => 'contact-form-7',
+//				'required'  => true,
+//			),
+//			array(
+//				'name'      => 'WooCommerce',
+//				'slug'      => 'woocommerce',
+//				'required'  => true,
+//			),
 			array(
 				'name'      => 'Yoast SEO',
 				'slug'      => 'wordpress-seo',
 				'required'  => true,
 			),
-			array(
-				'name'      => 'Qty Increment Buttons for WooCommerce',
-				'slug'      => 'qty-increment-buttons-for-woocommerce',
-				'required'  => true,
-			),
-			array(
-				'name'      => 'Product Variations Swatches for WooCommerce',
-				'slug'      => 'woocommerce-product-variations-swatches',
-				'required'  => true,
-			),
+//			array(
+//				'name'      => 'Qty Increment Buttons for WooCommerce',
+//				'slug'      => 'qty-increment-buttons-for-woocommerce',
+//				'required'  => true,
+//			),
+//			array(
+//				'name'      => 'Product Variations Swatches for WooCommerce',
+//				'slug'      => 'woocommerce-product-variations-swatches',
+//				'required'  => true,
+//			),
 			array(
 				'name'      => 'Ocean Extra',
 				'slug'      => 'ocean-extra',
@@ -222,11 +224,11 @@ class TgmSettings {
 				'slug'      => 'ocean-modal-window',
 				'required'  => true,
 			),
-			array(
-				'name'      => 'Sticky Menu, Sticky Header (or anything!) on Scroll',
-				'slug'      => 'sticky-menu-or-anything-on-scroll',
-				'required'  => true,
-			),
+//			array(
+//				'name'      => 'Sticky Menu, Sticky Header (or anything!) on Scroll',
+//				'slug'      => 'sticky-menu-or-anything-on-scroll',
+//				'required'  => true,
+//			),
 
 
 

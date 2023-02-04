@@ -207,7 +207,8 @@ add_action('ocean_after_content_inner', function (){
 										}
 
 										// Display post thumbnail.
-										the_post_thumbnail( $size, $img_args );
+//										the_post_thumbnail(  $size, $img_args );
+										echo get_the_post_thumbnail($related_current_id , $size,$img_args  );
 
 									}
 									?>

@@ -5,3 +5,26 @@
 #site-navigation-wrap #site-navigation .dropdown-menu >.current-menu-item >a{
   color: #333 ;
 }
+
+
+// set background menu  of front page
+.home.page  #wrap  #site-header {
+  transition: background-color 0.3s ease-in-out;
+  background-color: rgba(0,0,0, 0.333);
+
+  &:hover{
+    background-color: rgba(0,0,0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+  }
+}
+
+// set background menu of others page
+.page  #wrap  #site-header , .archive  #wrap  #site-header , .single #wrap  #site-header  {
+  transition: background-color 0.3s ease-in-out;
+  background-color: #78bec1;
+
+  &:hover{
+    background-color: lighten(#78bec1 , 5%);
+    transition: background-color 0.3s ease-in-out;
+  }
+}
