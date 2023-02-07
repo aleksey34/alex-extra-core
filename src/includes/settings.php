@@ -170,7 +170,24 @@ function alex_extra_core_get_forms_settings(){
                               </form>
 						  </div>',
 			'fields' =>[]
-			]
+			],
+		'alex_start_create_posts_form_id'=>
+			[
+				'is_admin' => true,
+				'echo' => true ,
+				'before' => '<div class="form" id="alex_start_create_posts_form_id_wrap"">
+                            <form id="alex_start_create_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                                <table class="form-table" role="presentation">
+                                    <tbody>',
+				'after' =>              '</tbody>
+                                 </table>
+                                 <p class="submit">
+                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Начать создание постов">
+                                </p>
+                              </form>
+						  </div>',
+				'fields' =>[]
+			],
 	];
 
 }

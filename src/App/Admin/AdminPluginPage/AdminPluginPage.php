@@ -1,5 +1,5 @@
 <?php
-namespace AlexExtraCore\App\Admin\Inc\AdminPluginPage;
+namespace AlexExtraCore\App\Admin\AdminPluginPage;
 
 
 use AlexExtraCore\App\Helper\Helper;

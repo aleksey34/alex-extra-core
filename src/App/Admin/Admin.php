@@ -2,12 +2,13 @@
 namespace AlexExtraCore\App\Admin;
 
 
-use AlexExtraCore\App\Admin\Inc\AdminPluginPage\AdminPluginPage;
-use AlexExtraCore\App\Admin\Inc\AllowSvg;
-use AlexExtraCore\App\Admin\Inc\Parser\Parser;
-use AlexExtraCore\App\Admin\Inc\StartLoginPage;
-use AlexExtraCore\App\Admin\Inc\AdminFooter;
-use AlexExtraCore\App\Admin\Inc\IconAdminMenuRemove;
+use AlexExtraCore\App\Admin\AdminFooter\AdminFooter;
+use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
+use AlexExtraCore\App\Admin\AllowSvg\AllowSvg;
+use AlexExtraCore\App\Admin\IconAdminMenuRemove\IconAdminMenuRemove;
+use AlexExtraCore\App\Admin\Parser\Parser;
+use AlexExtraCore\App\Admin\PostPage\PostPage;
+use AlexExtraCore\App\Admin\StartLoginPage\StartLoginPage;
 
 
 class Admin {
@@ -37,6 +38,7 @@ class Admin {
 
 		AdminFooter::instance();
 
+
 		/**
 		 * do not init - check code -
 		 * current_user_can -do not work - may be need for hook later
@@ -56,6 +58,11 @@ class Admin {
 		if(is_admin()){
 			Parser::instance();
 		}
+
+		/**
+		 * creating Post and Page
+		 */
+		PostPage::instance();
 
 
 	}

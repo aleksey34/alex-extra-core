@@ -57,13 +57,19 @@ require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
 /**
  * composer autoload classes
  */
-	alex_extra_core_require_once_dir('vendor/autoload.php');
+require_once  AlexExtraCorePluginDIR .  'vendor/autoload.php';
 
 
 /**
  * Carbon fields init meta and theme options
  */
 //CarbonFieldsInit::instance();
+
+/**
+ * php Query
+ */
+//alex_extra_core_require_once_dir('.php');
+
 
 
 /**

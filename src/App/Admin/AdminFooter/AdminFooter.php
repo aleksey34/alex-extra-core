@@ -1,5 +1,5 @@
 <?php
-namespace AlexExtraCore\App\Admin\Inc;
+namespace AlexExtraCore\App\Admin\AdminFooter;
 
 /**
  * Изменение текста в подвале админ-панели

@@ -1,5 +1,5 @@
 <?php
-namespace AlexExtraCore\App\Admin\Inc;
+namespace AlexExtraCore\App\Admin\AllowSvg;
 /**
  * allow using SVG img
  */

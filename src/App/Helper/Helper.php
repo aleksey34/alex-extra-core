@@ -84,6 +84,21 @@ class Helper {
 	}
 
 
+	public static function write($filename , $data){
+		// Запись.
+		$dataSerialize = serialize($data);      // PHP формат сохраняемого значения.
+		//$data = json_encode($bookshelf);  // JSON формат сохраняемого значения.
+		file_put_contents($filename, $dataSerialize);
+	}
+	//writeData($filename , $result);
+
+
+	public static function read($filename){
+		// Чтение.
+		$data = file_get_contents($filename);
+		//$bookshelf = json_decode($data, TRUE); // Если нет TRUE то получает объект, а не массив.
+		return unserialize($data);
+	}
 
 
 	public static function instance(){

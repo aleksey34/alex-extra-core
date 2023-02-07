@@ -20,14 +20,23 @@
     <?php if(defined('AlexExtraCoreOptions')
              && '1'  === AlexExtraCoreOptions['parser_section_enable']) : ?>
     <h4>
-        Парсинг сайтов.
+        Секция парсинга сайтов, создание постов, страниц, материалов и тд.
     </h4>
+    <br/><br/>
 
 	    <?php  alex_get_form( alex_extra_core_get_forms_settings() ,'alex_parser_form_id');  ?>
 <br>
         <p>
-            Не наживайте на кнопку и закрройте доступ в эту секцию если вы не знаете точно что делаете!
+            Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
         </p>
          <?php  alex_get_form(alex_extra_core_get_forms_settings() , 'alex_start_parser_form_id') ?>
+    <br/><br/>
+    <h5>
+        Создание постов, материалов, страниц из данных полученых парсингом и тд.
+    </h5>
+    <p>
+        Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
+    </p>
+    <?php alex_get_form( alex_extra_core_get_forms_settings() , 'alex_start_create_posts_form_id')  ?>
     <?php endif;  ?>
 </div>

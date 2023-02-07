@@ -12,7 +12,6 @@ use AlexExtraCore\App\Elementor\Elementor;
 use AlexExtraCore\App\Gutenberg\Gutenberg;
 use AlexExtraCore\App\ScriptStyle\ScriptStyle;
 use AlexExtraCore\App\PageTemplate\PageTemplate;
-use AlexExtraCore\App\PostPage\PostPage;
 use AlexExtraCore\App\RestApi\RestApi;
 use AlexExtraCore\App\Shortcode\Shortcode;
 
@@ -98,12 +97,6 @@ class App {
 		 * custom shortcode
 		 */
 		Shortcode::instance();
-
-		/**
-		 * creating Post and Page
-		 */
-//		PostPage::instance();
-
 
 
 		/**
