@@ -10,6 +10,11 @@ define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
  */
 //define("AlexExtraCoreParsingTargetUrl" , 'https://ferrara-design.ru/all_catalog');
 
+/**
+ * post meta -- material post type - key
+ */
+define('AlexMaterialMetaKey' , 'ferrara_material_data');
+
 
 /**
  * Function for create form in admin and front
@@ -25,9 +30,9 @@ define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
 //with example $args
 function alex_extra_core_get_forms_settings(){
 // field nonce  name  form if  + _action or _name
-	return [
+	return  [
 		'alex_admin_page_form_id'
-		=>	[
+		                                 =>	[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_admin_page_form_id_wrap"">
@@ -121,8 +126,8 @@ function alex_extra_core_get_forms_settings(){
 				] ,
 				'parser_section_enable' => [
 					'type'              => 'checkbox',
-					'label'             => 'Доступ к секции парсера',
-					'description'       => 'Включить или выключить видимость секциии парсера',
+					'label'             => 'Доступ к секции парсера, создания и удаление постов',
+					'description'       => 'Включить или выключить видимость секциии',
 					// 'placeholder'       => '',
 					'required'          => false,
 //					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
@@ -131,7 +136,7 @@ function alex_extra_core_get_forms_settings(){
 			]
 		],
 		'alex_parser_form_id'
-		=>	[
+		                                 =>	[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_parser_form_id_wrap"">
@@ -146,16 +151,16 @@ function alex_extra_core_get_forms_settings(){
                               </form>
 						  </div>',
 			'fields' =>[
-					'parser_url' => [
-						'type'              => 'text',
-						'label'             => 'Url странцы для парсинга',
-						// 'placeholder'       => '',
-						'required'          => true,
-					],
+				'parser_url' => [
+					'type'              => 'text',
+					'label'             => 'Url странцы для парсинга',
+					// 'placeholder'       => '',
+					'required'          => true,
+				],
 			]
 		],
 		'alex_start_parser_form_id'
-		=>	[
+		                                 =>	[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_start_parser_form_id_wrap"">
@@ -170,7 +175,7 @@ function alex_extra_core_get_forms_settings(){
                               </form>
 						  </div>',
 			'fields' =>[]
-			],
+		],
 		'alex_start_create_posts_form_id'=>
 			[
 				'is_admin' => true,
@@ -183,6 +188,23 @@ function alex_extra_core_get_forms_settings(){
                                  </table>
                                  <p class="submit">
                                     <input type="submit" name="submit" id="submit" class="button button-primary" value="Начать создание постов">
+                                </p>
+                              </form>
+						  </div>',
+				'fields' =>[]
+			],
+		'alex_delete_posts_form_id'=>
+			[
+				'is_admin' => true,
+				'echo' => true ,
+				'before' => '<div class="form" id="alex_delete_posts_form_id_wrap"">
+                            <form id="alex_delete_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                                <table class="form-table" role="presentation">
+                                    <tbody>',
+				'after' =>              '</tbody>
+                                 </table>
+                                 <p class="submit">
+                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Удаление постов">
                                 </p>
                               </form>
 						  </div>',

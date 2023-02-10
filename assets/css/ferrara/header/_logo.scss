@@ -1,4 +1,4 @@
-$logo_width: 180px;
+$logo_width: 190px;
 $logo_height: 85px;
 .ferrara-header-logo{
   min-width: $logo_width;
@@ -37,6 +37,9 @@ $logo_height: 85px;
       line-height: 30px;
       padding-left: 55px;
       font-style: italic;
+
+      // установка рукопсные  шрифтов гугл
+      font-family: 'Merienda', 'Lobster Two', 'Oleo Script',  serif;
 
     }
 

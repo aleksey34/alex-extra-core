@@ -69,7 +69,8 @@ if(!function_exists('oceanwp_post_layout')){
 
 		// All else
 		else {
-			$class = 'right-sidebar';
+			$class = 'full-width';  // my change
+//			$class = 'right-sidebar';
 		}
 
 		// Class should never be empty

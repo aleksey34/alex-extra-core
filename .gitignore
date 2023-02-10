@@ -46,3 +46,6 @@ composer.phar
 *.css.map
 *.sass.map
 *.scss.map
+
+*.css.map
+
