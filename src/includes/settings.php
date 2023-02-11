@@ -126,7 +126,7 @@ function alex_extra_core_get_forms_settings(){
 				] ,
 				'parser_section_enable' => [
 					'type'              => 'checkbox',
-					'label'             => 'Доступ к секции парсера, создания и удаление постов',
+					'label'             => 'Доступ к секции разработки',
 					'description'       => 'Включить или выключить видимость секциии',
 					// 'placeholder'       => '',
 					'required'          => false,

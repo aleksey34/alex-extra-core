@@ -123,29 +123,24 @@ class RemovePostPage {
 	}
 
 	public function startRemoveAllPosts(){
-		if(is_admin()){
 
-//			require_once ABSPATH . 'wp-admin/includes/image.php';
-//			require_once ABSPATH . 'wp-admin/includes/file.php';
-//			require_once ABSPATH . 'wp-admin/includes/media.php';
-
-			// check security
-			if ( ! Helper::issetCheckFormSecurity( 'alex_delete_posts_form_id' ) ) {
-				return;
-			}
-			// end check security
-			// remove material
-
-			$ids = $this->getAllPostIdsByPostType(self::$postType);
-
-			foreach ($ids as $id){
-				$this->removeMediaAndMeta();
-				$this->removePost($id );
-			}
-
-			// end remove
-
+		// check security
+		if ( ! Helper::issetCheckFormSecurity( 'alex_delete_posts_form_id' ) ) {
+			return;
 		}
+		// end check security
+		// remove material
+
+		$ids = $this->getAllPostIdsByPostType(self::$postType);
+
+		foreach ($ids as $id){
+			$this->removeMediaAndMeta();
+			$this->removePost($id );
+		}
+
+		// end remove
+
+
 	}
 
 	private function  getAllPostIdsByPostType($postType= 'post'){
