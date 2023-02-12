@@ -25,14 +25,12 @@ class PostPage {
 	}
 
 	private function init(){
-//		add_filter( 'wp_image_editors', 'change_graphic_lib' );
-//		function change_graphic_lib($array) {
-//			return array( 'WP_Image_Editor_GD', 'WP_Image_Editor_Imagick' );
-//		}
-//alex_var_dump(  (new \wpdb()) ->base_prefix);
-		RemovePostPage::instance();
 
-		CreatePostPage::instance();
+		if(is_admin()){
+			RemovePostPage::instance();
+
+			CreatePostPage::instance();
+		}
 
 	}
 

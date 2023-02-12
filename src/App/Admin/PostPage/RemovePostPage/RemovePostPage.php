@@ -46,7 +46,12 @@ class RemovePostPage {
 			add_action( 'delete_post', function ($pid){
 				global $wpdb;
 
-				$sql = $wpdb->prepare( 'DELETE FROM wp_postmeta WHERE post_id = %d', $pid );
+				//универсально . если изменен префикс таблиц
+				global $table_prefix;
+
+				$sql = 'DELETE FROM %s'.'postmeta WHERE post_id = %d';
+
+				$sql = $wpdb->prepare( $sql, $table_prefix , $pid );
 
 				$wpdb->query( $sql );
 			}, 10 );
@@ -63,57 +68,6 @@ class RemovePostPage {
 
 		// delete postmeta
 		$this->removeMeta();
-
-
-
-
-
-
-
-
-		// remove meta / remove img and other info about post by post ID
-//		$data  = get_post_meta($post_id , $metaKey , true );
-//		if(empty($data)){
-//			// remove attachment of post
-//			wp_delete_attachment($post_id , true );
-//			return false;
-//		}
-
-
-
-
-//		$data = unserialize( $data );
-//
-//		if(isset($data['thumbnail']) && !empty($data['thumbnail'])){
-//			$thumb_id = $data['thumbnail'];
-//			//remove thumbnail here
-//			$meta         = wp_get_attachment_metadata( $thumb_id );
-//			$backup_sizes = get_post_meta( $thumb_id, '_wp_attachment_backup_sizes', true );
-//			$file         = get_attached_file( $thumb_id );
-//
-//			wp_delete_attachment_files( $thumb_id, $meta, $backup_sizes, $file );
-//		}
-
-
-
-//		if(isset($data['gallery']) && !empty($data['gallery'])){
-//			$gallery_ids = $data['gallery'];
-//			//remove gallery here
-//			foreach ($gallery_ids as $img_id){
-//				$meta         = wp_get_attachment_metadata( $img_id );
-//				$backup_sizes = get_post_meta( $img_id, '_wp_attachment_backup_sizes', true );
-//				$file         = get_attached_file( $img_id );
-//
-//				wp_delete_attachment_files( $img_id, $meta, $backup_sizes, $file );
-//			}
-//		}
-
-		// remove attachment of post
-
-//		wp_delete_attachment($post_id , true );
-
-
-//		delete_post_meta($post_id , $metaKey);
 
 	}
 
@@ -145,18 +99,24 @@ class RemovePostPage {
 
 	private function  getAllPostIdsByPostType($postType= 'post'){
 
-		$args = array('posts_per_page' => -1, 'post_type' => $postType);
+		global $wpdb;
+		//универсально . если изменен префикс таблиц
+		global $table_prefix;
 
-		$posts = get_posts($args);
+		//$wpdb->hide_errors(); // if it requires
 
 		$ids = [];
-		if ($posts) :
-			foreach ($posts as $post) :
-				setup_postdata($post);
-				$ids[] = $post->ID;
-			endforeach;
-			wp_reset_postdata();
-		endif;
+
+		$query = 'SELECT ID FROM ' . $table_prefix . 'posts WHERE post_type = "'. $postType .'"';
+//		$query = $wpdb ->prepare($query);
+		$data  = $wpdb->get_results($query, ARRAY_A);
+		if(!isset($data) && empty($data)  ){
+			$data = [];
+		}
+		foreach ($data as $id){
+			$ids[] = $id['ID'];
+		}
+
 		return $ids;
 	}
 

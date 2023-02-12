@@ -25,52 +25,80 @@ class CreatePostPage {
 	private function init(){
 
 		add_action('admin_init' , [$this , 'startCreatePosts']);
-//		add_action('after_setup_theme' , [$this , 'startCreatePosts']);
-
-		// add  gallery
-		$this->preparePost();
 
 	}
 
-	private function preparePost(){
-		// add Gallery , price and button require
-		add_filter('the_content', function ($content){
-// maybe do single and archive deferent - single - content and archive -after-title  -- here!!
-			if(get_post_type() === 'material'){
+	private function getPriceHtml($price){
 
-				// set gallery here - data from meta
-				$html = '';
-				$meta = get_post_meta(get_the_ID() , AlexMaterialMetaKey , true);
-				$meta = unserialize($meta);
+		if(isset($price) && !empty($price)){
 
-				if(isset($meta)
-				   && !empty($meta) ){
-					if(isset($meta['gallery'])
-					   &&  !empty($meta['gallery'])
-					   && gettype($meta['gallery'])  === 'array' ){
+			$price = intval($price)  ;
 
-						$html = $html . '<figure class="is-layout-flex wp-block-gallery-3 wp-block-gallery has-nested-images columns-default is-cropped">';
+			return '<div class="is-layout-flex wp-container-6 wp-block-columns">
+					<div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
+						<h4>стоимость  '. $price  .' рублей за квадратный метр.</h4>
+					</div>
+					<div class="is-layout-flow wp-block-column" style="flex-basis:66.66%">
+						<div class="is-layout-flex wp-block-buttons">
+							<div class="wp-block-button has-custom-font-size omw-open-modal is-style-fill has-medium-font-size"><a class="wp-block-button__link has-pale-cyan-blue-color has-text-color wp-element-button" href="#omw-862" style="border-radius:5px">Оставить заявку</a></div>
+						</div>
+					</div>
+				</div>';
 
-						$gallery = $meta['gallery'];
-						foreach ($gallery as $id){
-							$html = $html . '<figure class="wp-block-image size-large">';
-							$html  = $html . wp_get_attachment_image(  $id );
-							$html = $html . '</figure>';
-						}
+		}else{
+			return '';
+		}
 
-						$html = $html . '</figure>';
-					}
-				}
+	}
 
+	private function getGalleryHtml($gallery_ids){
+		$html = '';
 
-				$content  = $content . $html;
+		if(isset($gallery_ids) &&  !empty($gallery_ids) && gettype($gallery_ids)  === 'array' ) {
+			$html = $html . '<figure class="is-layout-flex wp-block-gallery-3 wp-block-gallery has-nested-images columns-default is-cropped">';
+			foreach ($gallery_ids as $attachment_id){
+				$html = $html . '<figure class="wp-block-image size-large">';
+				$html  = $html . wp_get_attachment_image(  $attachment_id );
+				$html = $html . '</figure>';
 			}
+			$html = $html . '</figure>';
+			return $html;
+		}else{
+			return $html;
+		}
+
+	}
+
+	private function getGalleryIdsUploadAttachments($gallery_ex_urls , $post_id = 0){
+		// post_id = 0  . позже будет прикрепление к текущему посту. сейчас без  -- поэтому 0
+		$gallery_ids = [];
+		if(isset($gallery_ex_urls)
+		   && !empty($gallery_ex_urls)
+		   && gettype($gallery_ex_urls)  === 'array' ){
+			foreach ($gallery_ex_urls as $url ) {
+				$gallery_ids[] = $this->uploadMedia($url , $post_id );
+			}
+		}
+		return $gallery_ids;
+
+	}
 
 
-			return $content  ;
-		});
+	private function addAttachmentToPost($attachment_ids , $post_id){
+		//------------------------------
+// прикрпляет attachments  к посту
+//		wp_update_post( [
+//			'ID' => $attachment_id,
+//			'post_parent' => $post_id
+//		] );
+// или так --
+		global $wpdb;
+		foreach ($attachment_ids as $attachment_id){
+			$wpdb->update( $wpdb->posts, [ 'post_parent' => $post_id ], [ 'ID' => $attachment_id ] );
+		}
 
-
+		clean_post_cache( $post_id );
+		//---------------------------------------
 	}
 
 
@@ -82,20 +110,17 @@ class CreatePostPage {
 		$post_data['post_title'] = $data['title'];
 
 
-		$price = intval($data['price'])  ;
-		$html ='<div class="is-layout-flex wp-container-6 wp-block-columns">
-					<div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:33.33%">
-						<h4>стоимость  '. $price  .' рублей за квадратный метр.</h4>
-					</div>
-					<div class="is-layout-flow wp-block-column" style="flex-basis:66.66%">
-						<div class="is-layout-flex wp-block-buttons">
-							<div class="wp-block-button has-custom-font-size omw-open-modal is-style-fill has-medium-font-size"><a class="wp-block-button__link has-pale-cyan-blue-color has-text-color wp-element-button" href="#omw-862" style="border-radius:5px">Оставить заявку</a></div>
-						</div>
-					</div>
-				</div>';
+		$price_html = $this->getPriceHtml($data['price']);
+
+		$gallery_ids = $this->getGalleryIdsUploadAttachments(  $data['gallery'] , 0);
+
+		$html_gallery = $this->getGalleryHtml($gallery_ids);
 
 
-		$post_data['post_content'] = $html . $data['content'];
+
+		$html = $price_html . $data['content'];
+		$html = $html . $html_gallery;
+		$post_data['post_content'] = $html;
 
 
 
@@ -103,21 +128,11 @@ class CreatePostPage {
 		$post_id = wp_insert_post($post_data, true);
 
 
+		//------------------------------
+// прикрпляет attachments  к посту
+		$this->addAttachmentToPost($gallery_ids , $post_id);
 
-// Задаём значение для дополнительного поля:
-// В одном из моих блогов есть дополнительное поле rating (числовое).
-// Его мы и зададим. Для примера, выставим значение 80
-//		update_post_meta($post_id , 'rating', 80);
-// Второе поле - строковое - postscriptum
-		$gallery = [];
-		$value = [];
-		foreach ($data['gallery'] as $url ) {
-;
-			$gallery[] = $this->uploadMedia($url , $post_id );
-		}
-		$value ['gallery'] = $gallery	;
-
-		$value['price'] = $price;
+	//---------------------------------------
 
 
 // create media and set to post
@@ -125,9 +140,6 @@ class CreatePostPage {
 		// Файл сохранён и добавлен в медиатеку WP. Теперь назначаем его в качестве облож
 		set_post_thumbnail($post_id, $thumbnail_id);
 
-		$value['thumbnail'] = $thumbnail_id;
-		$value = serialize($value);
-		update_post_meta($post_id , AlexMaterialMetaKey, $value);
 // ======================================================================
 
 	}
@@ -145,19 +157,14 @@ class CreatePostPage {
 		// end check security
 // start after push button=== start creating
 		$start = 0;
-		$offset = 5;
-		$finish  = 25;
+		$offset = 0;
+		$finish  = 2;
 //		$last_index = count($this->getData());
 
 		foreach ($this->getData() as $data ){
 			if( $start >= $offset && $start < $finish){
 				$this->createPost($this->getSettings() , $data);
 			}
-			if($start>=$offset && !$start%5){
-				sleep(rand(25 , 30));
-			}
-
-//			sleep(rand(1,3)); // need or not?
 
 			$start++;
 		}
