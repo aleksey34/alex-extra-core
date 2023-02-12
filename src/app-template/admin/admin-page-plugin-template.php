@@ -44,7 +44,7 @@
             Удаление всех постов.<br/> Удаление всех Материалов - со всеми изображениями которые к ним прикрепленны.<br/>
             Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
         </p>
-    <?php alex_get_form( alex_extra_core_get_forms_settings() , 'alex_delete_posts_form_id')  ?>
+    <?php alex_get_form( alex_extra_core_get_forms_settings() , 'alex_remove_posts_form_id')  ?>
 
     <?php endif;  ?>
 </div>

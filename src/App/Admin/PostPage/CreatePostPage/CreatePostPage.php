@@ -5,6 +5,7 @@ namespace AlexExtraCore\App\Admin\PostPage\CreatePostPage;
 
 use AlexExtraCore\App\Helper\Helper;
 
+
 class CreatePostPage {
 
 	private static $instance;
@@ -102,7 +103,8 @@ class CreatePostPage {
 	}
 
 
-	public function createPost($settings , $data){
+
+	private function createPost($settings , $data){
 		// post -material
 		require_once( ABSPATH  . '/wp-load.php');
 
@@ -144,6 +146,9 @@ class CreatePostPage {
 
 	}
 
+	/**
+	 * может использоваться отдельно при ajax
+	 */
 	public function startCreatePosts(){
 
 		require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -152,23 +157,31 @@ class CreatePostPage {
 
 		// check security
 		if ( ! Helper::issetCheckFormSecurity( 'alex_start_create_posts_form_id' ) ) {
-			return;
+			return ;
 		}
 		// end check security
+
 // start after push button=== start creating
 		$start = 0;
-		$offset = 0;
-		$finish  = 2;
+		$offset = 161;
+		$finish  = 162;
 //		$last_index = count($this->getData());
 
 		foreach ($this->getData() as $data ){
 			if( $start >= $offset && $start < $finish){
-				$this->createPost($this->getSettings() , $data);
+				// try catch do not work??
+				try {
+					$this->createPost($this->getSettings() , $data);
+				}catch (\Exception $exception){
+//					$exception->getMessage();
+					$start--;
+
+				}
+
 			}
 
 			$start++;
 		}
-
 
 //=============end creating =======================================
 

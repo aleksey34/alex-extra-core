@@ -42,7 +42,7 @@ function alex_extra_core_get_forms_settings(){
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Сохранить изменения">
+                                    <input type="submit" name="submit" id="alex_admin_page_form_id_submit" class="button button-primary" value="Сохранить изменения">
                                 </p>
                               </form>
 						  </div>',
@@ -146,7 +146,7 @@ function alex_extra_core_get_forms_settings(){
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Сохранить настроки">
+                                    <input type="submit" name="submit" id="alex_parser_form_id_submit" class="button button-primary" value="Сохранить настроки">
                                 </p>
                               </form>
 						  </div>',
@@ -170,7 +170,7 @@ function alex_extra_core_get_forms_settings(){
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Начать парсинг">
+                                    <input type="submit" name="submit" id="alex_start_parser_form_id_submit" class="button button-primary" value="Начать парсинг">
                                 </p>
                               </form>
 						  </div>',
@@ -187,24 +187,26 @@ function alex_extra_core_get_forms_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Начать создание постов">
+                                    <input type="submit" name="submit" id="alex_start_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
+                               		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
                                 </p>
                               </form>
 						  </div>',
 				'fields' =>[]
 			],
-		'alex_delete_posts_form_id'=>
+		'alex_remove_posts_form_id'=>
 			[
 				'is_admin' => true,
 				'echo' => true ,
-				'before' => '<div class="form" id="alex_delete_posts_form_id_wrap"">
-                            <form id="alex_delete_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+				'before' => '<div class="form" id="alex_remove_posts_form_id_wrap"">
+                            <form id="alex_remove_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="submit" class="button button-primary" value="Удаление постов">
+                                    <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
+                                    <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
                                 </p>
                               </form>
 						  </div>',

@@ -3,6 +3,8 @@ namespace AlexExtraCore\App\Admin\PostPage;
 
 
 
+use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxCreatePostPage;
+use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxRemovePostPage;
 use AlexExtraCore\App\Admin\PostPage\CreatePostPage\CreatePostPage;
 use AlexExtraCore\App\Admin\PostPage\RemovePostPage\RemovePostPage;
 
@@ -10,11 +12,6 @@ use AlexExtraCore\App\Admin\PostPage\RemovePostPage\RemovePostPage;
 class PostPage {
 
 	private static $instance;
-
-	private static $dataPath = AlexExtraCorePluginDIR . 'data/materials/all-product-data.txt';
-
-	private static $postType= 'material';
-
 
 
 	public function __construct (){
@@ -25,11 +22,24 @@ class PostPage {
 	}
 
 	private function init(){
-
+		$isAjax = true;
 		if(is_admin()){
-			RemovePostPage::instance();
+			if($isAjax){
+				AjaxCreatePostPage::instance();
 
-			CreatePostPage::instance();
+				AjaxRemovePostPage::instance();
+			}else{
+				// if without Ajax !!!
+				CreatePostPage::instance();
+
+				// without Ajax only
+				RemovePostPage::instance();
+			}
+//			RemovePostPage::instance();// temp only
+
+
+
+
 		}
 
 	}

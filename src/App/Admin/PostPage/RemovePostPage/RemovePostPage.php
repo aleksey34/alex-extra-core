@@ -43,17 +43,25 @@ class RemovePostPage {
 	private function removeMeta(){
 		add_action( 'admin_init', function (){
 
-			add_action( 'delete_post', function ($pid){
-				global $wpdb;
+			add_action( 'delete_post', function ($post_id){
+//				добавить провеку на удаляемый тип post_type
+				// проверим тип записи для которых нужно удалять вложение
+				$post = get_post( $post_id );
+				if( in_array($post->post_type, [self::$postType]) ){
 
-				//универсально . если изменен префикс таблиц
-				global $table_prefix;
+					global $wpdb;
 
-				$sql = 'DELETE FROM %s'.'postmeta WHERE post_id = %d';
+					//универсально . если изменен префикс таблиц
+					global $table_prefix;
 
-				$sql = $wpdb->prepare( $sql, $table_prefix , $pid );
+					$sql = 'DELETE FROM %s'.'postmeta WHERE post_id = %d';
 
-				$wpdb->query( $sql );
+					$sql = $wpdb->prepare( $sql, $table_prefix , $post_id );
+
+					$wpdb->query( $sql );
+
+				}
+
 			}, 10 );
 
 		} );
@@ -71,7 +79,7 @@ class RemovePostPage {
 
 	}
 
-	public function removePost($post_id){
+	private function removePost($post_id){
 		// remove post here-- with attachments and force or not
 		wp_delete_post($post_id, true);
 	}
@@ -79,21 +87,21 @@ class RemovePostPage {
 	public function startRemoveAllPosts(){
 
 		// check security
-		if ( ! Helper::issetCheckFormSecurity( 'alex_delete_posts_form_id' ) ) {
+		if ( ! Helper::issetCheckFormSecurity( 'alex_remove_posts_form_id' ) ) {
 			return;
 		}
 		// end check security
 		// remove material
-
 		$ids = $this->getAllPostIdsByPostType(self::$postType);
 
+		$this->removeMediaAndMeta(); // do not require post_id
+
 		foreach ($ids as $id){
-			$this->removeMediaAndMeta();
+
 			$this->removePost($id );
 		}
 
 		// end remove
-
 
 	}
 
