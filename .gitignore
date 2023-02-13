@@ -40,12 +40,12 @@ node_modules/
 /.idea/
 composer.phar
 .DS_Store
-*.log
+
 
 .sass-cache/
 *.css.map
 *.sass.map
 *.scss.map
 
-*.css.map
+
 

@@ -1,0 +1,8 @@
+// reverse section in mobile
+@media (max-width: 767px){
+  .ferrara-exclusive-collection-reverse-section{
+    &>.elementor-container{
+      flex-direction: column-reverse;
+    }
+  }
+}

@@ -47,63 +47,81 @@ class AjaxCreatePostPage {
 
 
 		add_action('admin_footer' , function (){
-?>
-	<script>
-        jQuery(function (){
-            let ajaxurl = '/wp-admin/admin-ajax.php';
-
-
-            let alexCreatePostsFormId = 'alex_start_create_posts_form_id';
-
-            let alexCreatePostsForm = jQuery(`#${alexCreatePostsFormId}`);
-            if(alexCreatePostsForm.length >= 1 ){
-
-                alexCreatePostsForm.on('click' , (e)=>{
-                    e.preventDefault();
-
-                    let alexCreatePostsFormNonceName =  `${alexCreatePostsFormId}_name`;
-                    let nonce = alexCreatePostsForm.find(`#${alexCreatePostsFormNonceName}`).val();
-
-
-                    let alexCreatePostsSubmit = alexCreatePostsForm.find('input[type=submit]');
-                    let  alexCreatePostsLoader   = alexCreatePostsSubmit.next('img').css('display' , 'block');
-
-                    let data = {
-                        action: 'alex-create-post-page',
-                        payload: {},
-                        // alex_start_create_posts_form_id_name : nonce
-                    }
-                   data[alexCreatePostsFormNonceName] = nonce;
-
-
-
-                    jQuery.post( ajaxurl, data, function( response ){
-                        if( response ){
-                            alexCreatePostsLoader.css('display' , 'none');
-                        }
-                        if(response.data.result  === 'success' ){
-                            alexCreatePostsSubmit.after(' <span style=\'padding-left: 10px;\'> Посты загрузились успешно</span>')
-                        }else{
-                            alexCreatePostsSubmit.after(` <span  style=\'padding-left: 10px;\'> Произошла неизвестная ошибка. <br/>
-                              ${response.data.result} </span>`);
-                        }
-                    } );
-
-                });
-
-            }
-
-
-
-
-
-        })
-	</script>
-<?php
+		    $this->getJs();
 		}, 100);
 
 	   endif;
 
+	}
+
+	private function getJs(){
+	    ?>
+        <script>
+            jQuery(function (){
+                let ajaxurl = '/wp-admin/admin-ajax.php';
+
+                let is_first = true;
+                let offset = 0;
+
+
+                let alexCreatePostsFormId = 'alex_start_create_posts_form_id';
+
+                let alexCreatePostsForm = jQuery(`#${alexCreatePostsFormId}`);
+                if(alexCreatePostsForm.length >= 1 ){
+
+                    alexCreatePostsForm.on('submit' , (e)=>{
+                        e.preventDefault();
+
+
+                        let alexCreatePostsFormNonceName =  `${alexCreatePostsFormId}_name`;
+                        let nonce = alexCreatePostsForm.find(`#${alexCreatePostsFormNonceName}`).val();
+
+
+                        let alexCreatePostsSubmit = alexCreatePostsForm.find('input[type=submit]');
+                        let resultMessage   = alexCreatePostsSubmit.next('span');
+                        if(resultMessage.length){
+                            resultMessage.remove();
+                        }
+                        let  alexCreatePostsLoader   = alexCreatePostsSubmit.next('img').css('display' , 'block');
+
+
+                        if(is_first){
+                            is_first = false;
+                        }else{
+                            offset = offset + 3;
+                        }
+
+                        let data = {
+                            action: 'alex-create-post-page',
+                            payload: {
+                                offset
+                            },
+                            // alex_start_create_posts_form_id_name : nonce
+                        }
+                        data[alexCreatePostsFormNonceName] = nonce;
+
+                        jQuery.post( ajaxurl, data, function( response ){
+
+                            alexCreatePostsLoader.css('display' , 'none');
+
+                            if( response && response.data  && response.data.result ){
+                                if(response.data.result  === 'success' ){
+                                    alexCreatePostsSubmit.after(' <span style=\'padding-left: 10px;color: green;\'> Посты загрузились успешно</span>')
+                                }else{
+                                    alexCreatePostsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла неизвестная ошибка. <br/>
+                              ${response.data.result} </span>`);
+                                }
+                            }else {
+                                alexCreatePostsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла ошибка.</span>`);
+                            }
+
+                        } );
+
+                    });
+                }
+            })
+        </script>
+        <?php
 	}
 
 

@@ -251,6 +251,9 @@ body.archive .material
   min-width: 100%;
   max-width: 100%; }
 
+@media (max-width: 767px) {
+  .ferrara-exclusive-collection-reverse-section > .elementor-container {
+    flex-direction: column-reverse; } }
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {
   margin-left: 80px; }

@@ -162,12 +162,24 @@ class CreatePostPage {
 		// end check security
 
 // start after push button=== start creating
-		$start = 0;
-		$offset = 161;
-		$finish  = 162;
-//		$last_index = count($this->getData());
 
-		foreach ($this->getData() as $data ){
+		$postsData = $this->getData();
+
+		$count = count($postsData);
+		$start = 0;
+
+		$offset = 0;
+		$finish  = 1;
+
+
+		// for ajax loading! only
+		if( isset($_POST['payload'] ) && isset($_POST['payload']['offset'] ) ){
+			$offset = intval($_POST['payload']['offset']);
+			$finish = $offset + 3;
+		}
+
+
+		foreach ($postsData as $data ){
 			if( $start >= $offset && $start < $finish){
 				// try catch do not work??
 				try {
