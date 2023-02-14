@@ -60,8 +60,9 @@ class AjaxCreatePostPage {
             jQuery(function (){
                 let ajaxurl = '/wp-admin/admin-ajax.php';
 
-                let is_first = true;
-                let offset = 0;
+                //chunk with ajax
+                // let is_first = true;
+                // let offset = 0;
 
 
                 let alexCreatePostsFormId = 'alex_start_create_posts_form_id';
@@ -85,16 +86,17 @@ class AjaxCreatePostPage {
                         let  alexCreatePostsLoader   = alexCreatePostsSubmit.next('img').css('display' , 'block');
 
 
-                        if(is_first){
-                            is_first = false;
-                        }else{
-                            offset = offset + 3;
-                        }
+                        // chunk with ajax
+                        // if(is_first){
+                        //     is_first = false;
+                        // }else{
+                        //     offset = offset + 3;
+                        // }
 
                         let data = {
                             action: 'alex-create-post-page',
                             payload: {
-                                offset
+                                // offset // chunk with ajax
                             },
                             // alex_start_create_posts_form_id_name : nonce
                         }

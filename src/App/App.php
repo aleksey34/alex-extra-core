@@ -91,7 +91,7 @@ class App {
 		 * favorite post or any post type
 		 * for DEV NOW !!!
 		 */
-//		FavoritePost::instance();
+		FavoritePost::instance();
 
 		/**
 		 * custom shortcode

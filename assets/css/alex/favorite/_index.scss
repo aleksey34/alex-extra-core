@@ -1,0 +1,82 @@
+.alex-favorite-thumbnail-wrapper{
+  position: relative;
+
+  & > .alex-favorite-icon-wrapper{
+    display: inline-block;
+    position: absolute;
+    top:2px;
+    right: 2px;
+    z-index: 10;
+    cursor: pointer;
+    &>svg{
+      stroke: rgba(0 , 0 , 0 , 0.5);
+      width:40px;
+      height:40px;
+      display: inline-block;
+      fill-opacity: 0.5;
+      transition: all 0.3s ease-in-out;
+
+    }
+
+    &:hover > svg{
+      transition: all 0.3s ease-in-out;
+      fill-opacity: 0.6;
+      stroke: rgba( gold , 0.8);
+
+    }
+    &.alex-favorite > svg{
+      stroke: rgba( red , 0.9);
+      fill-opacity: 0.7;
+    }
+  }
+
+}
+
+.alex-favorite-btn-wrapper{
+  position: fixed;
+  top: 160px;
+  right: 50px;
+  z-index: 10;
+  cursor: pointer;
+
+  &>svg{
+    stroke: rgba(0 , 0 , 0 , 0.5);
+    width:55px;
+    height:55px;
+    display: inline-block;
+    fill-opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+
+  }
+
+  &:hover > svg{
+    transition: all 0.3s ease-in-out;
+    fill-opacity: 0.6;
+    stroke: rgba( gold , 0.8);
+
+  }
+  &.alex-favorite > svg{
+    stroke: rgba( red , 0.9);
+    fill-opacity: 0.7;
+  }
+
+}
+
+
+// media
+@media  (max-width: 1384px) {
+  .alex-favorite-btn-wrapper {
+    top: 85px;
+    right: 7px;
+    z-index: 100;
+
+  }
+}
+@media  (max-width: 1081px) {
+  .alex-favorite-btn-wrapper {
+    top: 166px;
+    right: 7px;
+    z-index: 100;
+
+  }
+}

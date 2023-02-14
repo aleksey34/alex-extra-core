@@ -1,96 +1,126 @@
 jQuery(function (e) {
+    // 'max-age' :3600 //  альтернатива expires
+
     const favoriteConfig = {
-        liftTime: 3600, // 1 hour
+         expires:   new Date(Date.now() + 3600 * 24 * 30 )   , // about month
+         maxAge :3600 ,  // если задать это вместо expires  то будет считать секунды с этого момента
         cookieName: 'alex_material_favorite',
-        iconClasses: 'page-header-title', // class for find favorite icon
-        cssClasses: 'button any-name-class', // class for change style
-        bodyClasses: 'single-material' , //body classes  for get post id  - need find class - postid-{number}
+        thumbnailAndIconWrapperClass: 'alex-favorite-thumbnail-wrapper',
+         wrapperIconClass: 'alex-favorite-icon-wrapper', // class for find favorite icon
+        wrapperIconAddTitle : '',
+        wrapperIconRemoveTitle : 'Убрать из любимых',
+        activeClass: 'alex-favorite', // class for change style,
+
+        dataIdKey: 'material_id',
+
+        wrapperButtonClass: 'alex-favorite-btn-wrapper',
+        wrapperButtonFullTitle: 'Нажмите что бы посмотерь избранные',
+        wrapperButtonEmptyTitle: 'Вы еще не ничего не выбрали',
+        wrapperButtonStartHref: '/material?page=favorite&post_ids='
     };
 
 
-    const materialBody = jQuery(`body.${favoriteConfig.bodyClasses}`); // body of page
 
-    // icon or any img etc need! element for click to toggle to favorite
-    const singleMaterialFavoriteIcon = materialBody.find(`.${favoriteConfig.iconClasses}`);
+    // get all icon
+    const allIcon = jQuery(`.${favoriteConfig.wrapperIconClass}`);
+    if(allIcon.length <  1 ){
+        return false;
+    }
 
-    let isFavorite = false;
+    // get page btn
+    const favoriteButton = jQuery(`.${favoriteConfig.wrapperButtonClass}`);
+    if(favoriteButton.length < 1){
+        return false;
+    }
 
+    // set favorite values
 
-    let currentCookie = getCookie(favoriteConfig.cookieName);
+    // get start cookies - in array
+    let cookies = getCookie(favoriteConfig.cookieName);
+    if(!cookies){
+        cookies = [];
+    }else{
+        cookies = JSON.parse(cookies);
+    }
+    //========
+    // set button data
+    if(cookies.length){
+        favoriteButton
+            .attr('href' , `${favoriteConfig.wrapperButtonStartHref}${cookies.join( '-' )}`  )
+            .attr('title' , favoriteConfig.wrapperButtonFullTitle)
+            .addClass(favoriteConfig.activeClass);
 
-    if(materialBody.length && singleMaterialFavoriteIcon.length){
-
-        const materialId  = getMaterialId();
-
-        let currentCookieArr = [];
-
-        if(!currentCookie){
-            isFavorite  = false;
-            setCookie(favoriteConfig.cookieName , JSON.stringify([] ) ,{'max-age': favoriteConfig.liftTime} );
-        }else{
-            currentCookieArr = JSON.parse(currentCookie );
-
-            currentCookieArr.includes(materialId) ? isFavorite = true : isFavorite = false;
-
-            // check favorite here
-        }
-
-        isFavorite ?
-            singleMaterialFavoriteIcon.addClass(favoriteConfig.cssClasses) :
-            singleMaterialFavoriteIcon.removeClass(favoriteConfig.cssClasses) ;
-
-        singleMaterialFavoriteIcon.on('click' , function (e){
-
-// set or remove from favorite  - here!
-            isFavorite = !isFavorite;
-            if(isFavorite){
-                currentCookieArr  = [...currentCookieArr , materialId];
-                setCookie(favoriteConfig.cookieName , JSON.stringify(currentCookieArr) ,{'max-age': favoriteConfig.liftTime} );
-
-            }else{
-                currentCookieArr = currentCookieArr.filter( ( item) => ( item !== materialId ))
-                setCookie(favoriteConfig.cookieName , JSON.stringify(currentCookieArr) ,{'max-age': favoriteConfig.liftTime} );
-            }
-//
-            isFavorite ?
-                singleMaterialFavoriteIcon.addClass(favoriteConfig.cssClasses) :
-                singleMaterialFavoriteIcon.removeClass(favoriteConfig.cssClasses) ;
-
-        });
-
-
-        function  getMaterialId (){
-            let id = '';
-            const classNames = materialBody.attr('class');
-            const classNamesArr = [ ...classNames.split(' ') ];
-
-            classNamesArr.forEach((e) =>{
-
-                const eArr = e.split('-');
-                if(eArr.length === 2 && eArr[0] === 'postid'){
-                    id  =  eArr[1];
-                }
-
-            });
-
-            return Number(id);
-
-        }
-
-
-        function setFavoriteButtonHref(cookieStr){
-            //add href query here
-
-
-            // end add href query
-        }
-
+    }else{
+        favoriteButton
+            .attr('href' , `#`  )
+            .attr('title' , favoriteConfig.wrapperButtonEmptyTitle);
 
     }
 
+    // set icons data
+    allIcon.each( function (){
 
+        const id = jQuery(this).data(favoriteConfig.dataIdKey);
+        if(cookies.includes(id)){
+                jQuery(this)
+                    .addClass(favoriteConfig.activeClass)
+                    .attr('title' , favoriteConfig.wrapperIconRemoveTitle);
+            }
+        }
 
+    );
+    // end set values ===================================
+
+    // add to favorite and remove form favorite
+    allIcon.each(function () {
+        const currentIcon =  jQuery(this) ;
+        const id  = Number(currentIcon.data(favoriteConfig.dataIdKey) );
+        currentIcon.on('click' , function (e){
+            e.preventDefault();
+
+            if(currentIcon.hasClass(favoriteConfig.activeClass)){
+                currentIcon
+                    .removeClass(favoriteConfig.activeClass)
+                    .attr('title' , favoriteConfig.wrapperIconAddTitle );
+
+                // remove id to cookie here
+                cookies = cookies.filter((item)=> Number(item) !== id);
+
+            }else{
+                currentIcon
+                    .addClass(favoriteConfig.activeClass)
+                    .attr('title' , favoriteConfig.wrapperIconRemoveTitle);
+
+                // add id to cookies here
+                cookies = [ ...cookies , id];
+            }
+            //handler Btn here add cookie to href and title
+            if(cookies.length){
+                favoriteButton
+                .attr('href' , `${favoriteConfig.wrapperButtonStartHref}${cookies.join( '-' )}`  )
+                .attr('title' , favoriteConfig.wrapperButtonFullTitle)
+                .addClass(favoriteConfig.activeClass);
+            }else{
+                favoriteButton
+                    .attr('href' , `#`  )
+                    .attr('title' , favoriteConfig.wrapperButtonEmptyTitle)
+                    .removeClass(favoriteConfig.activeClass);
+            }
+
+            //=================================
+
+            let cookiesJson = JSON.stringify(cookies);
+
+            //set cookies to browser
+            let options = { expires: favoriteConfig.expires};
+            // let options = {'max-age': favoriteConfig.maxAge};
+            setCookie( favoriteConfig.cookieName , cookiesJson, options );
+            //{expires: favoriteConfig.expires}
+        });
+    });
+    //========================
 })
+
 //--- cookies function ----------------------------------------
 // возвращает куки с указанным name,
 // или undefined, если ничего не найдено

@@ -169,21 +169,26 @@ class CreatePostPage {
 		$start = 0;
 
 		$offset = 0;
-		$finish  = 1;
+		$finish  = 15;
 
 
-		// for ajax loading! only
-		if( isset($_POST['payload'] ) && isset($_POST['payload']['offset'] ) ){
-			$offset = intval($_POST['payload']['offset']);
-			$finish = $offset + 3;
-		}
+		// for ajax chunk loading! only
+//		if( isset($_POST['payload'] ) && isset($_POST['payload']['offset'] ) ){
+//			$offset = intval($_POST['payload']['offset']);
+//			$finish = $offset + 3;
+//		}
 
+
+		// without limit - 0   , any case - int seconds // work!! IMPORTANT !!!
+		set_time_limit(0);
+		//==============================================================
 
 		foreach ($postsData as $data ){
 			if( $start >= $offset && $start < $finish){
-				// try catch do not work??
+
 				try {
 					$this->createPost($this->getSettings() , $data);
+
 				}catch (\Exception $exception){
 //					$exception->getMessage();
 					$start--;
