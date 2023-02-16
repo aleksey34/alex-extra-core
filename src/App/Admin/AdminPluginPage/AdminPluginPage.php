@@ -8,6 +8,8 @@ class AdminPluginPage{
 
 	private static $instance;
 
+	private static $hook_suffix;
+
 	function __construct(){
 
 		$this->init();
@@ -31,19 +33,21 @@ class AdminPluginPage{
 		 */
         $this ->initAlexExtraCoreOptionConstant();
 
+
 	}
 
 	public function add(){
 
-		$hook_suffix = add_menu_page(
-			'Alex Extra Core Настройки', // тайтл страницы
-			'Alex Extra Core', // текст ссылки в меню
-			'manage_options',
-			'alex-extra-core',
-			array( $this, 'display' ),
-			'dashicons-images-alt2',
-			20
-		);
+//		$hook_suffix
+		self::$hook_suffix = add_menu_page(
+					'Alex Extra Core Настройки', // тайтл страницы
+					'Alex Extra Core', // текст ссылки в меню
+					'manage_options',
+					'alex-extra-core',
+					array( $this, 'display' ),
+					'dashicons-images-alt2',
+					20
+				);
 		// используем хук admin_print_scripts-{$hook_suffix} для вывода скриптов только на нашей странице
 //		add_action( 'admin_print_scripts-' . $hook_suffix, array( $this, 'script' ) );
 
@@ -56,58 +60,73 @@ class AdminPluginPage{
 	}
 
 
-
 	public function handler(){
-
 		if(is_admin()){
+			$type_of_form_id = 'admin_form_id';
 
-			// check security
-				if( !Helper::issetCheckFormSecurity('alex_admin_page_form_id') ){
-					return;
-				}
-			// end check security
-
-			if( isset($_POST['_wp_http_referer'] )  ){
-			$back_url = site_url() . $_POST['_wp_http_referer'];
-			}else{
-				$back_url = admin_url();
+			if(!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id])){
+				return false;
 			}
 
-			// get data from db -- theme options
-
-			$plugin_settings = get_alex_extra_core_options();
-
-			if(!$plugin_settings){
-				Helper::updateAlexExtraCoreOptions( [] );
+			if(!isset($_POST['fields'])  || empty($_POST['fields'])   ){
+				return false;
 			}
 
-
-			if( isset($_POST['prohibition_edit_file'])  && $_POST['prohibition_edit_file'] == '1'  ){
-				$plugin_settings['prohibition_edit_file'] = '1';
-			}else{
-				$plugin_settings['prohibition_edit_file'] = false;
+			$fields = Helper::doArrayFromStringForFormInput($_POST['fields']);
+			if(gettype($fields) !== 'array'){
+				return false;
 			}
 
-			if( isset($_POST['devmode']) && $_POST['devmode'] == '1' ){
-				$plugin_settings['devmode'] = '1';
-			}else{
-				$plugin_settings['devmode'] = false;
-			}
+			$admin_form_id = $_POST[$type_of_form_id];
 
-			if( isset($_POST['parser_section_enable']) && $_POST['parser_section_enable'] == '1' ){
-				$plugin_settings['parser_section_enable'] = '1';
-			}else{
-				$plugin_settings['parser_section_enable'] = false;
-			}
 
-			if(Helper::updateAlexExtraCoreOptions($plugin_settings)){
-				Helper::addAdminNotice('success');
-			}
-	// =================================
-
+			$this->getFormHandler($admin_form_id , $fields );
 		}
 
 	}
+
+
+
+
+	private function getFormHandler($admin_form_id , $fields){
+
+		//security
+		if( Helper::issetCheckFormSecurity($admin_form_id) ){
+
+// data
+		$plugin_settings = get_alex_extra_core_options();
+
+		if(!$plugin_settings || empty($plugin_settings) || gettype($plugin_settings) !== 'array'    ){
+			$plugin_settings = [];
+			Helper::updateAlexExtraCoreOptions( $plugin_settings );
+		}
+
+		foreach ($fields as $field){
+			if ( isset( $_POST[$field[0]] ) &&  !empty($_POST[$field[0] ] ) ) {
+				$plugin_settings[ $field[0]] = $_POST[$field[0] ];
+			} else{
+				if('text' === $field[1] ){
+					$plugin_settings[$field[0]] = '';
+				}elseif($field[1] === 'checkbox'){
+					$plugin_settings[$field[0]] = false;
+				}else{
+					$plugin_settings[$field[0]] = false;
+				}
+
+			}
+		}
+
+			// set data
+				if(Helper::updateAlexExtraCoreOptions($plugin_settings)){
+					Helper::addAdminNotice('success');
+				}
+
+			}
+
+				// =============================
+	}
+
+
 
 	public function initAlexExtraCoreOptionConstant(){
 
@@ -123,7 +142,9 @@ class AdminPluginPage{
 	}
 
 
-
+	public static function getHookSuffix(){
+		return self::$hook_suffix;
+	}
 
 	public static function instance(){
 		if(is_null(self::$instance)){

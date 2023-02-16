@@ -86,11 +86,16 @@ class RemovePostPage {
 
 	public function startRemoveAllPosts(){
 
+		$type_of_form_id = 'develop_form_id';
+
 		// check security
-		if ( ! Helper::issetCheckFormSecurity( 'alex_remove_posts_form_id' ) ) {
+		if (!isset( $_POST[$type_of_form_id]) || empty( $_POST[$type_of_form_id]) || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
 			return;
 		}
+
 		// end check security
+
+		set_time_limit(0); // require - for timeout limit
 		// remove material
 		$ids = $this->getAllPostIdsByPostType(self::$postType);
 

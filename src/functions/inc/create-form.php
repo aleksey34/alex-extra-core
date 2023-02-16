@@ -17,7 +17,7 @@
  *
  * @return false|string
  */
-function alex_get_form($settings , $form_id){
+function alex_get_form(  $settings , $form_id){
     $args = $settings[$form_id];
 	$fields = $args['fields'];
 	$is_admin = $args['is_admin'];
@@ -30,7 +30,7 @@ ob_start();
 
 	    if(isset($_POST[$key]) && !empty($_POST[$key])   ){
 		    $value  = $_POST[$key] ;
-        }elseif( defined("AlexExtraCoreOptions")  && !empty(AlexExtraCoreOptions ) && AlexExtraCoreOptions[$key]  !== false ){
+        }elseif( defined("AlexExtraCoreOptions")  && !empty(AlexExtraCoreOptions ) &&  !empty(AlexExtraCoreOptions[$key]) && AlexExtraCoreOptions[$key]  !== false ){
 		    $value  = AlexExtraCoreOptions[$key] ;
         }else{
 	        $value = '';
@@ -155,7 +155,7 @@ function alexGetFormFields($key , $args , $value = null , $is_admin = true){
 			break;
 		case 'checkbox':
 			$checked =  isset($_POST[esc_attr($key)]  ) && !empty($_POST[esc_attr($key)] ) ? 'checked' : '';
-			if(defined('AlexExtraCoreOptions') && '1' == AlexExtraCoreOptions[$key] ){
+			if(defined('AlexExtraCoreOptions') &&  isset($key) && !empty($key) && !empty(AlexExtraCoreOptions[$key]) && '1' == AlexExtraCoreOptions[$key] ){
 			    $checked  = 'checked';
             }
 			if($is_admin){

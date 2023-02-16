@@ -54,6 +54,25 @@ class Helper {
 
 	}
 
+	public static function doStringFromArrayForFormInput($array){
+	    // array require has -- right stucture
+		$data = [];
+		foreach ($array as $item){
+			$data[] = implode('~' , $item);
+		}
+		return  implode('^' , $data);
+    }
+
+    public static function doArrayFromStringForFormInput($serialize_input_value){
+	    //original array require has -- right stucture
+	    $value_array = explode('^' , $serialize_input_value );
+	    $array = [];
+	    foreach($value_array as $arr){
+		    $array[] = explode('~' , $arr);
+	    }
+	    return $array;
+    }
+
 	public static function  addAdminNotice($notice_type='success' ){
 		if('success' === $notice_type){
 			add_action( 'admin_notices', function ( ){

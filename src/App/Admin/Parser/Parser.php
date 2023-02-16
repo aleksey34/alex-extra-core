@@ -32,61 +32,26 @@ class Parser {
 		/**
 		 *
 		 */
-		add_action("after_setup_theme" , [$this , 'handlerParsingDataForm'] , 9);
 		add_action("after_setup_theme" , [$this , 'startParsing'] , 11);
 
 
 	}
 
-	public function handlerParsingDataForm(){
-		if(is_admin() && defined('AlexExtraCoreOptions')  && AlexExtraCoreOptions['parser_section_enable']){
 
-			// check security
-			if( !Helper::issetCheckFormSecurity('alex_parser_form_id') ){
-				return;
-			}
-			// end check security
-
-			// check data  and update date
-			$plugin_settings = Helper::getAlexExtraCoreOptions();
-
-			if(!isset($_POST['parser_url']) && !isset($plugin_settings['parser_url'])){
-				$plugin_settings['parser_url'] = false;
-				Helper::addAdminNotice('warning');
-				Helper::updateAlexExtraCoreOptions($plugin_settings);
-				return ;
-			}
-			if( isset($_POST['parser_url']) && !isset($plugin_settings['parser_url']) ){
-				$plugin_settings['parser_url'] = $_POST['parser_url'] ;
-			}
-
-			if( isset($_POST['parser_url'])  && $_POST['parser_url'] !== $plugin_settings['parser_url']  ){
-				$plugin_settings['parser_url'] = $_POST['parser_url'] ;
-
-			}
-			if(!$plugin_settings['parser_url']){
-				Helper::addAdminNotice('warning');
-				return ;
-			}
-
-			Helper::updateAlexExtraCoreOptions($plugin_settings);
-
-// end -check data and update date
-
-		}
-
-	}
 
 	public function startParsing(){
 		if(is_admin()
 		   && defined('AlexExtraCoreOptions')
 		   && AlexExtraCoreOptions['parser_section_enable']
-		   && AlexExtraCoreOptions['parser_url']) {
+		   && !empty(AlexExtraCoreOptions['parser_url'] ) ) {
 
+
+			$type_of_form_id = 'develop_form_id';
 			// check security
-			if ( ! Helper::issetCheckFormSecurity( 'alex_start_parser_form_id' ) ) {
+			if (!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id]) || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
 				return;
 			}
+
 			// end check security
 			//start parsing
 			$startUrl = AlexExtraCoreOptions['parser_url'];

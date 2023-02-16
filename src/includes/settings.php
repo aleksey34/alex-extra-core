@@ -28,11 +28,13 @@ define('AlexMaterialMetaKey' , 'ferrara_material_data');
  * use -where you want  -require $args
  */
 //with example $args
-function alex_extra_core_get_forms_settings(){
-// field nonce  name  form if  + _action or _name
+function alex_extra_core_get_settings(){
+// field nonce  name  form --  {FORMID}_name  action {FORMID}_action
+// input hidden - fields -- requires  structure !! important array in array - 1 name 2 type- see example
+
 	return  [
-		'alex_admin_page_form_id'
-		                                 =>	[
+		'alex_admin_page_form_id' =>
+			[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_admin_page_form_id_wrap"">
@@ -42,6 +44,14 @@ function alex_extra_core_get_forms_settings(){
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                 	<input type="hidden"  name="fields" 
+                                 	value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
+                                 		[
+											["devmode", "checkbox"],
+											["prohibition_edit_file", "checkbox"],
+											["parser_section_enable", "checkbox"]
+										]) .'"  />
+                                 	<input type="hidden"  name="admin_form_id" value="alex_admin_page_form_id"  />
                                     <input type="submit" name="submit" id="alex_admin_page_form_id_submit" class="button button-primary" value="Сохранить изменения">
                                 </p>
                               </form>
@@ -126,8 +136,8 @@ function alex_extra_core_get_forms_settings(){
 				] ,
 				'parser_section_enable' => [
 					'type'              => 'checkbox',
-					'label'             => 'Доступ к секции разработки',
-					'description'       => 'Включить или выключить видимость секциии',
+					'label'             => 'Доступ к табу разработки',
+					'description'       => 'Включить или выключить таб',
 					// 'placeholder'       => '',
 					'required'          => false,
 //					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
@@ -135,18 +145,24 @@ function alex_extra_core_get_forms_settings(){
 
 			]
 		],
-		'alex_parser_form_id'
-		                                 =>	[
+		'alex_parser_url_form_id' =>
+			[
 			'is_admin' => true,
 			'echo' => true ,
-			'before' => '<div class="form" id="alex_parser_form_id_wrap"">
-                            <form id="alex_parser_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+			'before' => '<div class="form" id="alex_parser_url_form_id_wrap"">
+                            <form id="alex_parser_url_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="submit" name="submit" id="alex_parser_form_id_submit" class="button button-primary" value="Сохранить настроки">
+                                    <input type="hidden"  name="fields" 
+                                 		value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
+											[
+												["parser_url", "text"]
+											]) .'"  />
+                                    <input type="hidden"  name="admin_form_id" value="alex_parser_url_form_id"  />
+                                    <input type="submit" name="submit" id="alex_parser_url_form_id_submit" class="button button-primary" value="Сохранить настроки">
                                 </p>
                               </form>
 						  </div>',
@@ -159,8 +175,8 @@ function alex_extra_core_get_forms_settings(){
 				],
 			]
 		],
-		'alex_start_parser_form_id'
-		                                 =>	[
+		'alex_start_parser_form_id' =>
+			[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_start_parser_form_id_wrap"">
@@ -170,6 +186,7 @@ function alex_extra_core_get_forms_settings(){
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                 	<input type="hidden"  name="develop_form_id" value="alex_start_parser_form_id"  />
                                     <input type="submit" name="submit" id="alex_start_parser_form_id_submit" class="button button-primary" value="Начать парсинг">
                                 </p>
                               </form>
@@ -187,6 +204,7 @@ function alex_extra_core_get_forms_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                    <input type="hidden"  name="develop_form_id" value="alex_start_create_posts_form_id"  />
                                     <input type="submit" name="submit" id="alex_start_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
                                		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
                                 </p>
@@ -205,6 +223,7 @@ function alex_extra_core_get_forms_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                    <input type="hidden"  name="develop_form_id" value="alex_remove_posts_form_id"  />
                                     <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
                                     <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
                                 </p>
@@ -212,8 +231,36 @@ function alex_extra_core_get_forms_settings(){
 						  </div>',
 				'fields' =>[]
 			],
-	];
-
-}
-
-
+		'alex_enable_favorite_form_id'=>
+			[
+				'is_admin' => true,
+				'echo' => true ,
+				'before' => '<div class="form" id="alex_enable_favorite_form_id_wrap"">
+	                            <form id="alex_enable_favorite_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+	                                <table class="form-table" role="presentation">
+	                                    <tbody>',
+				'after' =>              '</tbody>
+	                                 </table>
+	                                 <p class="submit">
+	                                    <input type="hidden"  name="fields" 
+					                        value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
+											[
+												["enable_favorite", "checkbox"]
+											]) .'"  />
+	                                    <input type="hidden"  name="admin_form_id" value="alex_enable_favorite_form_id"  />
+	                                    <input type="submit" name="submit" id="alex_enable_favorite_form_id_submit" class="button button-primary" value="Сохранить именения">                       
+	                                </p>
+	                              </form>
+							  </div>',
+				'fields' =>[
+					'enable_favorite' => [
+						'type'              => 'checkbox',
+						'label'             => 'Избранные материалы',
+						'description'       =>  'Добавить фунционал избанных материалов',
+						// 'placeholder'       => '',
+						'required'          => false,
+					]
+				],
+			]
+		];
+	}

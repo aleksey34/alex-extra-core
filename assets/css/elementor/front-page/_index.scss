@@ -53,8 +53,8 @@
       }
     }
     &>li:nth-of-type(1){
-      grid-row: span 2;
-      grid-column: span 2;
+      grid-row: 1/3;
+      grid-column: 1/3;
       background: url('../img/ferrara-front-page/example-section/lounges.webp')   center center  no-repeat;
       //grid-area: lounges;
 

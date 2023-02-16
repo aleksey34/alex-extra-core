@@ -1,7 +1,9 @@
 <?php
 namespace AlexExtraCore\App\Shortcode;
 
+
 use AlexExtraCore\App\Shortcode\Inc\CustomLogo;
+use AlexExtraCore\App\Shortcode\Inc\EmailForm;
 
 class Shortcode{
 
@@ -15,6 +17,8 @@ class Shortcode{
 	private function init(){
 
 		CustomLogo::instance();
+
+		EmailForm::instance();
 
 	}
 

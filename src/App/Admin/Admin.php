@@ -5,6 +5,7 @@ namespace AlexExtraCore\App\Admin;
 use AlexExtraCore\App\Admin\AdminFooter\AdminFooter;
 use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\AllowSvg\AllowSvg;
+use AlexExtraCore\App\Admin\Email\Email;
 use AlexExtraCore\App\Admin\IconAdminMenuRemove\IconAdminMenuRemove;
 use AlexExtraCore\App\Admin\Parser\Parser;
 use AlexExtraCore\App\Admin\PostPage\PostPage;
@@ -63,6 +64,14 @@ class Admin {
 		 * creating Post and Page
 		 */
 		PostPage::instance();
+
+		/**
+		 * everything for form email
+		 * and sent email  etc
+		 * handler email form
+		 *
+		 */
+		Email::instance();
 
 
 	}

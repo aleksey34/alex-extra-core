@@ -155,8 +155,9 @@ class CreatePostPage {
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 
+		$type_of_form_id = 'develop_form_id';
 		// check security
-		if ( ! Helper::issetCheckFormSecurity( 'alex_start_create_posts_form_id' ) ) {
+		if (!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id])  || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
 			return ;
 		}
 		// end check security
@@ -169,7 +170,7 @@ class CreatePostPage {
 		$start = 0;
 
 		$offset = 0;
-		$finish  = 15;
+		$finish  = 5;
 
 
 		// for ajax chunk loading! only

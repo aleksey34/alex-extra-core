@@ -1,0 +1,114 @@
+$tastimonial_margin: 25px;
+$testimonial_bg_color: #ddd;
+
+.ferrara-testimonial-left , .ferrara-testimonial-right{
+  .elementor-testimonial-wrapper{
+    display: flex;
+    justify-content: space-between;
+    .elementor-testimonial-content{
+      border-radius: 10px ;
+      background-color: $testimonial_bg_color ;
+      padding: 25px;
+      position: relative;
+      &::before{
+        content: '';
+        display: block;
+        position: absolute;
+      }
+    }
+    .elementor-testimonial-meta{
+      width: 120px;
+      display: flex;
+      .elementor-testimonial-meta-inner{
+        .elementor-testimonial-image{
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+.ferrara-testimonial-left{
+  .elementor-testimonial-wrapper{
+    .elementor-testimonial-content{
+      margin-right: $tastimonial_margin;
+      &:before{
+        width: 0;
+        height: 0;
+        border: 0 solid transparent;
+        border-bottom-width: 20px;
+        border-top-width: 0px;
+        border-left: 30px solid $testimonial_bg_color;
+        top: 40px;
+        right: -22px;
+      }
+    }
+    .elementor-testimonial-meta{
+     justify-content: flex-end;
+    }
+  }
+}
+.ferrara-testimonial-right{
+  .elementor-testimonial-wrapper{
+    flex-direction: row-reverse;
+    .elementor-testimonial-content{
+      margin-left: $tastimonial_margin;
+      &:before{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 30px 20px 0;
+        border-color: transparent $testimonial_bg_color transparent transparent;
+        top: 40px;
+        left: -22px;
+      }
+    }
+    .elementor-testimonial-meta{
+    }
+  }
+}
+
+@media (max-width: 558px) {
+
+  .ferrara-testimonial-left , .ferrara-testimonial-right{
+    .elementor-widget-container .elementor-testimonial-wrapper{
+      .elementor-testimonial-content{
+        border-radius: 7px ;
+        padding: 10px 15px;
+      }
+      .elementor-testimonial-meta{
+        //width: 120px;
+        .elementor-testimonial-meta-inner  .elementor-testimonial-image{
+          img{
+            width: 45px;
+            height: 45px;
+          }
+        }
+      }
+    }
+  }
+  .ferrara-testimonial-left{
+    .elementor-testimonial-wrapper{
+      .elementor-testimonial-content{
+        margin-right: 15px;
+        &:before{
+          border-bottom-width: 20px;
+          border-left: 30px solid $testimonial_bg_color;
+          right: -18px;
+        }
+      }
+    }
+  }
+  .ferrara-testimonial-right{
+    .elementor-testimonial-wrapper{
+      .elementor-testimonial-content{
+        margin-left: 15px;
+        &:before{
+          border-width: 0 30px 20px 0;
+          left: -18px;
+        }
+      }
+    }
+  }
+
+
+}

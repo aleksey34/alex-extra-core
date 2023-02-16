@@ -2,6 +2,7 @@
 namespace AlexExtraCore\App\Admin\PostPage\Ajax;
 
 
+use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\PostPage\RemovePostPage\RemovePostPage;
 
 class AjaxRemovePostPage {
@@ -44,7 +45,6 @@ class AjaxRemovePostPage {
 
 
 	private function addRemovePostPageJs(){
-
 		if(isset($_GET['page']) && $_GET['page'] === 'alex-extra-core' ):
 
 
@@ -53,16 +53,19 @@ class AjaxRemovePostPage {
 			}, 100);
 
 		endif;
-
-
-
+//		add_action('admin_print_scripts'. AdminPluginPage::getHookSuffix() , function(){
+//			$this->getJs();
+//		} , 90);
 
 	}
 
 	private function getJs(){
+
 	    ?>
         <script>
             jQuery(function (){
+                let type_of_form_id = 'develop_form_id';
+
 
                 let ajaxurl = '/wp-admin/admin-ajax.php';
 
@@ -72,8 +75,11 @@ class AjaxRemovePostPage {
 
                 if(alexRemovePostsForm.length >= 1 ){
 
+
                     alexRemovePostsForm.on('submit' , (e)=> {
                             e.preventDefault();
+
+                            let form_id = alexRemovePostsForm.find(`input[name=${type_of_form_id}]`).val();
 
                             let alexRemovePostsFormNonceName =  `${alexRemovePostsFormId}_name`;
                             let nonce = alexRemovePostsForm.find(`#${alexRemovePostsFormNonceName}`).val();
@@ -87,6 +93,7 @@ class AjaxRemovePostPage {
                                 // alex_remove_posts_form_id_name : nonce
                             }
                             data[alexRemovePostsFormNonceName]  = nonce;
+                            data[type_of_form_id]  = form_id;
 
 
                             jQuery.post( ajaxurl, data, function( response ){

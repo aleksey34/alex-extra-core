@@ -108,8 +108,8 @@
     #front-page-idea-example .elementor-icon-list-items > li > a:hover:before {
       opacity: 1; }
   #front-page-idea-example .elementor-icon-list-items > li:nth-of-type(1) {
-    grid-row: span 2;
-    grid-column: span 2;
+    grid-row: 1/3;
+    grid-column: 1/3;
     background: url("../img/ferrara-front-page/example-section/lounges.webp") center center no-repeat; }
   #front-page-idea-example .elementor-icon-list-items > li:nth-of-type(2) {
     grid-column: 3/5;
@@ -261,10 +261,10 @@ body.archive .material
     position: absolute;
     top: 2px;
     right: 2px;
-    z-index: 10;
+    z-index: 5;
     cursor: pointer; }
     .alex-favorite-thumbnail-wrapper > .alex-favorite-icon-wrapper > svg {
-      stroke: rgba(0, 0, 0, 0.5);
+      stroke: rgba(0, 128, 0, 0.7);
       width: 40px;
       height: 40px;
       display: inline-block;
@@ -282,8 +282,8 @@ body.archive .material
   position: fixed;
   top: 160px;
   right: 50px;
-  z-index: 10;
-  cursor: pointer; }
+  z-index: 100;
+  cursor: none; }
   .alex-favorite-btn-wrapper > svg {
     stroke: rgba(0, 0, 0, 0.5);
     width: 55px;
@@ -293,22 +293,88 @@ body.archive .material
     transition: all 0.3s ease-in-out; }
   .alex-favorite-btn-wrapper:hover > svg {
     transition: all 0.3s ease-in-out;
-    fill-opacity: 0.6;
-    stroke: rgba(255, 215, 0, 0.8); }
+    fill-opacity: 0.8; }
   .alex-favorite-btn-wrapper.alex-favorite > svg {
-    stroke: rgba(255, 0, 0, 0.9);
-    fill-opacity: 0.7; }
+    stroke: rgba(255, 77, 77, 0.8);
+    fill-opacity: 0.9;
+    cursor: pointer; }
 
 @media (max-width: 1384px) {
   .alex-favorite-btn-wrapper {
     top: 85px;
-    right: 7px;
-    z-index: 100; } }
+    right: 7px; } }
 @media (max-width: 1081px) {
   .alex-favorite-btn-wrapper {
     top: 166px;
-    right: 7px;
-    z-index: 100; } }
+    z-index: 10; } }
+@media (max-width: 783px) {
+  .alex-favorite-btn-wrapper {
+    top: 200px; } }
+.ferrara-testimonial-left .elementor-testimonial-wrapper, .ferrara-testimonial-right .elementor-testimonial-wrapper {
+  display: flex;
+  justify-content: space-between; }
+  .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content, .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content {
+    border-radius: 10px;
+    background-color: #ddd;
+    padding: 25px;
+    position: relative; }
+    .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content::before, .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content::before {
+      content: '';
+      display: block;
+      position: absolute; }
+  .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-meta, .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-meta {
+    width: 120px;
+    display: flex; }
+    .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image, .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image {
+      padding: 0; }
+
+.ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content {
+  margin-right: 25px; }
+  .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content:before {
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-bottom-width: 20px;
+    border-top-width: 0px;
+    border-left: 30px solid #ddd;
+    top: 40px;
+    right: -22px; }
+.ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-meta {
+  justify-content: flex-end; }
+
+.ferrara-testimonial-right .elementor-testimonial-wrapper {
+  flex-direction: row-reverse; }
+  .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content {
+    margin-left: 25px; }
+    .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content:before {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 30px 20px 0;
+      border-color: transparent #ddd transparent transparent;
+      top: 40px;
+      left: -22px; }
+
+@media (max-width: 558px) {
+  .ferrara-testimonial-left .elementor-widget-container .elementor-testimonial-wrapper .elementor-testimonial-content, .ferrara-testimonial-right .elementor-widget-container .elementor-testimonial-wrapper .elementor-testimonial-content {
+    border-radius: 7px;
+    padding: 10px 15px; }
+  .ferrara-testimonial-left .elementor-widget-container .elementor-testimonial-wrapper .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image img, .ferrara-testimonial-right .elementor-widget-container .elementor-testimonial-wrapper .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image img {
+    width: 45px;
+    height: 45px; }
+
+  .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content {
+    margin-right: 15px; }
+    .ferrara-testimonial-left .elementor-testimonial-wrapper .elementor-testimonial-content:before {
+      border-bottom-width: 20px;
+      border-left: 30px solid #ddd;
+      right: -18px; }
+
+  .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content {
+    margin-left: 15px; }
+    .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content:before {
+      border-width: 0 30px 20px 0;
+      left: -18px; } }
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {
   margin-left: 80px; }

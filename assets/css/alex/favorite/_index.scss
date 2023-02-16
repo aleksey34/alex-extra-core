@@ -6,10 +6,10 @@
     position: absolute;
     top:2px;
     right: 2px;
-    z-index: 10;
+    z-index: 5;
     cursor: pointer;
     &>svg{
-      stroke: rgba(0 , 0 , 0 , 0.5);
+      stroke: rgba( green , 0.7);
       width:40px;
       height:40px;
       display: inline-block;
@@ -36,11 +36,11 @@
   position: fixed;
   top: 160px;
   right: 50px;
-  z-index: 10;
-  cursor: pointer;
+  z-index: 100;
+  cursor: none;
 
   &>svg{
-    stroke: rgba(0 , 0 , 0 , 0.5);
+    stroke: rgba( black , 0.5);
     width:55px;
     height:55px;
     display: inline-block;
@@ -51,13 +51,12 @@
 
   &:hover > svg{
     transition: all 0.3s ease-in-out;
-    fill-opacity: 0.6;
-    stroke: rgba( gold , 0.8);
-
+    fill-opacity: 0.8;
   }
   &.alex-favorite > svg{
-    stroke: rgba( red , 0.9);
-    fill-opacity: 0.7;
+    stroke: rgba( lighten(red , 15) , 0.8);
+    fill-opacity: 0.9;
+    cursor: pointer;
   }
 
 }
@@ -68,15 +67,19 @@
   .alex-favorite-btn-wrapper {
     top: 85px;
     right: 7px;
-    z-index: 100;
-
   }
 }
 @media  (max-width: 1081px) {
   .alex-favorite-btn-wrapper {
     top: 166px;
-    right: 7px;
-    z-index: 100;
+    z-index: 10;
+
+  }
+}
+@media  (max-width: 783px) {
+  .alex-favorite-btn-wrapper {
+    top: 200px;
+
 
   }
 }

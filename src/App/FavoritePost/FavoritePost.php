@@ -14,16 +14,27 @@ class FavoritePost{
 
 	private function init(){
 
-		FavoriteScriptStyle::instance();
 
-		$this->setIconToThumbnail();
-		$this->setButtonIconToPageBody();
+		add_action('after_setup_theme' , function(){
+			if(defined('AlexExtraCoreOptions')
+			   && !empty(AlexExtraCoreOptions['enable_favorite'] )
+			   &&    '1' == AlexExtraCoreOptions['enable_favorite']  ) :
+				FavoriteScriptStyle::instance();
 
 
-		$this->prepareQueryForFavorite();
+				$this->setIconToThumbnail();
+				$this->setButtonIconToPageBody();
 
 
-		$this->setFavoriteTitle();
+				$this->prepareQueryForFavorite();
+
+
+				$this->setFavoriteTitle();
+
+			  endif;
+        });
+
+
 
 	}
 

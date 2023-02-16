@@ -2,8 +2,9 @@
 namespace AlexExtraCore\App\Admin\PostPage\Ajax;
 
 
+use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\PostPage\CreatePostPage\CreatePostPage;
-use AlexExtraCore\App\Admin\PostPage\RemovePostPage\RemovePostPage;
+
 
 class AjaxCreatePostPage {
 
@@ -20,9 +21,7 @@ class AjaxCreatePostPage {
 		// add js for create post for ajax
 		$this->addCreatePostPageJs();
 
-
 		add_action( 'wp_ajax_alex-create-post-page', [$this , 'AjaxCreatePostPageCallback'] );
-
 
 	}
 
@@ -51,6 +50,9 @@ class AjaxCreatePostPage {
 		}, 100);
 
 	   endif;
+//		add_action('admin_print_scripts'. AdminPluginPage::getHookSuffix() , function(){
+//			$this->getJs();
+//		} , 90);
 
 	}
 
@@ -58,6 +60,8 @@ class AjaxCreatePostPage {
 	    ?>
         <script>
             jQuery(function (){
+                let type_of_form_id = 'develop_form_id';
+
                 let ajaxurl = '/wp-admin/admin-ajax.php';
 
                 //chunk with ajax
@@ -73,6 +77,7 @@ class AjaxCreatePostPage {
                     alexCreatePostsForm.on('submit' , (e)=>{
                         e.preventDefault();
 
+                        let form_id = alexCreatePostsForm.find(`input[name=${type_of_form_id}]`).val();
 
                         let alexCreatePostsFormNonceName =  `${alexCreatePostsFormId}_name`;
                         let nonce = alexCreatePostsForm.find(`#${alexCreatePostsFormNonceName}`).val();
@@ -101,6 +106,8 @@ class AjaxCreatePostPage {
                             // alex_start_create_posts_form_id_name : nonce
                         }
                         data[alexCreatePostsFormNonceName] = nonce;
+                        data[type_of_form_id] = form_id;
+
 
                         jQuery.post( ajaxurl, data, function( response ){
 
