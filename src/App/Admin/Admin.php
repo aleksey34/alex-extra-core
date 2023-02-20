@@ -65,13 +65,7 @@ class Admin {
 		 */
 		PostPage::instance();
 
-		/**
-		 * everything for form email
-		 * and sent email  etc
-		 * handler email form
-		 *
-		 */
-		Email::instance();
+
 
 
 	}

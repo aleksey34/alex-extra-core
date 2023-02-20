@@ -1,6 +1,6 @@
 <?php
-namespace AlexExtraCore\App\Admin\Email;
-use AlexExtraCore\App\Admin\Email\EmailForm\EmailForm;
+namespace AlexExtraCore\App\Email;
+use AlexExtraCore\App\Email\EmailForm\EmailForm;
 use AlexExtraCore\App\Helper\Helper;
 
 /**

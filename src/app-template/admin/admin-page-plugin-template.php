@@ -15,18 +15,25 @@
         <input type="radio" name="mytab-button" id="tab_common_settings" value="" checked>
         <label for="tab_common_settings">Общие настрйки</label>
 
+        <input type="radio" name="mytab-button" id="tab_secure_settings" value="" >
+        <label for="tab_secure_settings">Настройки безопастности</label>
+
         <input type="radio" name="mytab-button" id="tab_enable_functionality" value="">
         <label for="tab_enable_functionality">Включение фунционала</label>
 
-	    <?php if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['parser_section_enable'])
-	             && '1'  === AlexExtraCoreOptions['parser_section_enable']) : ?>
+	    <?php
+        if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['parser_section_enable'])
+	             && 1  === AlexExtraCoreOptions['parser_section_enable']) : ?>
         <input type="radio" name="mytab-button" id="tap_development" value="">
         <label for="tap_development">Разработка</label>
         <?php endif; ?>
 
-
         <div id="common_settings_content">
-	        <?php  alex_get_form( alex_extra_core_get_settings() ,'alex_admin_page_form_id');  ?>
+	        <?php    ?>
+        </div>
+
+        <div id="secure_settings_content">
+		    <?php  alex_get_form( alex_extra_core_get_settings() ,'alex_admin_page_form_id');  ?>
         </div>
 
         <div id="enable_functionality_content">
@@ -38,13 +45,14 @@
         </div>
 
 	    <?php if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['parser_section_enable'])
-	             && '1'  === AlexExtraCoreOptions['parser_section_enable']) : ?>
+	             &&  1  === AlexExtraCoreOptions['parser_section_enable']) : ?>
         <div id="development_content">
             <h4>
                 Секция для разработки - парсинга сайтов, создание постов, страниц, материалов и тд.
             </h4>
             <br/><br/>
-		    <?php  alex_get_form( alex_extra_core_get_settings() ,'alex_parser_url_form_id');  ?>
+		    <?php
+            alex_get_form( alex_extra_core_get_settings() ,'alex_parser_url_form_id');  ?>
             <br>
             <p>
                 Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
@@ -89,6 +97,7 @@
     }
 
     #tab_common_settings:checked~#common_settings_content,
+    #tab_secure_settings:checked~#secure_settings_content,
     #tap_development:checked~#development_content,
     #tab_enable_functionality:checked~#enable_functionality_content {
         display: block;

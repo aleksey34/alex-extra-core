@@ -62,25 +62,20 @@ class AdminPluginPage{
 
 	public function handler(){
 		if(is_admin()){
+			if(!isset($_POST['submit'])){
+				return false;
+			}
+
 			$type_of_form_id = 'admin_form_id';
 
 			if(!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id])){
 				return false;
 			}
 
-			if(!isset($_POST['fields'])  || empty($_POST['fields'])   ){
-				return false;
-			}
-
-			$fields = Helper::doArrayFromStringForFormInput($_POST['fields']);
-			if(gettype($fields) !== 'array'){
-				return false;
-			}
-
 			$admin_form_id = $_POST[$type_of_form_id];
 
 
-			$this->getFormHandler($admin_form_id , $fields );
+			$this->getFormHandler($admin_form_id );
 		}
 
 	}
@@ -88,32 +83,25 @@ class AdminPluginPage{
 
 
 
-	private function getFormHandler($admin_form_id , $fields){
+	private function getFormHandler($admin_form_id ){
 
 		//security
 		if( Helper::issetCheckFormSecurity($admin_form_id) ){
 
+
 // data
-		$plugin_settings = get_alex_extra_core_options();
+		$plugin_settings = Helper::getAlexExtraCoreOptions();
+
 
 		if(!$plugin_settings || empty($plugin_settings) || gettype($plugin_settings) !== 'array'    ){
 			$plugin_settings = [];
 			Helper::updateAlexExtraCoreOptions( $plugin_settings );
 		}
 
-		foreach ($fields as $field){
-			if ( isset( $_POST[$field[0]] ) &&  !empty($_POST[$field[0] ] ) ) {
-				$plugin_settings[ $field[0]] = $_POST[$field[0] ];
-			} else{
-				if('text' === $field[1] ){
-					$plugin_settings[$field[0]] = '';
-				}elseif($field[1] === 'checkbox'){
-					$plugin_settings[$field[0]] = false;
-				}else{
-					$plugin_settings[$field[0]] = false;
-				}
+			$fields = Helper::getFormDataBy($admin_form_id);
 
-			}
+		foreach ($fields as $field){
+			$plugin_settings[ $field['name']] = $field['value'] ;
 		}
 
 			// set data

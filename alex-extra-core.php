@@ -14,12 +14,11 @@
 // - if file of translate in plugin - Domain Path: /languages
 namespace AlexExtraCore\App ;
 
-
-
 use AlexExtraCore\TGM\TgmSettings\TgmSettings;
 use Carbon_Fields\CarbonFieldsInit;
 
 if(!defined('ABSPATH')) exit;
+
 
 
 define('AlexExtraCorePluginDIR' , plugin_dir_path(__FILE__) );

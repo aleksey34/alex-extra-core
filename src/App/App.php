@@ -3,6 +3,7 @@ namespace AlexExtraCore\App;
 
 use AlexExtraCore\App\Admin\Admin;
 use AlexExtraCore\App\ActivateDeactivate\ActivateDeactivate;
+use AlexExtraCore\App\Email\Email;
 use AlexExtraCore\App\CookiesAgreement\CookiesAgreement;
 use AlexExtraCore\App\CustomPostType\CustomPostType;
 use AlexExtraCore\App\CustomTaxonomy\CustomTaxonomy;
@@ -111,6 +112,16 @@ class App {
 		 */
 		Category::instance();
 		Elementor::instance();
+
+
+		/**
+		 * everything for form email
+		 * and sent email  etc
+		 * handler email form
+		 *
+		 */
+		Email::instance();
+
 
 	}
 

@@ -22,3 +22,6 @@ alex_extra_core_require_once_dir('src/functions/inc/create-form.php');
 
 
 alex_extra_core_require_once_dir('src/functions/inc/custom-logo.php');
+
+
+alex_extra_core_require_once_dir('src/functions/inc/create_common_email_form.php');

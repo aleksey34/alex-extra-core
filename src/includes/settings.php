@@ -3,7 +3,8 @@
 /**
  * define options name
  */
-define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
+//define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
+define("AlexExtraCorePluginOptionName" , 'alex_extra_core_options');
 
 /**
  * target url for parsing
@@ -38,19 +39,12 @@ function alex_extra_core_get_settings(){
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_admin_page_form_id_wrap"">
-                            <form id="alex_admin_page_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                            <form id="alex_admin_page_form_id" method="post" action="'. htmlspecialchars(  site_url()  .$_SERVER['REQUEST_URI'] ) .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                 	<input type="hidden"  name="fields" 
-                                 	value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
-                                 		[
-											["devmode", "checkbox"],
-											["prohibition_edit_file", "checkbox"],
-											["parser_section_enable", "checkbox"]
-										]) .'"  />
                                  	<input type="hidden"  name="admin_form_id" value="alex_admin_page_form_id"  />
                                     <input type="submit" name="submit" id="alex_admin_page_form_id_submit" class="button button-primary" value="Сохранить изменения">
                                 </p>
@@ -150,17 +144,12 @@ function alex_extra_core_get_settings(){
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_parser_url_form_id_wrap"">
-                            <form id="alex_parser_url_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                            <form id="alex_parser_url_form_id" method="post" action="'.  site_url()  . esc_html($_SERVER['REQUEST_URI'] ) .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="hidden"  name="fields" 
-                                 		value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
-											[
-												["parser_url", "text"]
-											]) .'"  />
                                     <input type="hidden"  name="admin_form_id" value="alex_parser_url_form_id"  />
                                     <input type="submit" name="submit" id="alex_parser_url_form_id_submit" class="button button-primary" value="Сохранить настроки">
                                 </p>
@@ -180,7 +169,7 @@ function alex_extra_core_get_settings(){
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_start_parser_form_id_wrap"">
-                            <form id="alex_start_parser_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                            <form id="alex_start_parser_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
@@ -198,7 +187,7 @@ function alex_extra_core_get_settings(){
 				'is_admin' => true,
 				'echo' => true ,
 				'before' => '<div class="form" id="alex_start_create_posts_form_id_wrap"">
-                            <form id="alex_start_create_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                            <form id="alex_start_create_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
@@ -217,7 +206,7 @@ function alex_extra_core_get_settings(){
 				'is_admin' => true,
 				'echo' => true ,
 				'before' => '<div class="form" id="alex_remove_posts_form_id_wrap"">
-                            <form id="alex_remove_posts_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+                            <form id="alex_remove_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )   .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
@@ -236,18 +225,18 @@ function alex_extra_core_get_settings(){
 				'is_admin' => true,
 				'echo' => true ,
 				'before' => '<div class="form" id="alex_enable_favorite_form_id_wrap"">
-	                            <form id="alex_enable_favorite_form_id" method="post" action="'. site_url()  .$_SERVER['REQUEST_URI'].'">
+	                            <form id="alex_enable_favorite_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
 	                                <table class="form-table" role="presentation">
 	                                    <tbody>',
 				'after' =>              '</tbody>
 	                                 </table>
-	                                 <p class="submit">
-	                                    <input type="hidden"  name="fields" 
-					                        value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
-											[
-												["enable_favorite", "checkbox"]
-											]) .'"  />
-	                                    <input type="hidden"  name="admin_form_id" value="alex_enable_favorite_form_id"  />
+	                                 <p class="submit">'
+//	                                    <input type="hidden"  name="fields"
+//					                        value="' . 	\AlexExtraCore\App\Helper\Helper::doStringFromArrayForFormInput(
+//											[
+//												["enable_favorite", "checkbox"]
+//											]) .'"  />
+	                                    .'<input type="hidden"  name="admin_form_id" value="alex_enable_favorite_form_id"  />
 	                                    <input type="submit" name="submit" id="alex_enable_favorite_form_id_submit" class="button button-primary" value="Сохранить именения">                       
 	                                </p>
 	                              </form>
@@ -261,6 +250,93 @@ function alex_extra_core_get_settings(){
 						'required'          => false,
 					]
 				],
+			],
+
+		'email_common_form_slug' =>  // значение id - динамическое  -    поэтому для определения полей нужен слаг
+			[
+
+				'fields' =>[
+					'alex_user_name'=>
+					[
+						 'name' => 'alex_user_name',
+						 'type'=>'text' ,
+						 'required' =>true,
+						 'placeholder' =>'Ваше имя',
+						 'error_message' =>'Имя записано не правильно.'
+					],
+					'alex_email' =>
+					[
+						 'name' => 'alex_email',
+						 'type'=>'email' ,
+						 'required' =>true ,
+						 'placeholder'=>'Ваш Email',
+						'error_message' =>'Email запсан не верно.'
+					],
+					'alex_tel'=>
+					[
+						 'name' => 'alex_tel',
+						 'type'=>'tel',
+						 'required' =>true ,
+						 'placeholder'=>'Ваш номер телефона',
+						 'error_message' =>'Номер телефона запсан не верно.'
+					],
+					'alex_message' =>
+					[
+						'name' => 'alex_message',
+						'type'=>'textarea',
+						'placeholder' =>'Сообщение...',
+						'attributes' => 'row=\'3\'',  // attributes name=\'value\'|name2=\'value\'|name3=\'value\'|value|value  use \' open and close if require
+						'error_message' =>'Ошибка валидации.'
+					]
+
 			]
+	],
+		'email_common_single_material_form_slug' =>  // значение id - динамическое  -    поэтому для определения полей нужен слаг
+			[
+				'fields' =>[
+					'alex_single_material_title'=>
+					[
+						 'name' => 'alex_single_material_title',
+						 'type'=>'text' ,
+						 'required' =>true,
+						 'placeholder' =>'Название материала',
+						 'error_message' =>'Название записано не правильно.',
+						 'attributes'=>'class=\'single-material-cf-title-field\'|readonly'
+					],
+					'alex_user_name'=>
+					[
+						 'name' => 'alex_user_name',
+						 'type'=>'text' ,
+						 'required' =>true,
+						 'placeholder' =>'Ваше имя',
+						 'error_message' =>'Имя записано не правильно.'
+					],
+					'alex_email' =>
+					[
+						 'name' => 'alex_email',
+						 'type'=>'email' ,
+						 'required' =>true ,
+						 'placeholder'=>'Ваш Email',
+						'error_message' =>'Email запсан не верно.'
+					],
+					'alex_tel'=>
+					[
+						 'name' => 'alex_tel',
+						 'type'=>'tel',
+						 'required' =>true ,
+						 'placeholder'=>'Ваш номер телефона',
+						 'error_message' =>'Номер телефона запсан не верно.'
+					],
+					'alex_message' =>
+					[
+						'name' => 'alex_message',
+						'type'=>'textarea',
+						'placeholder' =>'Сообщение...',
+						'attributes' => 'row=\'3\'',  // attributes name=\'value\'|name2=\'value\'|name3=\'value\'|value|value  use \' open and close if require
+						'error_message' =>'Ошибка валидации.'
+					]
+
+			]
+	],
 		];
 	}

@@ -375,6 +375,85 @@ body.archive .material
     .ferrara-testimonial-right .elementor-testimonial-wrapper .elementor-testimonial-content:before {
       border-width: 0 30px 20px 0;
       left: -18px; } }
+.email-form {
+  position: relative;
+  max-width: 400px;
+  margin: 50px auto 0;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd; }
+
+.email-form .error-validation-message, .email-form .error-message {
+  color: darkred; }
+
+.email-form .success-message {
+  color: darkgreen; }
+
+.email-form .form-inner {
+  padding: 50px; }
+
+.email-form .form-inner input, .email-form .form-inner textarea {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  line-height: 40px;
+  border: 1px solid #eee;
+  /*border-width: 0;*/
+  /*border-radius: 5px;*/
+  font-family: 'Roboto', sans-serif; }
+
+.email-form .form-inner input {
+  border: none;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  background-color: #fff; }
+
+.email-form .form-inner input[name=agreement_use_personal_data] {
+  border-radius: 0;
+  display: inline-block;
+  padding: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #555; }
+
+.form-inner input[type="submit"] {
+  margin-top: 30px;
+  background-color: #471616;
+  border-bottom: 4px solid #d87d56;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out; }
+
+.form-inner input[type="submit"]:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: #3A3C3C; }
+
+.form-inner textarea {
+  resize: none; }
+
+.form-inner h3 {
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #707981; }
+
+.not_clever_field {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  left: -7px;
+  top: -7px;
+  overflow: hidden; }
+
+.not_clever_field > input {
+  margin-right: 50px; }
+
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {
   margin-left: 80px; }

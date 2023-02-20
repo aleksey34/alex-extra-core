@@ -15,7 +15,6 @@ class Helper {
 	}
 
 	public static function  issetCheckFormSecurity( $form_id){
-		// check security
 		if( empty($_POST) || !isset($_POST[ $form_id.'_name'])
 		    || empty($_POST[$form_id.'_name']) ){
 
@@ -27,10 +26,7 @@ class Helper {
 			Helper::addAdminNotice('error');
 			return false;
 		}
-
 		return true;
-		// end check security
-
 	}
 
 	public static function  getAlexExtraCoreOptions($notice_type='success' ){
@@ -43,35 +39,141 @@ class Helper {
 	}
 
 	public static function  updateAlexExtraCoreOptions($options ){
-		$result = '';
-		if( is_serialized( $options ) ) {
-			$options =  maybe_serialize($options);
-		}
+		$result = false ;
 
-		$result = update_option(AlexExtraCorePluginOptionName , $options );
+		$options = maybe_serialize($options);
+
+		$result = update_option(AlexExtraCorePluginOptionName ,   $options );
 
 		return $result;
 
 	}
 
-	public static function doStringFromArrayForFormInput($array){
-	    // array require has -- right stucture
-		$data = [];
-		foreach ($array as $item){
-			$data[] = implode('~' , $item);
-		}
-		return  implode('^' , $data);
+
+
+
+
+	public static function doStringFromArray($array){
+		$string = json_encode($array);
+		return base64_encode($string)  ;
+	}
+	public static function doArrayFromString($string) {
+		$fields  = base64_decode($string);
+		return  json_decode($fields);
+	}
+
+	//---------------------------------
+//	public static function doStringFromArrayForFormInput($array){
+//		$string = json_encode($array);
+//		return base64_encode($string)  ;
+//    }
+//    public static function doArrayFromStringForFormInput($string) {
+//	    $fields  = base64_decode($string);
+//
+//	    return  json_decode($fields);
+//    }
+//    public static function doArrayFromStringForForm($data){
+//
+//	    $result = [];
+//
+//	    $fields  = base64_decode($data['fields']);
+//
+//	    $fields = json_decode($fields);
+//
+//	    foreach($fields as $field){
+//	        $name = esc_html($field[0]);
+//	        $type = esc_html($field[1]);
+//	        $value = '';
+//
+//	        if($type ==='text' || $type ==='tel' || $type ==='email'  ){
+//		        $value = esc_html($_POST[$name]);
+//            }
+//		    if($type ==='checkbox' && isset($_POST[$name] )){
+//			    $value =  intval($_POST[$name]);
+//		    }else{
+//		        $value = false;
+//            }
+//
+// 	        $result[] = ['name'=>$name , 'type'=>$type  , 'value'=> $value ] ;
+//
+//        }
+//
+//
+//
+//	    return $result;
+//    }
+//=============================================
+
+
+
+    // input form id or form slug // output array of field with sanitise data and value;
+    public static function getFormDataBy($form_id){
+	    $fields = [];
+	    $result = [];
+	    $fields_raw = alex_extra_core_get_settings()[$form_id]['fields'] ;
+
+	    foreach($fields_raw as $key => $field){
+		    $fields[] = [$key , $field['type']];
+	    }
+
+	    foreach($fields as $field){
+		    $name = $field[0];
+		    $type = $field[1];
+		    $value = '';
+
+		    if($type ==='text' || $type ==='tel'   ||  $type === 'textarea' ) {
+			    $value = esc_html( $_POST[ $name ] );
+		    }elseif($type ==='email'){
+			    $value = sanitize_email( $_POST[ $name ] );
+		    }elseif($type ==='checkbox' && isset($_POST[$name] ) ){
+			    $value =  intval(esc_html($_POST[$name]));
+		    }else{
+		        $value = false;
+            }
+
+		    $result[] = ['name'=>$name , 'type'=>$type  , 'value'=> $value ] ;
+
+	    }
+
+	    return $result;
     }
 
-    public static function doArrayFromStringForFormInput($serialize_input_value){
-	    //original array require has -- right stucture
-	    $value_array = explode('^' , $serialize_input_value );
-	    $array = [];
-	    foreach($value_array as $arr){
-		    $array[] = explode('~' , $arr);
-	    }
-	    return $array;
+    public static function validateFormPhoneNumber($str){
+	    // Корректные номера
+//	    $correctNumbers = [
+//		    '84951234567',
+//		    '+74951234567',
+//		    '8-495-1-234-567',
+//		    ' 8 (8122) 56-56-56',
+//		    '8-911-1234567',
+//		    '8 (911) 12 345 67',
+//		    '8-911 12 345 67',
+//		    '8 (911) - 123 - 45 - 67',
+//		    '+ 7 999 123 4567',
+//		    '8 ( 999 ) 1234567',
+//		    '8 999 123 4567'
+//	    ];
+
+
+		    $patt = '~' .
+		            '^(?:\+7|8)\d{10}$|' . '^(?:7|8)\d{10}$|' .
+		            '^8[\s-]\d{3}-\d(?:-\d{3})+$|' .
+		            '^\s?8\s?\(\d{4}\)\s?\d{2}(?:-\d{2}){2}$|' .
+		            '^8-\d{3}-\d{7}$|' . '^7-\d{3}-\d{7}$|' .
+		            '^8\s?\(\d{3}\)\s?\d{2}\s?\d{3}\s?\d{2}$|' . '^7\s?\(\d{3}\)\s?\d{2}\s?\d{3}\s?\d{2}$|'  .
+		            '^8-\d{3}\s?\d{2}\s?\d{3}\s?\d{2}$|' .
+		            '^8\s?\(\d{3}\)\s?-\s?\d{3}(?:\s?-\s?\d{2}){2}$|' .
+		            '^\+\s?7(?:\s?\d{3}){2}\s?\d{4}$|' .
+		            '^8\s?\(\s?\d{3}\s?\)\s?\d{7}$|' .
+		            '^8(?:\s?\d{3}){2}\s?\d{4}$' .
+		            '~';
+		    return preg_match($patt, $str);
     }
+
+	public static function validateFormUserName($str){
+		$patt = '/' . '^[a-zA-Zа-яА-Я]{4,40}$' . '/ui';
+		return preg_match($patt, $str);
+	}
 
 	public static function  addAdminNotice($notice_type='success' ){
 		if('success' === $notice_type){
@@ -124,10 +226,6 @@ class Helper {
 		if(is_null(self::$instance)){
 			self::$instance = new self();
 		}
-
 		return static::$instance;
-
 	}
-
-
 }

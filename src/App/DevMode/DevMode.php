@@ -26,7 +26,7 @@ class DevMode {
 // turn on  in  develop // need delete in production
 		add_action('init' , function () {
 
-			if( defined('AlexExtraCoreOptions')  &&  AlexExtraCoreOptions['devmode'] == '1') {
+			if( defined('AlexExtraCoreOptions')  &&  AlexExtraCoreOptions['devmode'] === 1) {
 
 				// dev mode - ON - OFF
 				if ( ! is_user_logged_in() && "/wp-login.php" !== $_SERVER['REQUEST_URI'] ) {

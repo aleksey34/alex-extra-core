@@ -9,7 +9,9 @@
  * hide from menu
  */
  add_action('admin_init' , function (){
-   if( defined('AlexExtraCoreOptions')  &&  '1'  !==  AlexExtraCoreOptions['prohibition_edit_file']){
+
+   if( defined('AlexExtraCoreOptions')  &&  1  !==  AlexExtraCoreOptions['prohibition_edit_file']){
+
      define('DISALLOW_FILE_EDIT', true);
    }
  } );

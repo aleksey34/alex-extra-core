@@ -18,7 +18,7 @@ class FavoritePost{
 		add_action('after_setup_theme' , function(){
 			if(defined('AlexExtraCoreOptions')
 			   && !empty(AlexExtraCoreOptions['enable_favorite'] )
-			   &&    '1' == AlexExtraCoreOptions['enable_favorite']  ) :
+			   &&    1 === AlexExtraCoreOptions['enable_favorite']  ) :
 				FavoriteScriptStyle::instance();
 
 
