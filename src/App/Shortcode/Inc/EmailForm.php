@@ -41,10 +41,12 @@ class EmailForm{
 
 			global $email_common_form_slug;
 			$email_common_form_slug = 'email_common_form_slug';
-
+            ob_start();
 			require alex_exra_core_template_dir('email/form-template/common-form.php');
+			$result = ob_get_clean();
 			unset($email_common_form_id);
 			unset($email_common_form_slug);
+			return $result;
 		}else{
 			alex_var_dump('не устанолен id для формы' , false);
 		}
@@ -63,10 +65,12 @@ class EmailForm{
 
 			global $email_common_form_slug;
 			$email_common_form_slug = 'email_common_single_material_form_slug';
-
+			ob_start();
 			require alex_exra_core_template_dir('email/form-template/common-form.php');
+			$result = ob_get_clean();
 			unset($email_common_form_id);
 			unset($email_common_form_slug);
+			return $result;
 		}else{
 			alex_var_dump('не устанолен id для формы' , false);
 		}

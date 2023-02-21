@@ -1,13 +1,14 @@
 .email-form {
   position: relative;
-  max-width: 400px;
+  max-width: 500px;
+  min-width: 280px;
   margin: 50px auto 0;
   background: #fff;
   border-radius: 5px;
   border: 1px solid #ddd;
 }
 
-.email-form .error-validation-message , .email-form .error-message{
+.email-form .error-message {
   color: darkred;
 }
 .email-form .success-message{
@@ -16,12 +17,15 @@
 
 
 .email-form .form-inner {
-  padding: 50px;
+  padding: 50px 40px;
+    & h3{
+      text-align: center;
+    }
 }
 .email-form  .form-inner input,.email-form  .form-inner textarea {
   display: block;
   width: 100%;
-  padding: 0 20px;
+  //padding: 0 20px;
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 5px;
@@ -32,6 +36,7 @@
   font-family: 'Roboto', sans-serif;
 }
 .email-form .form-inner input{
+  margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid #eee;
   border-radius: 0;
@@ -39,11 +44,12 @@
 }
 .email-form .form-inner input[name=agreement_use_personal_data]{
   border-radius: 0;
-  display: inline-block;
+  display: block;
   padding: 0;
   width: 15px;
   height: 15px;
   border: 1px solid #555;
+  margin-top: 5px;
 
 }
 
@@ -85,4 +91,34 @@
 }
 .not_clever_field > input {
   margin-right: 50px;
+}
+
+// for footer
+#footer_email_form.email-form {
+  background-color:rgb(221,221,221);
+  margin: 0 auto;
+.form-inner {
+padding: 0 20px;
+    & h3{
+      display: none;
+    }
+  }
+   .form-inner input {
+    margin-bottom: 5px;
+  }
+
+}
+// modal window common form  // modal for single material form
+ #email_form.email-form , #material_modal.email-form{
+  margin: 0 auto;
+  .form-inner {
+    padding: 0 20px;
+    & h3{
+      display: none;
+    }
+  }
+  .form-inner input {
+    margin-bottom: 5px;
+  }
+
 }

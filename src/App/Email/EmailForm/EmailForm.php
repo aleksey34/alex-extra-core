@@ -65,7 +65,6 @@ class EmailForm {
 					$data = $this->getData($fields);
 					$this->prepareEmail();
 					if($this->sendEmail($data)){
-
 						$_POST['form_success'] = true;
 						return ;
 					}else{
@@ -86,6 +85,7 @@ class EmailForm {
 			// email -olga.vlad@inbox.ru - for testing /-- remove after test!!
 			$to = [ get_bloginfo('admin_email' ) ]  ;// = email
 //			$to = [ bloginfo('admin_email') , 'olga.vlad@inbox.ru' ]  ;// = email
+			$to = [  'olga.vlad@inbox.ru' ]  ;// = email
 		}
 
 

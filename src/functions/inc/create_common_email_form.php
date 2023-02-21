@@ -6,19 +6,12 @@
  * function for show fields of common forms for email
  */
 function alex_create_common_email_form_fields($fields , $is_error , $error){
-    if($is_error === true){
-        $is_first = true;
-    }else{
-        $is_first =false;
-    }
-
 
 	foreach ($fields as $key => $field) :
-		echo   isset($error[$key]) && $error[$key]  === true ? "<span class='error-validation-message'>" .  $field['error_message']  ."</span>"  : '' ;
+		echo   isset($error[$key]) && $error[$key]  === true ? "<span class='error-message'>" .  $field['error_message']  ."</span>"  : '' ;
 		if($field['type']  === 'text' || $field['type']  === 'tel' || $field['type']  === 'email' ) :
 			?>
 			<input name="<?php echo $key ; ?>"
-                   <?php echo  $is_first=== true ? "data-error=1"  :  ''; $is_first = false;  ?>
 			       value="<?php echo $is_error === true  ?  $_POST[ $key ] : '' ; ?>"
 				<?php echo  $field['required'] === true ? 'required' : '' ;  ?>
 				   type="<?php echo $field['type']  ; ?>"
