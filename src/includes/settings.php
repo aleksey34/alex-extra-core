@@ -115,7 +115,7 @@ function alex_extra_core_get_settings(){
 				'devmode' => [
 					'type'              => 'checkbox',
 					'label'             => 'Режим разработки',
-					'description'       => 'Выключить доступ к сайту. Сайт будет недоступен для незалогинненых пользователей.',
+					'description'       => 'Включить режим разработки. Сайт будет недоступен для незалогинненых пользователей.',
 					// 'placeholder'       => '',
 					'required'          => false,
 //					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
@@ -128,7 +128,7 @@ function alex_extra_core_get_settings(){
 					'required'          => false,
 //					'default'           => 1  // require 1 ONLY for checkbox !!!!! do not set here!!!
 				] ,
-				'parser_section_enable' => [
+				'develop_tab_section_enable' => [
 					'type'              => 'checkbox',
 					'label'             => 'Доступ к табу разработки',
 					'description'       => 'Включить или выключить таб',
@@ -193,9 +193,10 @@ function alex_extra_core_get_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                    <input type="hidden"  name="post_page_action" value="create"  />
                                     <input type="hidden"  name="develop_form_id" value="alex_start_create_posts_form_id"  />
                                     <input type="submit" name="submit" id="alex_start_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
-                               		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
+                               		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="' . site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>
 						  </div>',
@@ -212,9 +213,10 @@ function alex_extra_core_get_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
+                                    <input type="hidden"  name="post_page_action" value="remove"  />
                                     <input type="hidden"  name="develop_form_id" value="alex_remove_posts_form_id"  />
                                     <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
-                                    <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="http://ferrara-design-workshop/wp-content/plugins/imsanity/images/ajax-loader.gif">                       
+                                    <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="'. site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>
 						  </div>',

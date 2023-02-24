@@ -100,6 +100,7 @@ class AjaxCreatePostPage {
 
                         let data = {
                             action: 'alex-create-post-page',
+                            post_page_action: 'create',
                             payload: {
                                 // offset // chunk with ajax
                             },

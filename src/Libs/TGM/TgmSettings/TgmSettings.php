@@ -147,11 +147,11 @@ class TgmSettings {
 //				'slug'                  => 'cookie-notice',
 //				'required'              => true,
 //			),
-			array(
-				'name'                  => 'WPForms',
-				'slug'                  => 'wpforms-lite',
-				'required'              => true,
-			),
+//			array(
+//				'name'                  => 'WPForms',
+//				'slug'                  => 'wpforms-lite',
+//				'required'              => true,
+//			),
 			array(
 				'name'                  => 'Ocean Social Sharing',
 				'slug'                  => 'ocean-social-sharing',

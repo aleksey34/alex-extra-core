@@ -15,7 +15,7 @@
 namespace AlexExtraCore\App ;
 
 use AlexExtraCore\TGM\TgmSettings\TgmSettings;
-use Carbon_Fields\CarbonFieldsInit;
+//use Carbon_Fields\CarbonFieldsInit;
 
 if(!defined('ABSPATH')) exit;
 
@@ -63,11 +63,6 @@ require_once  AlexExtraCorePluginDIR .  'vendor/autoload.php';
  * Carbon fields init meta and theme options
  */
 //CarbonFieldsInit::instance();
-
-/**
- * php Query
- */
-//alex_extra_core_require_once_dir('.php');
 
 
 

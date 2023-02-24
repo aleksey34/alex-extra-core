@@ -89,6 +89,7 @@ class AjaxRemovePostPage {
 
                             let data = {
                                 action: 'alex-remove-post-page',
+                                post_page_action: 'remove',
                                 payload: {},
                                 // alex_remove_posts_form_id_name : nonce
                             }

@@ -41,8 +41,6 @@ $email_common_form_slug_name = 'email_common_form_slug_name';
         <input type="hidden" name="<?php echo $email_common_form_id_name  ?>" value="<?php echo $email_common_form_id ; ?>" />
         <input type="hidden" name="<?php echo $email_common_form_slug_name  ;  ?>" value="<?php  echo $email_common_form_slug ; ?>"   />
         <?php  wp_nonce_field( $email_common_form_id .'_action' ,  $email_common_form_id . '_name' , true , true );  ?>
-        <input
-	        <?php echo  $is_error === true ? " data-error=1"  :  '';  ?>
-                name="submit" type="submit" value="Отправить">
+        <input name="submit" type="submit" value="Отправить" />
     </div>
 </form>

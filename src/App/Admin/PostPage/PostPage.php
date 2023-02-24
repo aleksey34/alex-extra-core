@@ -16,7 +16,8 @@ class PostPage {
 	}
 
 	private function init(){
-		$isAjax = true;
+		$isAjax = false;
+//		$isAjax = true;
 		if(is_admin()){
 			if($isAjax){
 				AjaxCreatePostPage::instance();

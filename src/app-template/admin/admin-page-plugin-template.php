@@ -22,8 +22,8 @@
         <label for="tab_enable_functionality">Включение фунционала</label>
 
 	    <?php
-        if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['parser_section_enable'])
-	             && 1  === AlexExtraCoreOptions['parser_section_enable']) : ?>
+        if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['develop_tab_section_enable'])
+	             && 1  === AlexExtraCoreOptions['develop_tab_section_enable']) : ?>
         <input type="radio" name="mytab-button" id="tap_development" value="">
         <label for="tap_development">Разработка</label>
         <?php endif; ?>
@@ -44,11 +44,11 @@
             <?php alex_get_form( alex_extra_core_get_settings() , 'alex_enable_favorite_form_id')  ?>
         </div>
 
-	    <?php if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['parser_section_enable'])
-	             &&  1  === AlexExtraCoreOptions['parser_section_enable']) : ?>
+	    <?php if(defined('AlexExtraCoreOptions') && !empty(AlexExtraCoreOptions['develop_tab_section_enable'])
+	             &&  1  === AlexExtraCoreOptions['develop_tab_section_enable']) : ?>
         <div id="development_content">
             <h4>
-                Секция для разработки - парсинга сайтов, создание постов, страниц, материалов и тд.
+                Секция для разработки -  создание постов, страниц, материалов и тд.
             </h4>
             <br/><br/>
 		    <?php

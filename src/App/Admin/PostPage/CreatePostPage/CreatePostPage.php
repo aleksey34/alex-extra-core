@@ -108,9 +108,16 @@ class CreatePostPage {
 		// post -material
 		require_once( ABSPATH  . '/wp-load.php');
 
+
+
 		$post_data = $settings;
+
 		$post_data['post_title'] = $data['title'];
 
+		// check for uniq
+		if (  post_exists($post_data['post_title'] )  !== 0 ){
+			return ;
+		}
 
 		$price_html = $this->getPriceHtml($data['price']);
 
@@ -130,6 +137,7 @@ class CreatePostPage {
 		$post_id = wp_insert_post($post_data, true);
 
 
+
 		//------------------------------
 // прикрпляет attachments  к посту
 		$this->addAttachmentToPost($gallery_ids , $post_id);
@@ -144,6 +152,7 @@ class CreatePostPage {
 
 // ======================================================================
 
+
 	}
 
 	/**
@@ -156,10 +165,17 @@ class CreatePostPage {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 
 		$type_of_form_id = 'develop_form_id';
+
 		// check security
-		if (!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id])  || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
+		if ( !isset($_POST['post_page_action']) ||
+			 $_POST['post_page_action'] !== 'create'  ||
+		     !isset($_POST[$type_of_form_id]) ||
+		     empty($_POST[$type_of_form_id])  ||
+		     ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
+
 			return ;
 		}
+
 		// end check security
 
 // start after push button=== start creating
@@ -170,7 +186,7 @@ class CreatePostPage {
 		$start = 0;
 
 		$offset = 0;
-		$finish  = 5;
+		$finish  = 3;
 
 
 		// for ajax chunk loading! only
@@ -186,7 +202,6 @@ class CreatePostPage {
 
 		foreach ($postsData as $data ){
 			if( $start >= $offset && $start < $finish){
-
 				try {
 					$this->createPost($this->getSettings() , $data);
 

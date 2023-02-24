@@ -10,6 +10,7 @@ add_action('wp_footer' , function ( ){
        ?>
 		<script type="text/javascript">
             (function (){
+                // set title of product in first input of form
                 const singleMaterialCfTitleField = document.querySelectorAll('.single-material  .single-material-cf-title-field' );
                 if(singleMaterialCfTitleField.length){
                     const materialTitleArr  = document.querySelectorAll('.single-material .page-header-title');
@@ -21,13 +22,13 @@ add_action('wp_footer' , function ( ){
                     }
                 }
 
+                // return modal window if it has error
                 const errorSpan =
                     document.querySelectorAll('.email-form  .error-message');
                 if(errorSpan && errorSpan.length) {
                     const errorWindow = errorSpan[0].closest('.omw-modal');
                     if(errorWindow){
                         const linkArr = document.querySelectorAll('a');
-
                         let isFirst = true;
                         linkArr.forEach(function (link){
                             if(link.getAttribute('href')  === `#${errorWindow.id}`  && isFirst  ){

@@ -89,7 +89,11 @@ class RemovePostPage {
 		$type_of_form_id = 'develop_form_id';
 
 		// check security
-		if (!isset( $_POST[$type_of_form_id]) || empty( $_POST[$type_of_form_id]) || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
+		if (  !isset($_POST['post_page_action']) ||
+		      $_POST['post_page_action'] === 'create'  ||
+		      !isset( $_POST[$type_of_form_id]) ||
+		      empty( $_POST[$type_of_form_id]) ||
+		      ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
 			return;
 		}
 

@@ -83,28 +83,27 @@ class EmailForm {
 
 		if(!isset($to) || empty($to)   ){
 			// email -olga.vlad@inbox.ru - for testing /-- remove after test!!
-			$to = [ get_bloginfo('admin_email' ) ]  ;// = email
-//			$to = [ bloginfo('admin_email') , 'olga.vlad@inbox.ru' ]  ;// = email
-			$to = [  'olga.vlad@inbox.ru' ]  ;// = email
+			$to = [ get_bloginfo('admin_email' ) ,  'aleksey3400@yandex.ru' ]  ;// = email // test mode
+//			$to = [ bloginfo('admin_email')  ]  ;// = email // realise mode
+//			$to = [  'aleksey3400@yandex.ru' ]  ;// = email // test mode
 		}
 
 
 		if(!isset($subject)  || empty($subject) ){
-			$subject = 'New message.';
-			$subject = "=?UTF-8?B?Заявка с сайта?=";
-//			$subject = "=?UTF-8?B?".base64_encode("Заявка с сайта")."?=";
+//			$subject = "Заявка с сайта";
 			$subject = esc_html("Новое сообщение!");
-//			$subject = '=?utf-8?B?'.base64_encode('Новое сообщение!').'?=';
-//			$subject = base64_encode('Новое сообщение!');
 		}
 
 		if(!isset($message)   || empty($message) ){
 			global $common_email_fields;
 			$common_email_fields = $data;
+			global $is_pdf;
+			$is_pdf = false;
 			ob_start();
 			require  AlexExtraCorePluginTemplateDir . 'email/email-template/common-form-email-template.php';
 			$message = ob_get_clean();
 			unset($common_email_fields);
+			unset($is_pdf);
 		}
 
 
