@@ -9,8 +9,6 @@ class AjaxRemovePostPage {
 
 	private static $instance;
 
-
-
 	public function __construct (){
 
 		$this->init();
@@ -53,9 +51,6 @@ class AjaxRemovePostPage {
 			}, 100);
 
 		endif;
-//		add_action('admin_print_scripts'. AdminPluginPage::getHookSuffix() , function(){
-//			$this->getJs();
-//		} , 90);
 
 	}
 
@@ -64,8 +59,8 @@ class AjaxRemovePostPage {
 	    ?>
         <script>
             jQuery(function (){
-                let type_of_form_id = 'develop_form_id';
 
+                let AlexExtraCoreNonceName = 'alex_extra_core_nonce_name';
 
                 let ajaxurl = '/wp-admin/admin-ajax.php';
 
@@ -79,22 +74,18 @@ class AjaxRemovePostPage {
                     alexRemovePostsForm.on('submit' , (e)=> {
                             e.preventDefault();
 
-                            let form_id = alexRemovePostsForm.find(`input[name=${type_of_form_id}]`).val();
-
-                            let alexRemovePostsFormNonceName =  `${alexRemovePostsFormId}_name`;
-                            let nonce = alexRemovePostsForm.find(`#${alexRemovePostsFormNonceName}`).val();
+                             let nonce = alexRemovePostsForm.find(`input[name=${AlexExtraCoreNonceName}`).val();
 
                             let alexRemovePostsSubmit = alexRemovePostsForm.find('input[type=submit]');
                             let  alexRemovePostsLoader   = alexRemovePostsSubmit.next('img').css('display' , 'block');
 
                             let data = {
                                 action: 'alex-remove-post-page',
-                                post_page_action: 'remove',
+                                alex_remove_posts_form_id_name: alexRemovePostsFormId,
                                 payload: {},
-                                // alex_remove_posts_form_id_name : nonce
                             }
-                            data[alexRemovePostsFormNonceName]  = nonce;
-                            data[type_of_form_id]  = form_id;
+                            data[AlexExtraCoreNonceName]  = nonce;
+                            data[`${alexRemovePostsFormId}_name`]  = alexRemovePostsFormId;
 
 
                             jQuery.post( ajaxurl, data, function( response ){
@@ -118,8 +109,6 @@ class AjaxRemovePostPage {
         </script>
 <?php
 	}
-
-
 
 
 	public static function instance(){

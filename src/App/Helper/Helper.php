@@ -14,15 +14,12 @@ class Helper {
 
 	}
 
-	public static function  issetCheckFormSecurity( $form_id){
-		if( empty($_POST) || !isset($_POST[ $form_id.'_name'])
-		    || empty($_POST[$form_id.'_name']) ){
-
+	public static function  issetCheckFormSecurity(){
+		if( empty($_POST) || !isset($_POST[AlexExtraCoreNonceName])
+		    || empty($_POST[AlexExtraCoreNonceName]) ){
 			return false;
 		}
-
-		if(!wp_verify_nonce(  $_POST[$form_id.'_name'] , $form_id.'_action')){
-//			$this->addNotice('error'); // error
+		if(!wp_verify_nonce(  $_POST[ AlexExtraCoreNonceName ] , AlexExtraCoreNonceAction)){
 			Helper::addAdminNotice('error');
 			return false;
 		}

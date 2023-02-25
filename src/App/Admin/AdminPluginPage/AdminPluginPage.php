@@ -72,8 +72,7 @@ class AdminPluginPage{
 				return false;
 			}
 
-			$admin_form_id = $_POST[$type_of_form_id];
-
+			$admin_form_id = esc_html($_POST[$type_of_form_id]) ;
 
 			$this->getFormHandler($admin_form_id );
 		}
@@ -86,7 +85,7 @@ class AdminPluginPage{
 	private function getFormHandler($admin_form_id ){
 
 		//security
-		if( Helper::issetCheckFormSecurity($admin_form_id) ){
+		if( Helper::issetCheckFormSecurity() ){
 
 
 // data

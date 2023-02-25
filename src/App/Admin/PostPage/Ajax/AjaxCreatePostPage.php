@@ -50,9 +50,6 @@ class AjaxCreatePostPage {
 		}, 100);
 
 	   endif;
-//		add_action('admin_print_scripts'. AdminPluginPage::getHookSuffix() , function(){
-//			$this->getJs();
-//		} , 90);
 
 	}
 
@@ -60,16 +57,13 @@ class AjaxCreatePostPage {
 	    ?>
         <script>
             jQuery(function (){
-                let type_of_form_id = 'develop_form_id';
 
                 let ajaxurl = '/wp-admin/admin-ajax.php';
 
-                //chunk with ajax
-                // let is_first = true;
-                // let offset = 0;
+                let AlexExtraCoreNonceName = 'alex_extra_core_nonce_name';
 
 
-                let alexCreatePostsFormId = 'alex_start_create_posts_form_id';
+                let alexCreatePostsFormId = 'alex_create_posts_form_id';
 
                 let alexCreatePostsForm = jQuery(`#${alexCreatePostsFormId}`);
                 if(alexCreatePostsForm.length >= 1 ){
@@ -77,11 +71,7 @@ class AjaxCreatePostPage {
                     alexCreatePostsForm.on('submit' , (e)=>{
                         e.preventDefault();
 
-                        let form_id = alexCreatePostsForm.find(`input[name=${type_of_form_id}]`).val();
-
-                        let alexCreatePostsFormNonceName =  `${alexCreatePostsFormId}_name`;
-                        let nonce = alexCreatePostsForm.find(`#${alexCreatePostsFormNonceName}`).val();
-
+                        let nonce = alexCreatePostsForm.find(`input[name=${AlexExtraCoreNonceName}`).val();
 
                         let alexCreatePostsSubmit = alexCreatePostsForm.find('input[type=submit]');
                         let resultMessage   = alexCreatePostsSubmit.next('span');
@@ -91,23 +81,14 @@ class AjaxCreatePostPage {
                         let  alexCreatePostsLoader   = alexCreatePostsSubmit.next('img').css('display' , 'block');
 
 
-                        // chunk with ajax
-                        // if(is_first){
-                        //     is_first = false;
-                        // }else{
-                        //     offset = offset + 3;
-                        // }
 
                         let data = {
                             action: 'alex-create-post-page',
-                            post_page_action: 'create',
                             payload: {
-                                // offset // chunk with ajax
                             },
-                            // alex_start_create_posts_form_id_name : nonce
                         }
-                        data[alexCreatePostsFormNonceName] = nonce;
-                        data[type_of_form_id] = form_id;
+                        data[AlexExtraCoreNonceName] = nonce;
+                        data[`${alexCreatePostsFormId}_name`] = alexCreatePostsFormId;
 
 
                         jQuery.post( ajaxurl, data, function( response ){

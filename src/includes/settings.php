@@ -1,22 +1,4 @@
 <?php
-
-/**
- * define options name
- */
-//define("AlexExtraCorePluginOptionName" , 'alex_extra_core_settings');
-define("AlexExtraCorePluginOptionName" , 'alex_extra_core_options');
-
-/**
- * target url for parsing
- */
-//define("AlexExtraCoreParsingTargetUrl" , 'https://ferrara-design.ru/all_catalog');
-
-/**
- * post meta -- material post type - key
- */
-define('AlexMaterialMetaKey' , 'ferrara_material_data');
-
-
 /**
  * Function for create form in admin and front
  *
@@ -30,16 +12,16 @@ define('AlexMaterialMetaKey' , 'ferrara_material_data');
  */
 //with example $args
 function alex_extra_core_get_settings(){
-// field nonce  name  form --  {FORMID}_name  action {FORMID}_action
 // input hidden - fields -- requires  structure !! important array in array - 1 name 2 type- see example
 
 	return  [
+		//admin plugin form
 		'alex_admin_page_form_id' =>
 			[
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_admin_page_form_id_wrap"">
-                            <form id="alex_admin_page_form_id" method="post" action="'. htmlspecialchars(  site_url()  .$_SERVER['REQUEST_URI'] ) .'">
+                            <form id="alex_admin_page_form_id" method="post" action="'. esc_html(  site_url()  .$_SERVER['REQUEST_URI'] ) .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
@@ -144,7 +126,7 @@ function alex_extra_core_get_settings(){
 			'is_admin' => true,
 			'echo' => true ,
 			'before' => '<div class="form" id="alex_parser_url_form_id_wrap"">
-                            <form id="alex_parser_url_form_id" method="post" action="'.  site_url()  . esc_html($_SERVER['REQUEST_URI'] ) .'">
+                            <form id="alex_parser_url_form_id" method="post" action="'.  esc_html(site_url()  . esc_html($_SERVER['REQUEST_URI'] ) ) .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 			'after' =>              '</tbody>
@@ -182,20 +164,19 @@ function alex_extra_core_get_settings(){
 						  </div>',
 			'fields' =>[]
 		],
-		'alex_start_create_posts_form_id'=>
+		'alex_create_posts_form_id'=>
 			[
 				'is_admin' => true,
 				'echo' => true ,
-				'before' => '<div class="form" id="alex_start_create_posts_form_id_wrap"">
-                            <form id="alex_start_create_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
+				'before' => '<div class="form" id="alex_create_posts_form_id_wrap"">
+                            <form id="alex_create_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="hidden"  name="post_page_action" value="create"  />
-                                    <input type="hidden"  name="develop_form_id" value="alex_start_create_posts_form_id"  />
-                                    <input type="submit" name="submit" id="alex_start_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
+                                    <input type="hidden"  name="alex_create_posts_form_id_name" value="alex_create_posts_form_id"  />
+                                    <input type="submit" name="submit" id="alex_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
                                		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="' . site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>
@@ -213,9 +194,7 @@ function alex_extra_core_get_settings(){
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="hidden"  name="post_page_action" value="remove"  />
-                                    <input type="hidden"  name="develop_form_id" value="alex_remove_posts_form_id"  />
-                                    <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
+                                    <input type="hidden"  name="alex_remove_posts_form_id_name" value="alex_remove_posts_form_id"  />                                    <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
                                     <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="'. site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>
@@ -254,6 +233,7 @@ function alex_extra_core_get_settings(){
 				],
 			],
 
+		// front form
 		'email_common_form_slug' =>  // значение id - динамическое  -    поэтому для определения полей нужен слаг
 			[
 

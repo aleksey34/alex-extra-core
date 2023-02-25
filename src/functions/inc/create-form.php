@@ -24,7 +24,7 @@ function alex_get_form(  $settings , $form_id){
 ob_start();
 		echo $args['before'] ? $args['before'] : '<form id="'.$form_id.'">';
 
-	   wp_nonce_field($form_id . '_action' ,  $form_id . '_name' , true , true );
+	   wp_nonce_field(AlexExtraCoreNonceAction ,  AlexExtraCoreNonceName , true , true );
 
 	foreach ($fields  as $key => $field){
 

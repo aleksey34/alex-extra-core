@@ -48,11 +48,11 @@ class Parser {
 
 			$type_of_form_id = 'develop_form_id';
 			// check security
-			if (!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id]) || ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
+			if (!isset($_POST[$type_of_form_id]) || empty($_POST[$type_of_form_id]) || ! Helper::issetCheckFormSecurity() ) {
 				return;
 			}
-
 			// end check security
+
 			//start parsing
 			$startUrl = AlexExtraCoreOptions['parser_url'];
 			$pageLinks =$this->getPageLinkArray($startUrl);

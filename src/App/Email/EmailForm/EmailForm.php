@@ -34,7 +34,12 @@ class EmailForm {
 			$email_common_form_slug_name = 'email_common_form_slug_name';
 			$email_common_form_id_name= 'email_common_form_id_name';
 
-			if(isset($_POST[$email_common_form_id_name]) && !empty($_POST[$email_common_form_id_name]) && Helper::issetCheckFormSecurity(esc_html($_POST[$email_common_form_id_name]) ) ) :
+			if(
+				isset($_POST[$email_common_form_slug_name])
+				&& !empty($_POST[$email_common_form_slug_name])
+				&& isset($_POST[$email_common_form_id_name])
+			   && !empty($_POST[$email_common_form_id_name])
+			   && Helper::issetCheckFormSecurity( ) ) :
 
 				// check hidden input
 				if( isset($_POST['not_clever1'])

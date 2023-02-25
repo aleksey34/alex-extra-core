@@ -119,6 +119,11 @@ class CreatePostPage {
 			return ;
 		}
 
+		// check taxonomy and term here
+		// structure $date['taxonomy']=>[taxonomy_name1=>[term1 , term2] ]
+		// if exist term for taxonomy - add  if not exist -create term and add
+
+
 		$price_html = $this->getPriceHtml($data['price']);
 
 		$gallery_ids = $this->getGalleryIdsUploadAttachments(  $data['gallery'] , 0);
@@ -159,24 +164,22 @@ class CreatePostPage {
 	 * может использоваться отдельно при ajax
 	 */
 	public function startCreatePosts(){
+		if(!isset($_POST['submit'])){
+			return;
+		}
+
+		// check security
+		if (  !isset($_POST['alex_create_posts_form_id_name']) ||
+		      $_POST['alex_create_posts_form_id_name'] !== 'alex_create_posts_form_id'  ||
+		      ! Helper::issetCheckFormSecurity( ) ) {
+			return;
+		}
+		// end check security
 
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 
-		$type_of_form_id = 'develop_form_id';
-
-		// check security
-		if ( !isset($_POST['post_page_action']) ||
-			 $_POST['post_page_action'] !== 'create'  ||
-		     !isset($_POST[$type_of_form_id]) ||
-		     empty($_POST[$type_of_form_id])  ||
-		     ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
-
-			return ;
-		}
-
-		// end check security
 
 // start after push button=== start creating
 
@@ -187,14 +190,7 @@ class CreatePostPage {
 
 		$offset = 0;
 		$finish  = 3;
-
-
-		// for ajax chunk loading! only
-//		if( isset($_POST['payload'] ) && isset($_POST['payload']['offset'] ) ){
-//			$offset = intval($_POST['payload']['offset']);
-//			$finish = $offset + 3;
-//		}
-
+		
 
 		// without limit - 0   , any case - int seconds // work!! IMPORTANT !!!
 		set_time_limit(0);
@@ -215,9 +211,7 @@ class CreatePostPage {
 
 			$start++;
 		}
-
 //=============end creating =======================================
-
 	}
 
 
@@ -266,7 +260,7 @@ class CreatePostPage {
 		return [
 			'post_status' => 'publish',
 			'post_author' => 1,
-			'post_category' => [1],
+			'taxonomies' => [], // structure = [$taxonomy_name1=>[term1 , term2 ....]  ]
 			"post_type"     => self::$postType
 		];
 	}

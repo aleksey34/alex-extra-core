@@ -28,6 +28,7 @@
         <label for="tap_development">Разработка</label>
         <?php endif; ?>
 
+
         <div id="common_settings_content">
 	        <?php    ?>
         </div>
@@ -65,7 +66,7 @@
             <p>
                 Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
             </p>
-		    <?php alex_get_form(  alex_extra_core_get_settings() , 'alex_start_create_posts_form_id')  ?>
+		    <?php alex_get_form(  alex_extra_core_get_settings() , 'alex_create_posts_form_id')  ?>
             <br/>
             <p>
                 Удаление всех постов.<br/> Удаление всех Материалов - со всеми изображениями которые к ним прикрепленны.<br/>

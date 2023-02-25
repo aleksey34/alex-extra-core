@@ -20,11 +20,28 @@ use AlexExtraCore\TGM\TgmSettings\TgmSettings;
 if(!defined('ABSPATH')) exit;
 
 
-
 define('AlexExtraCorePluginDIR' , plugin_dir_path(__FILE__) );
 define("AlexExtraCorePluginURI" , plugin_dir_url( __FILE__ ));
 define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-template/' );
 
+/**
+ * post meta -- material post type - key
+ */
+define('AlexMaterialMetaKey' , 'ferrara_material_data');
+
+/**
+ * define options name
+ */
+define("AlexExtraCorePluginOptionName" , 'alex_extra_core_options');
+
+
+
+/**
+ * name field for nonce
+ * and nonce action
+ */
+define('AlexExtraCoreNonceName' , 'alex_extra_core_nonce_name');
+define('AlexExtraCoreNonceAction' , 'alex_extra_core_nonce_action');
 
 /**
  * do not need init class!!

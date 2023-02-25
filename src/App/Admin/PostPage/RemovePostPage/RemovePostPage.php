@@ -86,14 +86,14 @@ class RemovePostPage {
 
 	public function startRemoveAllPosts(){
 
-		$type_of_form_id = 'develop_form_id';
+		if(!isset($_POST['submit'])){
+			return;
+		}
 
 		// check security
-		if (  !isset($_POST['post_page_action']) ||
-		      $_POST['post_page_action'] === 'create'  ||
-		      !isset( $_POST[$type_of_form_id]) ||
-		      empty( $_POST[$type_of_form_id]) ||
-		      ! Helper::issetCheckFormSecurity( $_POST[$type_of_form_id] ) ) {
+		if (  !isset($_POST['alex_remove_posts_form_id_name']) ||
+		      $_POST['alex_remove_posts_form_id_name'] !== 'alex_remove_posts_form_id'  ||
+		      ! Helper::issetCheckFormSecurity( ) ) {
 			return;
 		}
 
