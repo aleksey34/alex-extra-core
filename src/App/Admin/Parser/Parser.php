@@ -40,6 +40,10 @@ class Parser {
 
 
 	public function startParsing(){
+		if(!isset($_POST['submit'])){
+			return;
+		}
+
 		if(is_admin()
 		   && defined('AlexExtraCoreOptions')
 		   && AlexExtraCoreOptions['parser_section_enable']
@@ -52,6 +56,9 @@ class Parser {
 				return;
 			}
 			// end check security
+
+			alex_var_dump('There is no code in the parsing');
+
 
 			//start parsing
 			$startUrl = AlexExtraCoreOptions['parser_url'];

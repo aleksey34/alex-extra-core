@@ -4,6 +4,7 @@ namespace AlexExtraCore\App\Admin\PostPage\CreatePostPage;
 
 
 use AlexExtraCore\App\Helper\Helper;
+use function Sodium\add;
 
 
 class CreatePostPage {
@@ -21,6 +22,7 @@ class CreatePostPage {
 		$this->init();
 
 
+
 	}
 
 	private function init(){
@@ -28,6 +30,7 @@ class CreatePostPage {
 		add_action('admin_init' , [$this , 'startCreatePosts']);
 
 	}
+	
 
 	private function getPriceHtml($price){
 
@@ -102,6 +105,28 @@ class CreatePostPage {
 		//---------------------------------------
 	}
 
+	private function getTermsForPost($taxonomies = []){
+		$result = [];
+		foreach ($taxonomies  as $taxonomy =>$term_arr){
+			$term_ids = [];
+			if($taxonomy ===  'hashtags'){
+				$term_ids = $term_arr;
+			}else{
+				foreach ($term_arr as $term){
+					$term_data  = wp_create_term($term , $taxonomy );
+					if(gettype($term_data) === 'array'){
+						$term_ids[] = $term_data['term_id'];
+					}elseif(gettype(intval($term_data) ) === 'integer'){
+						$term_ids[] = $term_data;
+					}
+				}
+			}
+			$result[$taxonomy] = $term_ids;
+
+		}
+		return $result;
+	}
+
 
 
 	private function createPost($settings , $data){
@@ -114,19 +139,30 @@ class CreatePostPage {
 
 		$post_data['post_title'] = $data['title'];
 
+
 		// check for uniq
 		if (  post_exists($post_data['post_title'] )  !== 0 ){
 			return ;
 		}
 
-		// check taxonomy and term here
-		// structure $date['taxonomy']=>[taxonomy_name1=>[term1 , term2] ]
+
+		// check taxonomy and term here , add term to posts
+		// structure $date['taxonomies']=>[taxonomy_name1=>[term1_id , term2_id] ]
 		// if exist term for taxonomy - add  if not exist -create term and add
+		$tax_input = [];
+		if(isset($data['taxonomies'])  && !empty($data['taxonomies'])  ){
+			$tax_input = $this->getTermsForPost($data['taxonomies']);
+		}
+		$post_data['tax_input'] = $tax_input;
+
+
 
 
 		$price_html = $this->getPriceHtml($data['price']);
 
 		$gallery_ids = $this->getGalleryIdsUploadAttachments(  $data['gallery'] , 0);
+
+
 
 		$html_gallery = $this->getGalleryHtml($gallery_ids);
 
@@ -189,13 +225,19 @@ class CreatePostPage {
 		$start = 0;
 
 		$offset = 0;
-		$finish  = 3;
-		
+		$finish  = 2;
+
 
 		// without limit - 0   , any case - int seconds // work!! IMPORTANT !!!
 		set_time_limit(0);
 		//==============================================================
 
+		// запомним текущее состояние (это пример, что так тоже можно делать)
+		$was_suspended = wp_suspend_cache_addition();
+// отключаем кэширование
+		wp_suspend_cache_addition( true );
+
+// ТУТ ВАШ КОД ИМПОРТА. Объектное кэширование здесь уже не работает
 		foreach ($postsData as $data ){
 			if( $start >= $offset && $start < $finish){
 				try {
@@ -211,6 +253,8 @@ class CreatePostPage {
 
 			$start++;
 		}
+		// вернем прежнее состояние кэша обратно
+		wp_suspend_cache_addition( $was_suspended );
 //=============end creating =======================================
 	}
 
@@ -260,8 +304,12 @@ class CreatePostPage {
 		return [
 			'post_status' => 'publish',
 			'post_author' => 1,
-			'taxonomies' => [], // structure = [$taxonomy_name1=>[term1 , term2 ....]  ]
-			"post_type"     => self::$postType
+			"post_type"     => self::$postType,
+
+			'tax_input' => [],
+			// structure??? need or not??
+		//	'taxonomies' => [], // structure = [$taxonomy_name1=>[term1 , term2 ....]  ]
+
 		];
 	}
 
