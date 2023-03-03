@@ -109,13 +109,11 @@ class EmailForm {
 
 
 		$headers = array(
-
 			'From: Ferrara Design Workshop Site <' . get_bloginfo('admin_email' ) . '>',
 			'Content-type: text/html; charset=utf-8',
-
 //			'Content-Transfer-Encoding: 16bit'
 //			'Content-Transfer-Encoding: 8bit'
-//
+
 //			'cc: John Q Codex <jqc@wordpress.org>',
 //			'cc: John2 Codex <j2qc@wordpress.org>',
 //			'bcc: iluvwp@wordpress.org', // тут можно использовать только простой email адрес

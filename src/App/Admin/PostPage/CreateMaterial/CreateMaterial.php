@@ -237,21 +237,23 @@ class CreateMaterial {
 		wp_suspend_cache_addition( true );
 
 // ТУТ ВАШ КОД ИМПОРТА. Объектное кэширование здесь уже не работает
+
+		Helper::cloneFolderWithFiles(ImportMaterial::getImgOriginalDir() , ImportMaterial::getImgTempDir());
+
 		foreach ($postsData as $data ){
 			if( $start >= $offset && $start < $finish){
 				try {
 					$this->createPost($this->getSettings() , $data);
-
 				}catch (\Exception $exception){
 //					$exception->getMessage();
 					$start--;
-
 				}
-
 			}
-
 			$start++;
 		}
+
+		Helper::removeDirWithFiles(ImportMaterial::getImgTempDir());
+
 		// вернем прежнее состояние кэша обратно
 		wp_suspend_cache_addition( $was_suspended );
 //=============end creating =======================================
@@ -264,15 +266,12 @@ class CreateMaterial {
 	 *
 	 * @return int|\WP_Error
 	 * кастомный способ загрузки из директории
+	 * required for data or demo-data and others
 	 */
-	private function uploadMedia($img_dir , $post_id= 0 ){
+	private function uploadMedia($img_path , $post_id= 0 ){
 // if post_id = 0  -- load without post
 
-		// Для примера возьмём картинку с моего же блога, которая была залита вне структуры wordpress
-//		$url = 'http://sergeivl.ru/public/img/svlJForm.png';
 
-// Прикрепим к ранее сохранённому посту
-//$post_id = 3061;
 		$description = "Изображение материала";
 
 // Установим данные файла
@@ -280,25 +279,27 @@ class CreateMaterial {
 //		$tmp = download_url($url);
 
 // Получаем имя файла
-		preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $img_dir, $matches );
+		preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $img_path, $matches );
 		$file_array['name'] = basename($matches[0]);
-		$file_array['tmp_name'] = $img_dir;
+		$file_array['tmp_name'] = $img_path;
 
-// загружаем файл
+// загружаем файл  - custom function / do not use wp func
 		$media_id = media_handle_sideload( $file_array, $post_id, $description );
 
 // Проверяем на наличие ошибок
 		if( is_wp_error($media_id) ) {
-//			@unlink($file_array['tmp_name']);
+			@unlink($file_array['tmp_name']); // файл не временный . не удаляем
 			echo $media_id->get_error_messages( ); // do error / what  does it do?
 		}
 
-// Удаляем временный файл  // удаление нежжно - файл не временный
-//		@unlink( $file_array['tmp_name'] );
-
+// Удаляем временный файл  // удаление ненужно - файл не временный
+		@unlink( $file_array['tmp_name'] );
+// Проблема!! все равно удаляются исходные изображения!!!!!!!!!!!!
 		return $media_id;
 
 	}
+
+
 
 	/**
 	 * @param $url

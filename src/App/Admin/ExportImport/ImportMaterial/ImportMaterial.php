@@ -10,6 +10,12 @@ class ImportMaterial{
 
 	private static $storage_dir = __DIR__ . '/storage/';
 
+
+	private static $img_original_dir = __DIR__ . '/storage/img/';
+
+	private static $img_temp_dir = __DIR__ . '/storage/img-temp/';
+
+
 	public function __construct(){
 
 		$this->init();
@@ -21,19 +27,26 @@ class ImportMaterial{
 
 	}
 
+	public static function getImgTempDir(){
+		return static::$img_temp_dir;
+	}
+
+	public static function getImgOriginalDir(){
+		return static::$img_original_dir;
+	}
+
+
 
 	public  static function getData(){
 		$materials =  Helper::read(static::$storage_dir . 'all_product_data_uniq_with_local_img.txt');
 
-//		http://ferrara-design-workshop/wp-content/plugins/alex-extra-core/src/App/Admin/ExportImport/ImportMaterial/storage/img/veneziano_1_o-680x680.jpg
 		$temp = [];
-		$imgUrl = AlexExtraCorePluginURI . '/src/App/Admin/ExportImport/ImportMaterial/storage/img/'  ;
-		$imgDir = static::$storage_dir . 'img/'  ;
+
 		foreach ($materials as $material){
-			$material['thumbnail'] =  $imgDir . $material['thumbnail']  ;
+			$material['thumbnail'] =  static::$img_temp_dir . $material['thumbnail']  ;
 			$temp_gal= [];
 			foreach ($material['gallery']   as $src){
-				$temp_gal[] =  $imgDir  . $src;
+				$temp_gal[] =  static::$img_temp_dir . $src;
 			}
 			$material['gallery'] = $temp_gal;
 
@@ -42,6 +55,7 @@ class ImportMaterial{
 
 		return $temp;
 	}
+
 
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {

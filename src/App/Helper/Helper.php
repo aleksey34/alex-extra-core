@@ -14,6 +14,30 @@ class Helper {
 
 	}
 
+	public static function cloneFolderWithFiles($source, $target) {
+		if (is_dir($source))  {
+			@mkdir($target);
+			$d = dir($source);
+			while (FALSE !== ($entry = $d->read())) {
+				if ($entry == '.' || $entry == '..') continue;
+				$Entry = $source . '/' . $entry;
+				if (is_dir($Entry)) full_copy($Entry, $target . '/' . $entry);
+				else copy($Entry, $target . '/' . $entry);
+			}
+			$d->close();
+		}
+		else copy($source, $target);
+	}
+
+	public static function removeDirWithFiles($dir) {
+		if ($objs = glob($dir.'/*')) {
+        foreach($objs as $obj) {
+         is_dir($obj) ? removeDirWithFiles($obj) : unlink($obj);
+              }
+             }
+        rmdir($dir);
+        }
+
 	public static function  issetCheckFormSecurity(){
 		if( empty($_POST) || !isset($_POST[AlexExtraCoreNonceName])
 		    || empty($_POST[AlexExtraCoreNonceName]) ){
@@ -47,9 +71,6 @@ class Helper {
 	}
 
 
-
-
-
 	public static function doStringFromArray($array){
 		$string = json_encode($array);
 		return base64_encode($string)  ;
@@ -58,49 +79,6 @@ class Helper {
 		$fields  = base64_decode($string);
 		return  json_decode($fields);
 	}
-
-	//---------------------------------
-//	public static function doStringFromArrayForFormInput($array){
-//		$string = json_encode($array);
-//		return base64_encode($string)  ;
-//    }
-//    public static function doArrayFromStringForFormInput($string) {
-//	    $fields  = base64_decode($string);
-//
-//	    return  json_decode($fields);
-//    }
-//    public static function doArrayFromStringForForm($data){
-//
-//	    $result = [];
-//
-//	    $fields  = base64_decode($data['fields']);
-//
-//	    $fields = json_decode($fields);
-//
-//	    foreach($fields as $field){
-//	        $name = esc_html($field[0]);
-//	        $type = esc_html($field[1]);
-//	        $value = '';
-//
-//	        if($type ==='text' || $type ==='tel' || $type ==='email'  ){
-//		        $value = esc_html($_POST[$name]);
-//            }
-//		    if($type ==='checkbox' && isset($_POST[$name] )){
-//			    $value =  intval($_POST[$name]);
-//		    }else{
-//		        $value = false;
-//            }
-//
-// 	        $result[] = ['name'=>$name , 'type'=>$type  , 'value'=> $value ] ;
-//
-//        }
-//
-//
-//
-//	    return $result;
-//    }
-//=============================================
-
 
 
     // input form id or form slug // output array of field with sanitise data and value;
