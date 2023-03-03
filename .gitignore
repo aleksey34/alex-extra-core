@@ -49,4 +49,5 @@ composer.phar
 *.scss.map
 
 
-
+#img for demo data , parsing data etc
+src/App/Admin/ExportImport/ImportMaterial/storage/img/

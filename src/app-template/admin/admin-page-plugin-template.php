@@ -66,13 +66,13 @@
             <p>
                 Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
             </p>
-		    <?php alex_get_form(  alex_extra_core_get_settings() , 'alex_create_posts_form_id')  ?>
+		    <?php alex_get_form(  alex_extra_core_get_settings() , 'alex_create_materials_form_id')  ?>
             <br/>
             <p>
-                Удаление всех постов.<br/> Удаление всех Материалов - со всеми изображениями которые к ним прикрепленны.<br/>
+                Удаление всех Материалов - со всеми изображениями которые к ним прикрепленны.<br/>
                 Не наживайте на кнопки, не вводите данные  и закрройте доступ в эту секцию если вы не знаете точно что делаете!
             </p>
-		    <?php alex_get_form( alex_extra_core_get_settings() , 'alex_remove_posts_form_id')  ?>
+		    <?php alex_get_form( alex_extra_core_get_settings() , 'alex_remove_materials_form_id')  ?>
         </div>
 	    <?php endif; ?>
 

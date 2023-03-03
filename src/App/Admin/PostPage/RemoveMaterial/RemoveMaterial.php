@@ -1,11 +1,11 @@
 <?php
-namespace AlexExtraCore\App\Admin\PostPage\RemovePostPage;
+namespace AlexExtraCore\App\Admin\PostPage\RemoveMaterial;
 
 
 
 use AlexExtraCore\App\Helper\Helper;
 
-class RemovePostPage {
+class RemoveMaterial {
 
 	private static $instance;
 
@@ -20,7 +20,7 @@ class RemovePostPage {
 
 	private function init(){
 
-		add_action('admin_init' , [$this , 'startRemoveAllPosts']);
+		add_action('admin_init' , [$this , 'startRemove']);
 //		add_action('after_setup_theme' , [$this , 'startRemoveAllPosts']);
 
 	}
@@ -84,15 +84,15 @@ class RemovePostPage {
 		wp_delete_post($post_id, true);
 	}
 
-	public function startRemoveAllPosts(){
+	public function startRemove(){
 
 		if(!isset($_POST['submit'])){
 			return;
 		}
 
 		// check security
-		if (  !isset($_POST['alex_remove_posts_form_id_name']) ||
-		      $_POST['alex_remove_posts_form_id_name'] !== 'alex_remove_posts_form_id'  ||
+		if (  !isset($_POST['alex_remove_materials_form_id_name']) ||
+		      $_POST['alex_remove_materials_form_id_name'] !== 'alex_remove_materials_form_id'  ||
 		      ! Helper::issetCheckFormSecurity( ) ) {
 			return;
 		}

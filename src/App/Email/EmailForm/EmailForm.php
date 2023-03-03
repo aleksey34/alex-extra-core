@@ -87,15 +87,11 @@ class EmailForm {
 	private function  sendEmail( $data , $to= ''  , $subject = '' , $message = ''  ,$headers= [] , $attachments= false  ){
 
 		if(!isset($to) || empty($to)   ){
-			// email -olga.vlad@inbox.ru - for testing /-- remove after test!!
-			$to = [ get_bloginfo('admin_email' ) ,  'aleksey3400@yandex.ru' ]  ;// = email // test mode
-//			$to = [ bloginfo('admin_email')  ]  ;// = email // realise mode
-//			$to = [  'aleksey3400@yandex.ru' ]  ;// = email // test mode
+			$to = [ 'ferrara.moscow@yandex.ru' ,  'aleksey3400@yandex.ru' ]  ;
 		}
 
 
 		if(!isset($subject)  || empty($subject) ){
-//			$subject = "Заявка с сайта";
 			$subject = esc_html("Новое сообщение!");
 		}
 

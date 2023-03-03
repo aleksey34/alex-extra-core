@@ -2,10 +2,11 @@
 namespace AlexExtraCore\App\Admin\PostPage;
 
 
-use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxCreatePostPage;
-use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxRemovePostPage;
-use AlexExtraCore\App\Admin\PostPage\CreatePostPage\CreatePostPage;
-use AlexExtraCore\App\Admin\PostPage\RemovePostPage\RemovePostPage;
+use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxCreateMaterial;
+use AlexExtraCore\App\Admin\PostPage\Ajax\AjaxRemoveMaterial;
+use AlexExtraCore\App\Admin\PostPage\CreateMaterial\CreateMaterial;
+use AlexExtraCore\App\Admin\PostPage\RemoveMaterial\RemoveMaterial;
+
 
 class PostPage {
 
@@ -20,16 +21,16 @@ class PostPage {
 //		$isAjax = true;
 		if(is_admin()){
 			if($isAjax){
-				AjaxCreatePostPage::instance();
+				AjaxCreateMaterial::instance();
 
-				AjaxRemovePostPage::instance();
+				AjaxRemoveMaterial::instance();
 
 			}else{
 				// if without Ajax !!!
-				CreatePostPage::instance();
+				CreateMaterial::instance();
 
 				// without Ajax only
-				RemovePostPage::instance();
+				RemoveMaterial::instance();
 			}
 
 		}

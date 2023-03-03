@@ -1,17 +1,17 @@
 <?php
-namespace AlexExtraCore\App\Admin\PostPage\CreatePostPage;
+namespace AlexExtraCore\App\Admin\PostPage\CreateMaterial;
 
 
 
+use AlexExtraCore\App\Admin\ExportImport\ImportMaterial\ImportMaterial;
 use AlexExtraCore\App\Helper\Helper;
 use function Sodium\add;
 
 
-class CreatePostPage {
+class CreateMaterial {
 
 	private static $instance;
 
-	private static $dataPath = AlexExtraCorePluginDIR . 'data/materials/all-product-data.txt';
 
 	private static $postType= 'material';
 
@@ -27,7 +27,7 @@ class CreatePostPage {
 
 	private function init(){
 
-		add_action('admin_init' , [$this , 'startCreatePosts']);
+		add_action('admin_init' , [$this , 'startCreate']);
 
 	}
 	
@@ -156,8 +156,6 @@ class CreatePostPage {
 		$post_data['tax_input'] = $tax_input;
 
 
-
-
 		$price_html = $this->getPriceHtml($data['price']);
 
 		$gallery_ids = $this->getGalleryIdsUploadAttachments(  $data['gallery'] , 0);
@@ -199,14 +197,14 @@ class CreatePostPage {
 	/**
 	 * может использоваться отдельно при ajax
 	 */
-	public function startCreatePosts(){
+	public function startCreate(){
 		if(!isset($_POST['submit'])){
 			return;
 		}
 
 		// check security
-		if (  !isset($_POST['alex_create_posts_form_id_name']) ||
-		      $_POST['alex_create_posts_form_id_name'] !== 'alex_create_posts_form_id'  ||
+		if (  !isset($_POST['alex_create_materials_form_id_name']) ||
+		      $_POST['alex_create_materials_form_id_name'] !== 'alex_create_materials_form_id'  ||
 		      ! Helper::issetCheckFormSecurity( ) ) {
 			return;
 		}
@@ -219,7 +217,8 @@ class CreatePostPage {
 
 // start after push button=== start creating
 
-		$postsData = $this->getData();
+		$postsData = ImportMaterial::getData();
+
 
 		$count = count($postsData);
 		$start = 0;
@@ -259,9 +258,56 @@ class CreatePostPage {
 	}
 
 
+	/**
+	 * @param $url
+	 * @param int $post_id
+	 *
+	 * @return int|\WP_Error
+	 * кастомный способ загрузки из директории
+	 */
+	private function uploadMedia($img_dir , $post_id= 0 ){
+// if post_id = 0  -- load without post
 
+		// Для примера возьмём картинку с моего же блога, которая была залита вне структуры wordpress
+//		$url = 'http://sergeivl.ru/public/img/svlJForm.png';
 
-	private function uploadMedia($url , $post_id= 0 ){
+// Прикрепим к ранее сохранённому посту
+//$post_id = 3061;
+		$description = "Изображение материала";
+
+// Установим данные файла
+		$file_array = array();
+//		$tmp = download_url($url);
+
+// Получаем имя файла
+		preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $img_dir, $matches );
+		$file_array['name'] = basename($matches[0]);
+		$file_array['tmp_name'] = $img_dir;
+
+// загружаем файл
+		$media_id = media_handle_sideload( $file_array, $post_id, $description );
+
+// Проверяем на наличие ошибок
+		if( is_wp_error($media_id) ) {
+//			@unlink($file_array['tmp_name']);
+			echo $media_id->get_error_messages( ); // do error / what  does it do?
+		}
+
+// Удаляем временный файл  // удаление нежжно - файл не временный
+//		@unlink( $file_array['tmp_name'] );
+
+		return $media_id;
+
+	}
+
+	/**
+	 * @param $url
+	 * @param int $post_id
+	 *
+	 * @return int|\WP_Error
+	 * это стандартный способ загрузки по url
+	 */
+	private function uploadMediaByUrl($url , $post_id= 0 ){
 // if post_id = 0  -- load without post
 
 		// Для примера возьмём картинку с моего же блога, которая была залита вне структуры wordpress
@@ -279,7 +325,6 @@ class CreatePostPage {
 		preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $url, $matches );
 		$file_array['name'] = basename($matches[0]);
 		$file_array['tmp_name'] = $tmp;
-
 // загружаем файл
 		$media_id = media_handle_sideload( $file_array, $post_id, $description);
 
@@ -296,9 +341,7 @@ class CreatePostPage {
 
 	}
 
-	private function getData(){
-		return Helper::read(static::$dataPath);
-	}
+
 
 	private function getSettings(){
 		return [
@@ -307,7 +350,6 @@ class CreatePostPage {
 			"post_type"     => self::$postType,
 
 			'tax_input' => [],
-			// structure??? need or not??
 		//	'taxonomies' => [], // structure = [$taxonomy_name1=>[term1 , term2 ....]  ]
 
 		];

@@ -15,7 +15,6 @@ use AlexExtraCore\App\ScriptStyle\ScriptStyle;
 use AlexExtraCore\App\PageTemplate\PageTemplate;
 use AlexExtraCore\App\RestApi\RestApi;
 use AlexExtraCore\App\Shortcode\Shortcode;
-
 use AlexExtraCore\App\FavoritePost\FavoritePost;
 
 class App {
@@ -40,6 +39,7 @@ class App {
 
 
 	public function init(){
+
 
 		/**
 		 * activate and deactivate func

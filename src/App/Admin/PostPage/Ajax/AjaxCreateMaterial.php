@@ -3,10 +3,10 @@ namespace AlexExtraCore\App\Admin\PostPage\Ajax;
 
 
 use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
-use AlexExtraCore\App\Admin\PostPage\CreatePostPage\CreatePostPage;
+use AlexExtraCore\App\Admin\PostPage\CreateMaterial\CreateMaterial;
 
 
-class AjaxCreatePostPage {
+class AjaxCreateMaterial {
 
 	private static $instance;
 
@@ -18,16 +18,16 @@ class AjaxCreatePostPage {
 	}
 
 	private function init(){
-		// add js for create post for ajax
-		$this->addCreatePostPageJs();
+		// add js for create materials for ajax
+		$this->addCreateMaterialsJs();
 
-		add_action( 'wp_ajax_alex-create-post-page', [$this , 'AjaxCreatePostPageCallback'] );
+		add_action( 'wp_ajax_alex-create-materials', [$this , 'AjaxCreateMaterialsCallback'] );
 
 	}
 
-	public function AjaxCreatePostPageCallback(){
+	public function AjaxCreateMaterialsCallback(){
     ob_start();
-        (new CreatePostPage())->startCreatePosts();
+        (new CreateMaterial())->startCreate();
         echo 'success';
         $error = ob_get_clean();
         if($error){
@@ -40,7 +40,7 @@ class AjaxCreatePostPage {
         wp_die();
 	}
 
-	private function addCreatePostPageJs(){
+	private function addCreateMaterialsJs(){
 
 	   if(isset($_GET['page']) && $_GET['page'] === 'alex-extra-core' ):
 
@@ -63,47 +63,47 @@ class AjaxCreatePostPage {
                 let AlexExtraCoreNonceName = 'alex_extra_core_nonce_name';
 
 
-                let alexCreatePostsFormId = 'alex_create_posts_form_id';
+                let alexCreateMaterialsFormId = 'alex_create_materials_form_id';
 
-                let alexCreatePostsForm = jQuery(`#${alexCreatePostsFormId}`);
-                if(alexCreatePostsForm.length >= 1 ){
+                let alexCreateMaterialsForm = jQuery(`#${alexCreateMaterialsFormId}`);
+                if(alexCreateMaterialsForm.length >= 1 ){
 
-                    alexCreatePostsForm.on('submit' , (e)=>{
+                    alexCreateMaterialsForm.on('submit' , (e)=>{
                         e.preventDefault();
 
-                        let nonce = alexCreatePostsForm.find(`input[name=${AlexExtraCoreNonceName}`).val();
+                        let nonce = alexCreateMaterialsForm.find(`input[name=${AlexExtraCoreNonceName}`).val();
 
-                        let alexCreatePostsSubmit = alexCreatePostsForm.find('input[type=submit]');
-                        let resultMessage   = alexCreatePostsSubmit.next('span');
+                        let alexCreateMaterialsSubmit = alexCreateMaterialsForm.find('input[type=submit]');
+                        let resultMessage   = alexCreateMaterialsSubmit.next('span');
                         if(resultMessage.length){
                             resultMessage.remove();
                         }
-                        let  alexCreatePostsLoader   = alexCreatePostsSubmit.next('img').css('display' , 'block');
+                        let  alexCreateMaterialsLoader   = alexCreateMaterialsSubmit.next('img').css('display' , 'block');
 
 
 
                         let data = {
-                            action: 'alex-create-post-page',
+                            action: 'alex-create-materials',
                             payload: {
                             },
                         }
                         data[AlexExtraCoreNonceName] = nonce;
-                        data[`${alexCreatePostsFormId}_name`] = alexCreatePostsFormId;
+                        data[`${alexCreateMaterialsFormId}_name`] = alexCreateMaterialsFormId;
 
 
                         jQuery.post( ajaxurl, data, function( response ){
 
-                            alexCreatePostsLoader.css('display' , 'none');
+                            alexCreateMaterialsLoader.css('display' , 'none');
 
                             if( response && response.data  && response.data.result ){
                                 if(response.data.result  === 'success' ){
-                                    alexCreatePostsSubmit.after(' <span style=\'padding-left: 10px;color: green;\'> Посты загрузились успешно</span>')
+                                    alexCreateMaterialsSubmit.after(' <span style=\'padding-left: 10px;color: green;\'> Посты загрузились успешно</span>')
                                 }else{
-                                    alexCreatePostsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла неизвестная ошибка. <br/>
+                                    alexCreateMaterialsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла неизвестная ошибка. <br/>
                               ${response.data.result} </span>`);
                                 }
                             }else {
-                                alexCreatePostsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла ошибка.</span>`);
+                                alexCreateMaterialsSubmit.after(` <span  style=\'padding-left: 10px;color: red;\'> Произошла ошибка.</span>`);
                             }
 
                         } );

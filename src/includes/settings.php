@@ -164,37 +164,38 @@ function alex_extra_core_get_settings(){
 						  </div>',
 			'fields' =>[]
 		],
-		'alex_create_posts_form_id'=>
+		'alex_create_materials_form_id'=>
 			[
 				'is_admin' => true,
 				'echo' => true ,
-				'before' => '<div class="form" id="alex_create_posts_form_id_wrap"">
-                            <form id="alex_create_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
+				'before' => '<div class="form" id="alex_create_materials_form_id_wrap"">
+                            <form id="alex_create_materials_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )  .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="hidden"  name="alex_create_posts_form_id_name" value="alex_create_posts_form_id"  />
-                                    <input type="submit" name="submit" id="alex_create_posts_form_id_submit" class="button button-primary" value="Начать создание постов">
+                                    <input type="hidden"  name="alex_create_materials_form_id_name" value="alex_create_materials_form_id"  />
+                                    <input type="submit" name="submit" id="alex_create_materials_form_id_submit" class="button button-primary" value="Начать создание материалов">
                                		 <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="' . site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>
 						  </div>',
 				'fields' =>[]
 			],
-		'alex_remove_posts_form_id'=>
+		'alex_remove_materials_form_id'=>
 			[
 				'is_admin' => true,
 				'echo' => true ,
-				'before' => '<div class="form" id="alex_remove_posts_form_id_wrap"">
-                            <form id="alex_remove_posts_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )   .'">
+				'before' => '<div class="form" id="alex_remove_materials_form_id_wrap"">
+                            <form id="alex_remove_materials_form_id" method="post" action="'. site_url()  . esc_html($_SERVER['REQUEST_URI'] )   .'">
                                 <table class="form-table" role="presentation">
                                     <tbody>',
 				'after' =>              '</tbody>
                                  </table>
                                  <p class="submit">
-                                    <input type="hidden"  name="alex_remove_posts_form_id_name" value="alex_remove_posts_form_id"  />                                    <input type="submit" name="submit" id="alex_remove_posts_form_id_submit" class="button button-primary" value="Удаление постов">
+                                    <input type="hidden"  name="alex_remove_materials_form_id_name" value="alex_remove_materials_form_id"  />                                  
+                                      <input type="submit" name="submit" id="alex_remove_materials_form_id_submit" class="button button-primary" value="Удаление материалов">
                                     <img style="display: none;margin-top: 8px; -webkit-user-select: none;background-color: hsl(0, 0%, 90%);" src="'. site_url() .'/wp-content/plugins/alex-extra-core/assets/img/ajax-loader.gif">                       
                                 </p>
                               </form>

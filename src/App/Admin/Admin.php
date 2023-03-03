@@ -5,7 +5,7 @@ namespace AlexExtraCore\App\Admin;
 use AlexExtraCore\App\Admin\AdminFooter\AdminFooter;
 use AlexExtraCore\App\Admin\AdminPluginPage\AdminPluginPage;
 use AlexExtraCore\App\Admin\AllowSvg\AllowSvg;
-use AlexExtraCore\App\Admin\Email\Email;
+use AlexExtraCore\App\Admin\ExportImport\ImportMaterial\ImportMaterial;
 use AlexExtraCore\App\Admin\IconAdminMenuRemove\IconAdminMenuRemove;
 use AlexExtraCore\App\Admin\Parser\Parser;
 use AlexExtraCore\App\Admin\PostPage\PostPage;
@@ -33,6 +33,14 @@ class Admin {
 
 
 	private function init(){
+
+		/**
+		 * Export Import
+		 * download data , demodata , page data , post data and others
+		 * not required init??
+		 */
+//        ExportImport::instance();
+
 
 		IconAdminMenuRemove::instance();
 

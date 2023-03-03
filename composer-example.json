@@ -1,0 +1,27 @@
+{
+    "name": "alex/alex-extra-core",
+    "autoload": {
+        "psr-4": {
+            "AlexExtraCore\\App\\": "src/App/",
+            "AlexExtraCore\\TGM\\TgmSettings\\": "src/Libs/TGM/TgmSettings/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aleksey34",
+            "email": "olga.vlad@inbox.ru"
+        }
+    ],
+    "require": {
+
+    },
+
+
+    "READ_MY": {
+        "main":
+        "все файлы загружаются по пут psr-4 - библиотеки добавляются через консоль и будут записаны в composer.json , если изменения делаются в composer.json то в консоле нжуно выполить composer update ",
+
+    }
+
+
+}
