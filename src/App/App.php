@@ -3,6 +3,7 @@ namespace AlexExtraCore\App;
 
 use AlexExtraCore\App\Admin\Admin;
 use AlexExtraCore\App\ActivateDeactivate\ActivateDeactivate;
+use AlexExtraCore\App\CustomPageTemplate\CustomPageTemplate;
 use AlexExtraCore\App\Email\Email;
 use AlexExtraCore\App\CookiesAgreement\CookiesAgreement;
 use AlexExtraCore\App\CustomPostType\CustomPostType;
@@ -39,6 +40,12 @@ class App {
 
 
 	public function init(){
+
+		/**
+		 * custom page template init
+		 *
+		 */
+//		CustomPageTemplate::instance();
 
 
 		/**

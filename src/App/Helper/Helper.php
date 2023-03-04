@@ -186,7 +186,6 @@ class Helper {
 		//$data = json_encode($bookshelf);  // JSON формат сохраняемого значения.
 		file_put_contents($filename, $dataSerialize);
 	}
-	//writeData($filename , $result);
 
 
 	public static function read($filename){

@@ -22,6 +22,7 @@ if(!defined('ABSPATH')) exit;
 
 define('AlexExtraCorePluginDIR' , plugin_dir_path(__FILE__) );
 define("AlexExtraCorePluginURI" , plugin_dir_url( __FILE__ ));
+define("AlexExtraCorePluginPageTemplateDir" , plugin_dir_path(__FILE__)  . 'page-template/' );
 define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-template/' );
 
 /**
@@ -63,7 +64,6 @@ require_once AlexExtraCorePluginDIR .'src/functions/functions-core.php';
  *
  */
 	alex_extra_core_require_once_dir( 'src/includes/includes-core.php' );
-
 
 
 /**
