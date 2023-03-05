@@ -48,6 +48,9 @@ composer.phar
 *.sass.map
 *.scss.map
 
+/assets/scss/.sass-cache
+
+/assets/libs/
 
 #img for demo data , parsing data etc
 src/App/Admin/ExportImport/ImportMaterial/storage/img/

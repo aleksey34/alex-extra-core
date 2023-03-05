@@ -37,6 +37,12 @@ alex_extra_core_require_once_dir('src/includes/oceanwp/material-single-custom-ta
 alex_extra_core_require_once_dir('src/includes/oceanwp/show-sidebar-settings.php');
 
 /**
+ * deactivate script style of gallery
+ *
+ */
+alex_extra_core_require_once_dir('src/includes/oceanwp/single-post-gallery.php');
+
+/**
  * oceanwp
  * logo - rewrite function for show logo
  */

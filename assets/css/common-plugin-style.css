@@ -479,6 +479,11 @@ body.archive .material
   #email_form.email-form .form-inner input, #material_modal.email-form .form-inner input {
     margin-bottom: 5px; }
 
+.single.single-format-gallery .thumbnail .gallery-format {
+  opacity: 1;
+  visibility: visible;
+  height: auto; }
+
 /* Big title - Text margin left */
 .elementor-element.big-margin > .elementor-element-populated {
   margin-left: 80px; }
