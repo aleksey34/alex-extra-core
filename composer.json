@@ -2,8 +2,8 @@
     "name": "alex/alex-extra-core",
     "autoload": {
         "psr-4": {
-            "AlexExtraCore\\App\\": "src/App/",
-            "AlexExtraCore\\TGM\\TgmSettings\\": "src/Libs/TGM/TgmSettings/"
+            "AlexExtraCore\\App\\": "src/App/"
+
         }
     },
     "authors": [

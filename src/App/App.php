@@ -3,7 +3,6 @@ namespace AlexExtraCore\App;
 
 use AlexExtraCore\App\Admin\Admin;
 use AlexExtraCore\App\ActivateDeactivate\ActivateDeactivate;
-use AlexExtraCore\App\CustomPageTemplate\CustomPageTemplate;
 use AlexExtraCore\App\Email\Email;
 use AlexExtraCore\App\CookiesAgreement\CookiesAgreement;
 use AlexExtraCore\App\CustomPostType\CustomPostType;
@@ -41,12 +40,6 @@ class App {
 
 	public function init(){
 
-		/**
-		 * custom page template init
-		 *
-		 */
-//		CustomPageTemplate::instance();
-
 
 		/**
 		 * activate and deactivate func
@@ -76,6 +69,10 @@ class App {
 
 		/**
 		 * Template for page with programming created
+		 * назначение шаблонам страницам записям и тд
+		 *
+		 * а также подкрючение кастомных шаблонов  page-template
+		 * и видимость и возможнсоть назначать их из админки
 		 */
 //		PageTemplate::instance();
 

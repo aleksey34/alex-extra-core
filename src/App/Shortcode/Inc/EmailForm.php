@@ -42,7 +42,7 @@ class EmailForm{
 			global $email_common_form_slug;
 			$email_common_form_slug = 'email_common_form_slug';
             ob_start();
-			require alex_exra_core_template_dir('email/form-template/common-form.php');
+			require alex_extra_core_template_dir('email/form-template/common-form.php');
 			$result = ob_get_clean();
 			unset($email_common_form_id);
 			unset($email_common_form_slug);
@@ -66,7 +66,7 @@ class EmailForm{
 			global $email_common_form_slug;
 			$email_common_form_slug = 'email_common_single_material_form_slug';
 			ob_start();
-			require alex_exra_core_template_dir('email/form-template/common-form.php');
+			require alex_extra_core_template_dir('email/form-template/common-form.php');
 			$result = ob_get_clean();
 			unset($email_common_form_id);
 			unset($email_common_form_slug);

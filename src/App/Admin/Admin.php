@@ -54,7 +54,6 @@ class Admin {
 		 */
 		AllowSvg::instance();
 
-		StartLoginPage::instance();
 
 		/**
 		 * Page for plugin in admin panel

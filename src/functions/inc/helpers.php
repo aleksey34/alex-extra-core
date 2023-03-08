@@ -18,7 +18,7 @@ function alex_extra_core_dir($dir= ''){
 	return AlexExtraCorePluginDIR;
 }
 
-function alex_exra_core_template_dir($dir =''){
+function alex_extra_core_template_dir($dir =''){
 
 	if($dir){
 		return  AlexExtraCorePluginTemplateDir .  preg_replace('/^\/?|^\\\?/' , '' ,$dir);
@@ -43,7 +43,7 @@ function alex_extra_core_require_once_template_dir($dir){
 	return require_once  AlexExtraCorePluginTemplateDir .  preg_replace('/^\/?|^\\\?/' , '' ,$dir);
 }
 
-function alex_extra_core_require_once__url($url){
+function alex_extra_core_require_once_url($url){
 	if(!$url) {
 		wp_die('function - alex_extra_core_require_once_uri  require argument');
 	}

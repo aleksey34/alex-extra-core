@@ -40,7 +40,7 @@ alex_extra_core_require_once_dir('src/includes/oceanwp/show-sidebar-settings.php
  * deactivate script style of gallery
  *
  */
-alex_extra_core_require_once_dir('src/includes/oceanwp/single-post-gallery.php');
+alex_extra_core_require_once_dir('src/includes/oceanwp/single-post-gallery-slider.php');
 
 /**
  * oceanwp
