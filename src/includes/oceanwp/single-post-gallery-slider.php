@@ -10,7 +10,7 @@
 
 add_action("wp_enqueue_scripts" , function (){
 	if(is_single()  && 'gallery' === get_post_format()){
-		// deregister
+		// deregister owp depend
 		wp_deregister_script( 'ow-flickity'  );
 		wp_deregister_script( 'oceanwp-slider' );
 

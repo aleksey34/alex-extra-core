@@ -3,7 +3,9 @@ namespace AlexExtraCore\App\ModalWindow;
 
 
 
-class ModalWindow {
+use AlexExtraCore\App\ModalWindow\ModalWindowBase\ModalWindowBase;
+
+class ModalWindow extends ModalWindowBase {
 
 	private static $instance;
 
@@ -21,40 +23,18 @@ class ModalWindow {
 
 	private function init() {
 
-
 		add_action('wp_footer', function (){
-
-			echo $this->getHtml(static::getArgs());
+			echo $this->getLayout(static::getArgs());
 		}, 100);
 
 	}
 
-	public function getHtml($args){
-        $html = '';
+	public function getLayout($args){
+      $html = '';
 
-			$html .= '<div id="'. $args['id']  .'"   class="'.  $args['classes'] .' modal  ">';
+      $html .= $this->getWindowHtml($args);
 
-					$html .= ' <a href="#" rel="modal:close">закрыть</a>';
-
-					$html .= $args['content']  ;
-
-			$html .= '</div>';
-
-	    $html .= '<script>';
-
-	    $html .=
-	    ' 
-	    jQuery(function (){ 
-		   jQuery("a[href=#'. $args['id']  .']").click(function(event) {
-		        jQuery(this).modal({
-		            fadeDuration: 250
-		        });
-		        return false;
-		    });
-		 });
-	   ';
-
-	    $html .= '</script>';
+      $html .= $this->getWindowInitJs($args);
 
 	    return $html;
     }

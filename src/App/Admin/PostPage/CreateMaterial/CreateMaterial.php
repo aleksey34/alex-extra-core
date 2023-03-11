@@ -44,7 +44,7 @@ class CreateMaterial {
 					</div>
 					<div class="is-layout-flow wp-block-column" style="flex-basis:66.66%">
 						<div class="is-layout-flex wp-block-buttons">
-							<div class="wp-block-button has-custom-font-size omw-open-modal is-style-fill has-medium-font-size"><a class="wp-block-button__link has-pale-cyan-blue-color has-text-color wp-element-button" href="#omw-862" style="border-radius:5px">Оставить заявку</a></div>
+							<div rel="modal:open" class="wp-block-button has-custom-font-size omw-open-modal is-style-fill has-medium-font-size"><a class="wp-block-button__link has-pale-cyan-blue-color has-text-color wp-element-button" href="#modal_window_single_material_id" style="border-radius:5px">Оставить заявку</a></div>
 						</div>
 					</div>
 				</div>';
@@ -224,7 +224,7 @@ class CreateMaterial {
 		$start = 0;
 
 		$offset = 0;
-		$finish  = 2;
+		$finish  = 5;
 
 
 		// without limit - 0   , any case - int seconds // work!! IMPORTANT !!!
