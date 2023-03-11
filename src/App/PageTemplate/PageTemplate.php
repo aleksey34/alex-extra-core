@@ -25,7 +25,7 @@ class PageTemplate {
 	/**
 	 * init template
 	 * in folder - page-template
-	 * all part for template  set folder page-template-parts
+	 * all part for template  set folder page-template-part
 	 */
 	private function addCustomTemplate(){
 

@@ -273,7 +273,7 @@ function alex_extra_core_get_settings(){
 					]
 
 			]
-	],
+			],
 		'email_common_single_material_form_slug' =>  // значение id - динамическое  -    поэтому для определения полей нужен слаг
 			[
 				'fields' =>[
@@ -320,6 +320,16 @@ function alex_extra_core_get_settings(){
 					]
 
 			]
-	],
+			],
+		'modal_window_page_id' => [
+			'id' => 'modal_window_page_id',
+			'classes' => 'modal_window_page_id_class modal_window_email ',
+			'content' => '' //  add to $args before use
+			],
+		'modal_window_single_material_id' =>[
+			'id' => 'modal_window_single_material_id',
+			'classes' => 'modal_window_single_material_id_class modal_window_email ',
+			'content'=>'' // add to $args before use
+			]
 		];
 	}

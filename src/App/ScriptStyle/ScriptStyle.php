@@ -21,7 +21,7 @@ class ScriptStyle{
 				wp_enqueue_style( 'alex-extra-core-common-style',  AlexExtraCorePluginURI  . 'assets/css/common-plugin-style.css');
 
 		// plugin script
-		//wp_enqueue_script('alex-extra-core-script' , AlexExtraCorePluginURI . '/include/favorite-product/assets/js/index.js' , ['jquery'] , null , true  );
+		wp_enqueue_script('alex-extra-core-script' , AlexExtraCorePluginURI . 'assets/js/scripts.js' , ['jquery'] , null , true  );
 		// end switch on here =======================================================
 	}
 

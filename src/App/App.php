@@ -11,6 +11,8 @@ use AlexExtraCore\App\DevMode\DevMode;
 use AlexExtraCore\App\Elementor\Category\Category;
 use AlexExtraCore\App\Elementor\Elementor;
 use AlexExtraCore\App\Gutenberg\Gutenberg;
+use AlexExtraCore\App\ModalWindow\ModalWindow;
+use AlexExtraCore\App\ModalWindow\ModalWindowBase\ModalWindowBase;
 use AlexExtraCore\App\ScriptStyle\ScriptStyle;
 use AlexExtraCore\App\PageTemplate\PageTemplate;
 use AlexExtraCore\App\RestApi\RestApi;
@@ -47,6 +49,32 @@ class App {
 		ActivateDeactivate::instance();
 
 //		RestApi::instance();
+
+		/**
+		 * create Modal Window , init and setting
+		 *
+		 * скрипт js - подключается со всеми скриптами сайта
+		 */
+//		ModalWindowBase::enqueueScripts();
+
+		add_action('wp_head' , function (){
+
+			if(get_post_type() ===  'material' && is_single() ){
+				$args = alex_extra_core_get_settings()['modal_window_single_material_id'];
+				$args['content'] = do_shortcode('[ferrara-modal-email-form form_id=material_modal ]'  ) ;
+				ModalWindow::instance( $args );
+			}
+			if(is_page()){
+				$args = alex_extra_core_get_settings()['modal_window_page_id'];
+				$args['content'] = do_shortcode('[alex-common-email-form form_id=email_form ]') ;
+				ModalWindow::instance( $args );
+			}
+
+			// others modal window and conditions - here
+
+		});
+
+
 
 		/**
 		 * customize admin -- page and others

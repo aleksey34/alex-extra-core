@@ -9,7 +9,7 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
-	require AlexExtraCorePluginDIR . 'page-template-parts/content/contact.php';
+	require AlexExtraCorePluginDIR . 'page-template-part/content/contact.php';
 
 	// If comments are open or we have at least one comment, load up the comment template.
 	if ( comments_open() || get_comments_number() ) :

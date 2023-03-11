@@ -6,7 +6,7 @@
  * modal window -contact form - set field - title
  */
 add_action('wp_footer' , function ( ){
-//	if( is_single() &&  get_post_type(get_the_ID()) === 'material' ){
+	if( is_single() &&  get_post_type(get_the_ID()) === 'material' ){
        ?>
 		<script type="text/javascript">
             (function (){
@@ -42,5 +42,5 @@ add_action('wp_footer' , function ( ){
             })();
 		</script>
 <?php
-//	}
+	}
 }, 100);
