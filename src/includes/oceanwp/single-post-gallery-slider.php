@@ -1,25 +1,12 @@
 <?php
 /**
  * deactivate script style for gallery in single post
- *
  * add slick slider script style
+ * in ScriptStyle class  in common script
  *
- * activate slick slider
+ * activate slick slider - here
  *
  */
-
-add_action("wp_enqueue_scripts" , function (){
-	if(is_single()  && 'gallery' === get_post_format()){
-		// deregister owp depend
-		wp_deregister_script( 'ow-flickity'  );
-		wp_deregister_script( 'oceanwp-slider' );
-
-		//register - enqueue script style - for slick slider
-        wp_enqueue_script('slick' , AlexExtraCorePluginURI . 'assets/libs/slick-1.8.1/slick/slick.min.js' , ['jquery'] , null  ,  true  );
-        wp_enqueue_style('slick' ,AlexExtraCorePluginURI .  'assets/libs/slick-1.8.1/slick/slick.css'  );
-        wp_enqueue_style('slick-theme' ,AlexExtraCorePluginURI .  'assets/libs/slick-1.8.1/slick/slick-theme.css'  );
-	}
-} , 100);
 
 add_action('wp_footer' , function (){
 	if(is_single()  && 'gallery' === get_post_format()) :

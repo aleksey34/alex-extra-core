@@ -18,10 +18,10 @@ class FavoriteScriptStyle{
 	public function scriptsStyle(){
 		// switch on here -----------------------------------
 // plugin style
-//		wp_enqueue_style( 'alex-extra-core-style',  AlexExtraCorePluginURI  . '/include/favorite-product/assets/css/index.css');
+//		wp_enqueue_style( 'alex-extra-core-favorite',  AlexExtraCorePluginURI  . '/include/favorite-product/assets/css/index.css');
 
-// plugin script
-		wp_enqueue_script('alex-extra-core-script' , AlexExtraCorePluginURI . '/src/App/FavoritePost/assets/js/index.js' , ['jquery'] , null , true  );
+// plugin script код перенесен в остноый js файла сайта - в папке assets/js -- подключение там - в общем js
+//		wp_enqueue_script('alex-extra-core-favorite-script' , AlexExtraCorePluginURI . '/src/App/FavoritePost/assets/js/index.js' , ['jquery'] , null , true  );
 // end switch on here =======================================================
 	}
 
