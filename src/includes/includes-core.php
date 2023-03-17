@@ -37,10 +37,11 @@ alex_extra_core_require_once_dir('src/includes/oceanwp/material-single-custom-ta
 alex_extra_core_require_once_dir('src/includes/oceanwp/show-sidebar-settings.php');
 
 /**
- * deactivate script style of gallery
+ * script init for slick slider
  *
  */
-alex_extra_core_require_once_dir('src/includes/oceanwp/single-post-gallery-slider.php');
+alex_extra_core_require_once_dir('src/includes/slider/slick-slider.php');
+
 
 /**
  * oceanwp

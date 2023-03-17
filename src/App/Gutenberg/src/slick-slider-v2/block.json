@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "alex-plugin-gutenberg/slick-slider-v2",
+	"version": "0.1.0",
+	"title": "Slick Slider v2",
+	"category": "alex-extra-core",
+	"icon": "flag",
+	"description": "Slick Slider v2",
+	"supports": {
+	  "html": false
+	},
+	"attributes": {
+	  "links": {
+		"type":"array",
+		"default": [
+		  "https://picsum.photos/200/300?random=1",
+		  "https://picsum.photos/200/300?random=2",
+		  "https://picsum.photos/200/300?random=3",
+		  "https://picsum.photos/200/300?random=4",
+		  "https://picsum.photos/200/300?random=5"
+		  ]
+	  }
+    },
+	"textdomain": "alex-theme",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+  }

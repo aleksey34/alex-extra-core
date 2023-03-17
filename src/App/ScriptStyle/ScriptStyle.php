@@ -26,8 +26,9 @@ class ScriptStyle{
 		// end switch on here =======================================================
 
 
-		// click slider for gallery OceanWp
-		if(is_single()  && 'gallery' === get_post_format()){
+		// click slider for gallery OceanWp and guttenberg - any post page
+		if(true){
+//		if(is_single()  && 'gallery' === get_post_format()){
 			// deregister owp depend  - если подключена родительская тема oceanWp
 			wp_deregister_script( 'ow-flickity'  );
 			wp_deregister_script( 'oceanwp-slider' );

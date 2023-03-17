@@ -9,13 +9,12 @@ class StaticBlocks {
    public function __construct(){
     // echo WP_PLUGIN_DIR   ;
 
-    $this -> blocks_init();
-    // add_action( 'init', [$this , 'alex_guten_block_plugin_init'] );
+    $this -> blocksInit();
 
    }
 
 
-    public function alexGutenbergBlockPluginStaticInit() {
+    public function blockStaticInit() {
 
     /**
     *test block init
@@ -29,12 +28,36 @@ class StaticBlocks {
         register_block_type( AlexExtraCorePluginDIR. '/src/App/Gutenberg/build/todo-list' );
 
 
+    /**
+     *Slick Slider v1
+     */
+    register_block_type( AlexExtraCorePluginDIR. '/src/App/Gutenberg/build/slick-slider-v1' );
+
+    /**
+     *Slick Slider  v2
+     * base on slick-slider v1
+     */
+    register_block_type( AlexExtraCorePluginDIR. '/src/App/Gutenberg/build/slick-slider-v2' );
+
+
+
+    /**
+     *Slick Slider advanced - to base on default block - Image
+     */
+    register_block_type( AlexExtraCorePluginDIR. '/src/App/Gutenberg/build/slick-slider-advanced' );
+
+    /**
+     *Slick Slider dynamic - to base on default block - Gallery
+     */
+    register_block_type( AlexExtraCorePluginDIR. '/src/App/Gutenberg/build/slick-slider-dynamic' );
+
+
 
 
     }
-    public function blocks_init(){
+    public function blocksInit(){
 
-       add_action( 'init', [$this , 'alexGutenbergBlockPluginStaticInit'] );
+       add_action( 'init', [$this , 'blockStaticInit'] );
 
     }
 

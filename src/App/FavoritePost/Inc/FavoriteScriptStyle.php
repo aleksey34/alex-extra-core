@@ -12,7 +12,7 @@ class FavoriteScriptStyle{
 
 	private function init(){
 
-		add_action( 'wp_enqueue_scripts',[$this ,  'scriptsStyle'] );
+//		add_action( 'wp_enqueue_scripts',[$this ,  'scriptsStyle'] );
 	}
 
 	public function scriptsStyle(){
@@ -29,8 +29,6 @@ class FavoriteScriptStyle{
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
-
 		return static::$instance;
 	}
-
 }

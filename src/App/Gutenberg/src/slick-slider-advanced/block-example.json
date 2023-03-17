@@ -1,0 +1,91 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "alex-plugin-gutenberg/slick-slider-advanced",
+	"version": "0.1.0",
+	"title": "Slick Slider Advanced",
+	"category": "alex-extra-core",
+	"icon": "flag",
+	"description": "Блок слайдера на основе Slick Slider library и дефолтного блока Image",
+	"supports": {
+	  "html": false
+	},
+	"attributes": {
+	  "align": {
+		"type": "string"
+	  },
+	  "url": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "img",
+		"attribute": "src",
+		"__experimentalRole": "content"
+	  },
+	  "alt": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "img",
+		"attribute": "alt",
+		"default": "",
+		"__experimentalRole": "content"
+	  },
+	  "caption": {
+		"type": "string",
+		"source": "html",
+		"selector": "figcaption",
+		"__experimentalRole": "content"
+	  },
+	  "title": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "img",
+		"attribute": "title",
+		"__experimentalRole": "content"
+	  },
+	  "href": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "figure > a",
+		"attribute": "href",
+		"__experimentalRole": "content"
+	  },
+	  "rel": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "figure > a",
+		"attribute": "rel"
+	  },
+	  "linkClass": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "figure > a",
+		"attribute": "class"
+	  },
+	  "id": {
+		"type": "number",
+		"__experimentalRole": "content"
+	  },
+	  "width": {
+		"type": "number"
+	  },
+	  "height": {
+		"type": "number"
+	  },
+	  "sizeSlug": {
+		"type": "string"
+	  },
+	  "linkDestination": {
+		"type": "string"
+	  },
+	  "linkTarget": {
+		"type": "string",
+		"source": "attribute",
+		"selector": "figure > a",
+		"attribute": "target"
+	  }
+    },
+	"textdomain": "alex-theme",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+  }

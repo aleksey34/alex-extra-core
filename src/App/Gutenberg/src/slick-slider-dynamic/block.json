@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "alex-plugin-gutenberg/slick-slider-dynamic",
+	"version": "0.1.0",
+	"title": "Slick Slider Dynamic",
+	"category": "alex-extra-core",
+	"icon": "flag",
+	"description": "Блок слайдера на основе Slick Slider library и дефолтного блока Gallery",
+	"supports": {
+	  "html": false
+	},
+	"attributes": {
+        "quantity":{
+            "type":"number",
+            "default": 2
+        }
+    },
+	"textdomain": "alex-theme",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+  }

@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "alex-plugin-gutenberg/slick-slider-advanced",
+	"version": "0.1.0",
+	"title": "Slick Slider Advanced",
+	"category": "alex-extra-core",
+	"icon": "flag",
+	"description": "Блок слайдера на основе Slick Slider library и дефолтного блока Image",
+	"supports": {
+	  "html": false
+	},
+	"attributes": {
+	  "items": {
+		"type": "array",
+		"default": [
+		  {"url": "" , "alt": "" , "caption":"" ,
+		  "title": "","href": "","id": 0 , "align": "" ,"rel": "",
+		  "linkClass": "","width": "","height": "","sizeSlug": "",
+		  "linkDestination": "","linkTarget": ""}
+		]
+	  }
+
+    },
+	"textdomain": "alex-theme",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+  }
