@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Contact Template
+ * Template Post Type: post, page, material
  */
 get_header();
 ?>

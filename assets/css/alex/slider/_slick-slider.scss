@@ -1,0 +1,12 @@
+// на черном фоне  точнки навигации
+.single.single-post .alex-slick-nav , .post , .page{
+  .slick-dots{
+    li{
+      button{
+        &:before{
+          color: #ddd !important;
+        }
+      }
+    }
+  }
+}

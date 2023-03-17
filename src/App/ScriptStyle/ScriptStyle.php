@@ -18,7 +18,7 @@ class ScriptStyle{
 	public function scriptsStyle(){
 		// switch on here -----------------------------------
 		// plugin style
-		wp_enqueue_style( 'alex-extra-core-common-style',  AlexExtraCorePluginURI  . 'assets/css/common-plugin-style.min.css');
+		wp_enqueue_style( 'alex-extra-core-common-style',  AlexExtraCorePluginURI  . 'assets/css/style.min.css');
 
 		// plugin script сдесь собраны бибилотеки и кастомный скрипт
 		// jquery modal script , slick slider min.js
@@ -27,7 +27,6 @@ class ScriptStyle{
 
 
 		// click slider for gallery OceanWp and guttenberg - any post page
-		if(true){
 //		if(is_single()  && 'gallery' === get_post_format()){
 			// deregister owp depend  - если подключена родительская тема oceanWp
 			wp_deregister_script( 'ow-flickity'  );
@@ -36,7 +35,7 @@ class ScriptStyle{
 			//register - enqueue   style
 			wp_enqueue_style('slick' ,AlexExtraCorePluginURI .  'assets/libs/slick-1.8.1/slick/slick.css'  );
 			wp_enqueue_style('slick-theme' ,AlexExtraCorePluginURI .  'assets/libs/slick-1.8.1/slick/slick-theme.css'  );
-		}
+//		}
 
 
 	}
