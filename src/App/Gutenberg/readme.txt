@@ -54,10 +54,22 @@ You may provide arbitrary sections, in the same format as the ones above. This m
 plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
 "installation." Arbitrary sections will be shown below the built-in sections outlined above.
 
-// npm i  что бы установить все пакеты. 
-// npm run build  создание директории и файлов 
+// npm i  что бы установить все пакеты.
+// npm run build  создание директории и файлов
 // npm run start  для разработки
 // примеры - 2 статический блока в том числе один с настройкой
 //  примеры 1 динамический блок  с PHP  частью блока и спользовании функции для запроса htttp query
 
 // есть пример создания кастамной категории
+
+//в корне Темы файл theme.json -- ширина гутенберг блоков в редакторе!
+//example - theme.json -
+ {
+"version": 2,
+"settings": {
+	"layout": {
+		"contentSize": "1040px",
+		"wideSize": "1100px"
+	}
+}
+}

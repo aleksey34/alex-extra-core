@@ -16,7 +16,7 @@ class Shortcode{
 
 	private function init(){
 
-		CustomLogo::instance();
+//		CustomLogo::instance();
 
 		EmailForm::instance();
 

@@ -7,6 +7,10 @@ use AlexExtraCore\App\Elementor\Controls\EmojiOneAreaControl;
 use AlexExtraCore\App\Elementor\Widgets\ModalWindowWidget;
 use AlexExtraCore\App\Elementor\Widgets\ProductsPostsCategoriesBtnWidget;
 use AlexExtraCore\App\Elementor\Widgets\ProductsWidget;
+use AlexExtraCore\App\Elementor\Widgets\SlickSliderWidget;
+use AlexExtraCore\App\Elementor\Widgets\SwiperSliderWidget;
+
+
 
 /**
  * Main Elementor Test Extension Class
@@ -91,6 +95,8 @@ final class Elementor {
 	 * @access public
 	 */
 	public function __construct() {
+
+
 
 		add_action( 'plugins_loaded', function (){
 
@@ -238,8 +244,18 @@ final class Elementor {
 	public function register_widgets( $widgets_manager ) {
 
 		$widgets_manager->register( new ModalWindowWidget() );
-		$widgets_manager->register( new ProductsWidget() );
-		$widgets_manager->register( new ProductsPostsCategoriesBtnWidget() );
+
+		$widgets_manager->register( new SlickSliderWidget() );
+
+		$widgets_manager->register( new SwiperSliderWidget() );
+
+
+		// check woocommerce exist
+		if ( class_exists( 'WooCommerce' ) ) {
+			$widgets_manager->register( new ProductsWidget() );
+			$widgets_manager->register( new ProductsPostsCategoriesBtnWidget() );
+		}
+
 
 	}
 

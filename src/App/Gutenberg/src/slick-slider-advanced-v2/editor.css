@@ -1,0 +1,8 @@
+.alex-slick-slider {
+  display: flex;
+  flex-wrap: wrap; }
+  .alex-slick-slider > figure {
+    flex: 0 1 330px;
+    padding: 15px 20px; }
+
+/*# sourceMappingURL=editor.css.map */

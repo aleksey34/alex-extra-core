@@ -11,6 +11,7 @@
  * use -where you want  -require $args
  */
 //with example $args
+
 function alex_extra_core_get_settings(){
 // input hidden - fields -- requires  structure !! important array in array - 1 name 2 type- see example
 

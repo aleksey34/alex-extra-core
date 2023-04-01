@@ -212,8 +212,6 @@ class ModalWindowWidget extends \Elementor\Widget_Base {
 		// background  for modal active
 		echo '<div class="elementor-modal-window-background"></div>';
 		?>
-
-
 		<script>
 			window.onload = function () {
 
@@ -222,11 +220,9 @@ class ModalWindowWidget extends \Elementor\Widget_Base {
 			 let btnTrigger = jQuery(".elementor-page .btn-elementor-modal-window-trigger");
 			 if(btnTrigger.length === 0) {return false;}
 
-
 			 let btnTriggerWrapper =  btnTrigger.parent() ;
 			 let modalWindow = btnTriggerWrapper.prev() ;
 			 let modalBackground = btnTriggerWrapper.next();
-
 
 			// modalWindow.appendTo(jQuery("body"));
 
@@ -235,16 +231,12 @@ class ModalWindowWidget extends \Elementor\Widget_Base {
                  modalBackground.toggleClass('elementor-modal-window-background__show');
 			 };
 
-
 			 btnTrigger.on('click' , handlerClickTriggerOrBackground );
 
 			 modalBackground.on('click' , handlerClickTriggerOrBackground);
 
             };
-
-
 		</script>
-
 		<style>
             <?php
           //  switch show in admin only
@@ -287,7 +279,6 @@ class ModalWindowWidget extends \Elementor\Widget_Base {
                 background-color: #312aff;
 
             }
-
 
 			/*modal window content this is only front - modal window -- show*/
 			body:not(.elementor-editor-active)  .elementor-modal-window-block.modal-window-toggle-show{
@@ -335,8 +326,8 @@ class ModalWindowWidget extends \Elementor\Widget_Base {
 				transition: opacity 0.7s;
                 top:50%;
 			}
-
 		</style>
 <?php
 	}
+
 }

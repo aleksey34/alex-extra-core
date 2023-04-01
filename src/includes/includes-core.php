@@ -1,7 +1,7 @@
 <?php
 /**
  * folder - includes --
- * contain file for included like in Theme ar Child Theme included and structure
+ * contain file for included like in Theme or Child Theme included and structure
  *
  */
 
@@ -40,14 +40,14 @@ alex_extra_core_require_once_dir('src/includes/oceanwp/show-sidebar-settings.php
  * script init for slick slider
  *
  */
-alex_extra_core_require_once_dir('src/includes/slider/slick-slider.php');
+//alex_extra_core_require_once_dir('src/includes/slider/slick-slider.php');
 
 
 /**
  * oceanwp
  * logo - rewrite function for show logo
  */
-alex_extra_core_require_once_dir('src/includes/oceanwp/header/logo.php');
+//alex_extra_core_require_once_dir('src/includes/oceanwp/header/logo.php');
 
 /**
  * related materials

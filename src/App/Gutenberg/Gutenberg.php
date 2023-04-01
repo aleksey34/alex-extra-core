@@ -2,6 +2,7 @@
 namespace AlexExtraCore\App\Gutenberg;
 
 use AlexExtraCore\App\Gutenberg\Blocks\EventsAllEventsDynamic;
+use AlexExtraCore\App\Gutenberg\Blocks\SlickSliderFromDefaultGallery;
 use AlexExtraCore\App\Gutenberg\Inc\Api\RestPrepareDynamic;
 use AlexExtraCore\App\Gutenberg\Inc\CustomGutenbergCategory;
 use AlexExtraCore\App\Gutenberg\Inc\StaticBlocks;
@@ -48,6 +49,11 @@ class Gutenberg {
 		 */
 		EventsAllEventsDynamic::instance();
 
+		/**
+		 * init block --  all-events  Dynamic block
+		 * Create new class for new dynamic block and add here
+		 */
+		SlickSliderFromDefaultGallery::instance();
 
 	}
 
