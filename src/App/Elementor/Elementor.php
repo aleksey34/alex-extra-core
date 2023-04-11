@@ -250,6 +250,7 @@ final class Elementor {
 		$widgets_manager->register( new SwiperSliderWidget() );
 
 
+
 		// check woocommerce exist
 		if ( class_exists( 'WooCommerce' ) ) {
 			$widgets_manager->register( new ProductsWidget() );
