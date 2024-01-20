@@ -3,11 +3,11 @@
  * Plugin Name:       Alex Extra Core
  * Description:       Additional func for AlexTheme
  * Requires at least: 1.0
- * Requires PHP:      7.0
- * Version:           0.1.0
+ * Requires PHP: 7.4
+ * Version:           1.0
  * Author:            aleksey34
  * License:           GPL-2.0-or-later
- * Text Domain:      alex-theme
+ * Text Domain:       alex_theme
  /
  * @package          plugin core of alextheme
  */
@@ -19,11 +19,12 @@ namespace AlexExtraCore\App ;
 
 if(!defined('ABSPATH')) exit;
 
-
-define('AlexExtraCorePluginDIR' , plugin_dir_path(__FILE__) );
+define("AlexExtraCorePluginDIR" , plugin_dir_path(__FILE__) );
 define("AlexExtraCorePluginURI" , plugin_dir_url( __FILE__ ));
 define("AlexExtraCorePluginPageTemplateDir" , plugin_dir_path(__FILE__)  . 'page-template/' );
 define("AlexExtraCorePluginTemplateDir" , plugin_dir_path(__FILE__)  . 'src/app-template/' );
+
+
 
 /**
  * post meta -- material post type - key

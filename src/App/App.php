@@ -133,9 +133,11 @@ class App {
 
 
 		/**
-		 * Gutenberg
+		 * Gutenberg  --- attention!!!
+		 * REPLACE to alex-gutenberg plugin!!
+		 * See DISABLED folder before delete
 		 */
-		Gutenberg::instance();
+//		Gutenberg::instance();
 
 
 		/**
