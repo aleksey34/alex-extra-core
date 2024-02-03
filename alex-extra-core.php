@@ -14,7 +14,7 @@
 // - if file of translate in plugin - Domain Path: /languages
 namespace AlexExtraCore\App ;
 
-
+// Replace in other plugin  alex-libs
 //use Carbon_Fields\CarbonFieldsInit;
 
 if(!defined('ABSPATH')) exit;
@@ -79,6 +79,7 @@ require_once  AlexExtraCorePluginDIR .  'vendor/autoload.php';
 
 /**
  * Carbon fields init meta and theme options
+ * disabled  -replace in alex-libs
  */
 //CarbonFieldsInit::instance();
 

@@ -13,3 +13,30 @@ functions , includes -- подключение отключеныы с core фа
 
 
 в корне Темы файл theme.json -- ширина гутенберг блоков в редакторе!
+
+Подключение carbon fields
+добавление в composer.json сторочек подулючение классов
+ "autoload": {
+        "psr-4": {
+            "AlexExtraCore\\App\\": "src/App/",
+ ===>       "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/"  <=====
+
+        }
+    },
+это подключит классы
+ add it in composer.json and update for get carbon-fields
+ {composer update} command Require!
+
+ "require": {
+        "htmlburger/carbon-fields": "^3.3"
+    }
+
+
+autoload!! -- set autoloading for carbon fields setting and   {composer update} command Require!
+ "autoload": {
+        "psr-4": {
+            "AlexExtraCore\\App\\": "src/App/",
+            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/", == ADD this string in autoload for carbon fields setting
+            "AlexExtraCore\\TGM\\TgmSettings\\": "src/Libs/TGM/TgmSettings/"
+        }
+    },

@@ -2,7 +2,8 @@
     "name": "alex/alex-extra-core",
     "autoload": {
         "psr-4": {
-            "AlexExtraCore\\App\\": "src/App/"
+            "AlexExtraCore\\App\\": "src/App/",
+            "Carbon_Fields\\": "src/Libs/CarbonFieldsInit/"
 
         }
     },
@@ -15,4 +16,5 @@
     "require": {
 
     }
+
 }
